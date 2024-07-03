@@ -1,19 +1,27 @@
 import type { Metadata } from 'next'
+import Navbar from '@/components/Navbar'
+import { siteConfig } from '@/configs/site'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
-  title: 'Habitifier',
-  description: 'The App to increase your abilities',
+  title: {
+    default: siteConfig.title,
+    template: `%s - ${siteConfig.title}`,
+  },
+  description: siteConfig.description,
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        {children}
+      </body>
     </html>
   )
 }
