@@ -83,9 +83,13 @@
   }
 }
 
-main,
 nav {
-  @apply max-w-6xl mx-auto my-3;
+  @apply max-w-6xl mx-auto py-2;
+}
+
+main {
+  @apply max-w-6xl mx-auto;
+  min-height: calc(100vh - 56px);
 }
 p {
   @apply mt-2;
