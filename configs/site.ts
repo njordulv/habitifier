@@ -9,13 +9,5 @@ export const siteConfig = {
       label: 'Home',
       href: '/',
     },
-    {
-      label: 'Log In',
-      href: '/login',
-    },
-    {
-      label: 'Register',
-      href: '/register',
-    },
   ],
 }

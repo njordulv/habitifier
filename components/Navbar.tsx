@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useSession, signOut } from 'next-auth/react'
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -8,19 +11,57 @@ import {
 } from '@/components/ui/navigation-menu'
 import { siteConfig } from '@/configs/site'
 
-export default function Navbar() {
+const navItems = siteConfig.nav
+
+export const Navbar = () => {
+  const { data: session } = useSession()
+
+  const handleSignOut = () => signOut({ callbackUrl: '/' })
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        {siteConfig.nav.map((item) => (
+        {navItems.map((item) => (
           <NavigationMenuItem key={item.label}>
-            <Link href={item.href} legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                {item.label}
-              </NavigationMenuLink>
-            </Link>
+            <NavigationMenuLink
+              href={item.href}
+              className={navigationMenuTriggerStyle()}
+            >
+              {item.label}
+            </NavigationMenuLink>
           </NavigationMenuItem>
         ))}
+        {session && (
+          <>
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                href="/profile"
+                className={navigationMenuTriggerStyle()}
+              >
+                Profile
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                href="#"
+                className={navigationMenuTriggerStyle()}
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </>
+        )}
+        {!session && (
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              href="/api/auth/signin"
+              className={navigationMenuTriggerStyle()}
+            >
+              Sign In
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        )}
       </NavigationMenuList>
     </NavigationMenu>
   )
