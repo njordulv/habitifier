@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
 import {
   NavigationMenu,
@@ -55,7 +54,7 @@ export const Navbar = () => {
         {!session && (
           <NavigationMenuItem>
             <NavigationMenuLink
-              href="/api/auth/signin"
+              href="/signin"
               className={navigationMenuTriggerStyle()}
             >
               Sign In
