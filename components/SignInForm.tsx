@@ -7,9 +7,11 @@ import { CardContent, CardFooter } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
+import { useToast } from '@/components/ui/use-toast'
 
 export const SignInForm = () => {
   const router = useRouter()
+  const { toast } = useToast()
 
   const handlerSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault()
@@ -25,12 +27,15 @@ export const SignInForm = () => {
     if (res && !res.error) {
       router.push('/profile')
     } else {
-      console.log(res)
+      toast({
+        title: 'Error',
+        description: 'Something went wrong',
+      })
     }
   }
 
   return (
-    <form onSubmit={handlerSubmit}>
+    <form onSubmit={handlerSubmit} className="relative">
       <CardContent>
         <div className="grid gap-2">
           <Label htmlFor="email">Email:</Label>

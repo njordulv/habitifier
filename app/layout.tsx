@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { siteConfig } from '@/configs/site'
 import { Providers } from '@/components/Providers'
 import { Navbar } from '@/components/Navbar'
+import { Toaster } from '@/components/ui/toaster'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           {children}
+          <Toaster />
         </Providers>
       </body>
     </html>
