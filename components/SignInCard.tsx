@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/card'
 import { OrFill } from '@/components/OrFill'
 import { GoogleBtn } from '@/components/GoogleBtn'
+import { GithubBtn } from '@/components/GithubBtn'
 import { SignInForm } from '@/components/SignInForm'
 
 export default function SignInCard() {
@@ -21,6 +22,7 @@ export default function SignInCard() {
         </CardHeader>
         <CardContent>
           <GoogleBtn />
+          <GithubBtn />
           <OrFill />
         </CardContent>
         <SignInForm />
