@@ -9,28 +9,28 @@ import {
 } from '@/components/ui/card'
 import { OrFill } from '@/components/OrFill'
 import { GoogleBtn } from '@/components/GoogleBtn'
-import { SignInForm } from '@/components/SignInForm'
+import { SignUpForm } from '@/components/SignUpForm'
 
-export default function SignInCard() {
+export default function SignUpCard() {
   return (
     <>
       <Card className="w-full max-w-[380px]">
         <CardHeader>
-          <CardTitle>Welcome back</CardTitle>
-          <CardDescription>Sign in to your account</CardDescription>
+          <CardTitle>Get started</CardTitle>
+          <CardDescription>Create a new account</CardDescription>
         </CardHeader>
         <CardContent>
           <GoogleBtn />
           <OrFill />
         </CardContent>
-        <SignInForm />
+        <SignUpForm />
         <CardFooter className="text-xs flex gap-2">
-          <span>{`Don't have an account?`}</span>
+          <span>Have an account?</span>
           <Link
-            href="/signup"
+            href="/signin"
             className="hover:opacity-55 transition-opacity underline"
           >
-            Sign Up Now
+            Sign In Now
           </Link>
         </CardFooter>
       </Card>

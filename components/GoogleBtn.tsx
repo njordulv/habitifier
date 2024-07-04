@@ -14,9 +14,9 @@ export const GoogleBtn = () => {
   }
 
   return (
-    <Button variant="outline" className="w-full" onClick={googleHandler}>
+    <Button variant="secondary" className="w-full" onClick={googleHandler}>
       <SiGoogle className="mr-2 h-4 w-4" />
-      <span>Google</span>
+      <span>Continue with Google</span>
     </Button>
   )
 }
