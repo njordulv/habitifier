@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { SiGoogle, SiGithub } from 'react-icons/si'
 import {
   Card,
   CardContent,
@@ -8,8 +11,7 @@ import {
   CardFooter,
 } from '@/components/ui/card'
 import { OrFill } from '@/components/OrFill'
-import { GoogleBtn } from '@/components/GoogleBtn'
-import { GithubBtn } from '@/components/GithubBtn'
+import { ProviderButton } from '@/components/ProviderButton'
 import { SignUpForm } from '@/components/SignUpForm'
 
 export default function SignUpCard() {
@@ -21,8 +23,16 @@ export default function SignUpCard() {
           <CardDescription>Create a new account</CardDescription>
         </CardHeader>
         <CardContent>
-          <GoogleBtn />
-          <GithubBtn />
+          <ProviderButton
+            provider={'google'}
+            title="Continue with Google"
+            Icon={SiGoogle}
+          />
+          <ProviderButton
+            provider={'github'}
+            title="Continue with GitHub"
+            Icon={SiGithub}
+          />
           <OrFill />
         </CardContent>
         <SignUpForm />

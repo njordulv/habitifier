@@ -1,22 +1,26 @@
-'use client'
-
 import { signIn } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation'
-import { SiGithub } from 'react-icons/si'
+import { IconType } from 'react-icons'
 import { Button } from '@/components/ui/button'
 
-export const GithubBtn = () => {
+interface Props {
+  provider: string
+  title: string
+  Icon: IconType
+}
+
+export const ProviderButton = ({ provider, title, Icon }: Props) => {
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl') || '/profile'
 
   const githubHandler = () => {
-    signIn('github', { callbackUrl })
+    signIn(provider, { callbackUrl })
   }
 
   return (
     <Button variant="secondary" className="w-full" onClick={githubHandler}>
-      <SiGithub className="mr-2 h-4 w-4" />
-      <span>Continue with GitHub</span>
+      {Icon && <Icon className="mr-2 h-4 w-4" />}
+      <span>{title}</span>
     </Button>
   )
 }
