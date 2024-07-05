@@ -8,6 +8,7 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
+import ProfilePicture from '@/components/ProfilePicture'
 import { siteConfig } from '@/configs/site'
 
 const navItems = siteConfig.nav
@@ -62,6 +63,9 @@ export const Navbar = () => {
           </NavigationMenuItem>
         )}
       </NavigationMenuList>
+      {session && (
+        <ProfilePicture name={session.user.name} image={session.user.image} />
+      )}
     </NavigationMenu>
   )
 }
