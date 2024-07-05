@@ -1,14 +1,14 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { ProfilePictureProps } from '@/interfaces'
 
-interface ProfilePicture {
-  name?: string | null
-  image?: string | null
-}
-
-export default function ProfilePicture({ name, image }: ProfilePicture) {
+export const ProfilePicture: React.FC<ProfilePictureProps> = ({
+  name,
+  image,
+  ...props
+}) => {
   return (
     <>
-      <Avatar>
+      <Avatar {...props}>
         {image && <AvatarImage src={image} alt={`${name}'s profile picture`} />}
         <AvatarFallback>{name ? name[0].toUpperCase() : 'U'}</AvatarFallback>
       </Avatar>

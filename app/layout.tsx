@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { siteConfig } from '@/configs/site'
 import { Providers } from '@/components/Providers'
-import { Navbar } from '@/components/Navbar'
+import { Header } from '@/components/Header'
 import { Toaster } from '@/components/ui/toaster'
+import { siteConfig } from '@/configs/site'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <Navbar />
+          <Header />
           {children}
           <Toaster />
         </Providers>
