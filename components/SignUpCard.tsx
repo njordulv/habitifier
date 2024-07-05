@@ -20,7 +20,7 @@ export default function SignUpCard() {
       <Card className="w-full max-w-[380px]">
         <CardHeader>
           <CardTitle>Get started</CardTitle>
-          <CardDescription>Create a new account</CardDescription>
+          <CardDescription>Create your account</CardDescription>
         </CardHeader>
         <CardContent>
           <ProviderButton
@@ -39,12 +39,12 @@ export default function SignUpCard() {
         </CardContent>
         <SignUpForm />
         <CardFooter className="text-xs flex gap-2">
-          <span>Have an account?</span>
+          <span>Already have an account?</span>
           <Link
             href="/signin"
             className="hover:opacity-55 transition-opacity underline"
           >
-            Sign In Now
+            Sign In
           </Link>
         </CardFooter>
       </Card>

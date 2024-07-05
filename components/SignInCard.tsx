@@ -19,8 +19,10 @@ export default function SignInCard() {
     <>
       <Card className="w-full max-w-[380px]">
         <CardHeader>
-          <CardTitle>Welcome back</CardTitle>
-          <CardDescription>Sign in to your account</CardDescription>
+          <CardTitle>Sign in to Habitifier</CardTitle>
+          <CardDescription>
+            Welcome back! Sign in to your account
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <ProviderButton
@@ -44,7 +46,7 @@ export default function SignInCard() {
             href="/signup"
             className="hover:opacity-55 transition-opacity underline"
           >
-            Sign Up Now
+            Sign Up
           </Link>
         </CardFooter>
       </Card>

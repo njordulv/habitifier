@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
-import { FormEventHandler } from 'react'
+import { useState, FormEventHandler } from 'react'
 import { CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -12,28 +12,45 @@ import { useToast } from '@/components/ui/use-toast'
 export const SignInForm = () => {
   const router = useRouter()
   const { toast } = useToast()
+  const [isLoading, setIsLoading] = useState(false)
 
   const handlerSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault()
+    setIsLoading(true)
 
     const formData = new FormData(event.currentTarget)
+    const email = formData.get('email') as string
+    const password = formData.get('password') as string
 
-    const res = await signIn('credentials', {
-      email: formData.get('email'),
-      password: formData.get('password'),
-      redirect: false,
-    })
+    try {
+      const res = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      })
 
-    if (res && !res.error) {
-      router.push('/profile')
-    } else {
+      if (res && !res.error) {
+        toast({
+          title: 'Success',
+          description: 'Signed in successfully!',
+        })
+        router.push('/profile')
+      } else {
+        throw new Error(res?.error || 'Failed to sign in')
+      }
+    } catch (error) {
       toast({
         title: 'Error',
-        description: 'Something went wrong',
+        description:
+          error instanceof Error
+            ? error.message
+            : 'An error occurred during sign in',
+        variant: 'destructive',
       })
+    } finally {
+      setIsLoading(false)
     }
   }
-
   return (
     <form onSubmit={handlerSubmit} className="relative">
       <CardContent>
@@ -41,18 +58,18 @@ export const SignInForm = () => {
           <Label htmlFor="email" className="text-muted-foreground">
             Email
           </Label>
-          <Input id="email" type="email" required />
+          <Input id="email" name="email" type="email" required />
         </div>
         <div className="grid gap-2">
           <Label htmlFor="password" className="text-muted-foreground">
             Password
           </Label>
-          <Input id="password" type="password" required />
+          <Input id="password" name="password" type="password" required />
         </div>
       </CardContent>
       <CardContent className="flex flex-col justify-between">
         <Button variant="default" className="w-full" type="submit">
-          Sign In
+          {isLoading && '...'} Sign In
         </Button>
       </CardContent>
     </form>

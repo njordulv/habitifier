@@ -2,7 +2,8 @@ import type { AuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from 'next-auth/providers/github'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { supabase } from '@/lib/supabase'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '@/lib/firebase'
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -22,7 +23,11 @@ export const authOptions: AuthOptions = {
           type: 'email',
           required: true,
         },
-        password: { label: 'password', type: 'password', required: true },
+        password: {
+          label: 'password',
+          type: 'password',
+          required: true,
+        },
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials.password) {
@@ -30,28 +35,23 @@ export const authOptions: AuthOptions = {
         }
 
         try {
-          const { data, error } = await supabase.auth.signInWithPassword({
-            email: credentials.email,
-            password: credentials.password,
-          })
-
-          if (error) {
-            console.error('Supabase error:', error)
+          const userCredential = await signInWithEmailAndPassword(
+            auth,
+            credentials.email,
+            credentials.password
+          )
+          const user = userCredential.user
+          if (user) {
+            return {
+              id: user.uid,
+              email: user.email,
+              name: user.displayName,
+            }
+          } else {
             return null
-          }
-
-          if (!data.user) {
-            console.error('No user returned from Supabase')
-            return null
-          }
-
-          return {
-            id: data.user.id,
-            email: data.user.email,
-            name: data.user.user_metadata.full_name,
           }
         } catch (error) {
-          console.error('Error during authorization:', error)
+          console.error('Error during Firebase authentication:', error)
           return null
         }
       },
