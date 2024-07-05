@@ -27,11 +27,13 @@ export default function SignUpCard() {
             provider={'google'}
             title="Continue with Google"
             Icon={SiGoogle}
+            variant={'secondary'}
           />
           <ProviderButton
             provider={'github'}
             title="Continue with GitHub"
             Icon={SiGithub}
+            variant={'secondary'}
           />
           <OrFill />
         </CardContent>
