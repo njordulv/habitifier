@@ -42,7 +42,7 @@ export const Navbar = () => {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink
-                href="javascript:"
+                href="#"
                 className={navigationMenuTriggerStyle()}
                 onClick={handleSignOut}
               >

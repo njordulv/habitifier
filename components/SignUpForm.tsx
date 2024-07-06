@@ -8,19 +8,15 @@ import {
 } from 'firebase/auth'
 import { signIn } from 'next-auth/react'
 import { auth } from '@/lib/firebase'
-import { CardContent } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Button } from '@/components/ui/button'
 import { useToast } from '@/components/ui/use-toast'
-import { Spinner } from '@/components/ui/spinner'
+import { Form } from '@/components/Form'
 
 export const SignUpForm = () => {
   const router = useRouter()
   const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(false)
 
-  const handlerSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault()
     setIsLoading(true)
 
@@ -38,14 +34,14 @@ export const SignUpForm = () => {
 
       await sendEmailVerification(user)
 
-      const result = await signIn('credentials', {
+      const res = await signIn('credentials', {
         email,
         password,
         redirect: false,
       })
 
-      if (result?.error) {
-        throw new Error(result.error)
+      if (res?.error) {
+        throw new Error(res.error)
       }
 
       toast({
@@ -54,7 +50,7 @@ export const SignUpForm = () => {
           'Registration successful! Please check your email for verification.',
       })
 
-      router.push('/profile')
+      router.replace('/profile')
     } catch (error) {
       toast({
         title: 'Error',
@@ -70,45 +66,6 @@ export const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={handlerSubmit} className="relative">
-      <CardContent>
-        <div className="grid gap-2">
-          <Label htmlFor="email" className="text-muted-foreground">
-            Email
-          </Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="your.email@provider.com"
-            autoComplete="email"
-            required
-          />
-        </div>
-        <div className="grid gap-2">
-          <Label htmlFor="password" className="text-muted-foreground">
-            Password
-          </Label>
-          <Input
-            id="password"
-            name="password"
-            type="password"
-            placeholder="••••••••••••"
-            autoComplete="current-password"
-            required
-          />
-        </div>
-      </CardContent>
-      <CardContent className="flex flex-col justify-between">
-        <Button
-          variant="default"
-          className="w-full"
-          type="submit"
-          disabled={isLoading}
-        >
-          {isLoading ? <Spinner /> : 'Sign Up'}
-        </Button>
-      </CardContent>
-    </form>
+    <Form onSubmit={handleSubmit} isLoading={isLoading} buttonText="Sign Up" />
   )
 }

@@ -19,6 +19,7 @@ Track your progress, set goals, and achieve a better you with ease.
 - UI design system: Shadcn-UI, Tailwind CSS
 - Languages: TypeScript
 - Authentication library: NextAuth
+- Database: Firestore
 
 ## Getting Started
 
