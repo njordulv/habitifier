@@ -15,4 +15,5 @@ export interface ProviderProps extends ButtonProps {
 export interface ProfilePictureProps extends ProfileProps {
   name?: string | null
   image?: string | null
+  email?: string | null
 }

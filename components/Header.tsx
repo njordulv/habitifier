@@ -13,6 +13,7 @@ export const Header = () => {
       {session && (
         <ProfilePicture
           name={session.user.name}
+          email={session.user.email}
           image={session.user.image}
           className="absolute right-2 top-2"
         />

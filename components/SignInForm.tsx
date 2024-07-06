@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/components/ui/use-toast'
+import { Spinner } from '@/components/ui/spinner'
 
 export const SignInForm = () => {
   const router = useRouter()
@@ -58,18 +59,35 @@ export const SignInForm = () => {
           <Label htmlFor="email" className="text-muted-foreground">
             Email
           </Label>
-          <Input id="email" name="email" type="email" required />
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+          />
         </div>
         <div className="grid gap-2">
           <Label htmlFor="password" className="text-muted-foreground">
             Password
           </Label>
-          <Input id="password" name="password" type="password" required />
+          <Input
+            id="password"
+            name="password"
+            type="password"
+            autoComplete="current-password"
+            required
+          />
         </div>
       </CardContent>
       <CardContent className="flex flex-col justify-between">
-        <Button variant="default" className="w-full" type="submit">
-          {isLoading && '...'} Sign In
+        <Button
+          variant="default"
+          className="w-full"
+          type="submit"
+          disabled={isLoading}
+        >
+          {isLoading ? <Spinner /> : 'Sign Up'}
         </Button>
       </CardContent>
     </form>
