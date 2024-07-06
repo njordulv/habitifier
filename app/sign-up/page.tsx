@@ -1,5 +1,5 @@
-import { AuthCard } from '@/components/AuthCard'
-import { SignUpFormHandler } from '@/components/SignUpFormHandler'
+import { AuthCard } from '@/components/auth/AuthCard'
+import { SignUpFormHandler } from '@/components/auth/SignUpFormHandler'
 
 export default async function SignUp() {
   return (

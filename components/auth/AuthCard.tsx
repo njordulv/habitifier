@@ -10,7 +10,7 @@ import {
   CardTitle,
   CardFooter,
 } from '@/components/ui/card'
-import { OrFill } from '@/components/OrFill'
+import { OrFill } from '@/components/auth/OrFill'
 import { ProviderButton } from '@/components/ProviderButton'
 
 interface AuthCardProps {
