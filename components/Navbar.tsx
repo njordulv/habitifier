@@ -42,7 +42,7 @@ export const Navbar = () => {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuLink
-                href="#"
+                href="javascript:"
                 className={navigationMenuTriggerStyle()}
                 onClick={handleSignOut}
               >
@@ -54,7 +54,7 @@ export const Navbar = () => {
         {!session && (
           <NavigationMenuItem>
             <NavigationMenuLink
-              href="/signin"
+              href="/sign-in"
               className={navigationMenuTriggerStyle()}
             >
               Sign In

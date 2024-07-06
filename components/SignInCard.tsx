@@ -43,7 +43,7 @@ export default function SignInCard() {
         <CardFooter className="text-xs flex gap-2">
           <span>{`Don't have an account?`}</span>
           <Link
-            href="/signup"
+            href="/sign-up"
             className="hover:opacity-55 transition-opacity underline"
           >
             Sign Up

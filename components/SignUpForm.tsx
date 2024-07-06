@@ -80,6 +80,7 @@ export const SignUpForm = () => {
             id="email"
             name="email"
             type="email"
+            placeholder="your.email@provider.com"
             autoComplete="email"
             required
           />
@@ -92,6 +93,7 @@ export const SignUpForm = () => {
             id="password"
             name="password"
             type="password"
+            placeholder="••••••••••••"
             autoComplete="current-password"
             required
           />

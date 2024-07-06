@@ -63,6 +63,7 @@ export const SignInForm = () => {
             id="email"
             name="email"
             type="email"
+            placeholder="your.email@provider.com"
             autoComplete="email"
             required
           />
@@ -75,6 +76,7 @@ export const SignInForm = () => {
             id="password"
             name="password"
             type="password"
+            placeholder="••••••••••••"
             autoComplete="current-password"
             required
           />
@@ -87,7 +89,7 @@ export const SignInForm = () => {
           type="submit"
           disabled={isLoading}
         >
-          {isLoading ? <Spinner /> : 'Sign Up'}
+          {isLoading ? <Spinner /> : 'Sign In'}
         </Button>
       </CardContent>
     </form>

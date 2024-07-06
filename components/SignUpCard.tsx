@@ -41,7 +41,7 @@ export default function SignUpCard() {
         <CardFooter className="text-xs flex gap-2">
           <span>Already have an account?</span>
           <Link
-            href="/signin"
+            href="/sign-in"
             className="hover:opacity-55 transition-opacity underline"
           >
             Sign In
