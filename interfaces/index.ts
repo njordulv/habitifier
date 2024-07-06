@@ -17,3 +17,9 @@ export interface ProfilePictureProps extends ProfileProps {
   image?: string | null
   email?: string | null
 }
+
+export interface SignFormProps {
+  onSubmit: React.FormEventHandler<HTMLFormElement>
+  isLoading: boolean
+  buttonText: string
+}

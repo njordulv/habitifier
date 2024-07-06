@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
 import {
   NavigationMenu,
@@ -8,6 +9,7 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
+import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/configs/site'
 
 const navItems = siteConfig.nav
@@ -22,43 +24,39 @@ export const Navbar = () => {
       <NavigationMenuList>
         {navItems.map((item) => (
           <NavigationMenuItem key={item.label}>
-            <NavigationMenuLink
-              href={item.href}
-              className={navigationMenuTriggerStyle()}
-            >
-              {item.label}
-            </NavigationMenuLink>
+            <Link href={item.href} passHref legacyBehavior>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                {item.label}
+              </NavigationMenuLink>
+            </Link>
           </NavigationMenuItem>
         ))}
         {session && (
           <>
             <NavigationMenuItem>
-              <NavigationMenuLink
-                href="/profile"
-                className={navigationMenuTriggerStyle()}
-              >
-                Profile
-              </NavigationMenuLink>
+              <Link href="/profile" passHref legacyBehavior>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Profile
+                </NavigationMenuLink>
+              </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink
-                href="#"
-                className={navigationMenuTriggerStyle()}
+              <Button
+                className={`${navigationMenuTriggerStyle()} text-white`}
                 onClick={handleSignOut}
               >
                 Sign Out
-              </NavigationMenuLink>
+              </Button>
             </NavigationMenuItem>
           </>
         )}
         {!session && (
           <NavigationMenuItem>
-            <NavigationMenuLink
-              href="/sign-in"
-              className={navigationMenuTriggerStyle()}
-            >
-              Sign In
-            </NavigationMenuLink>
+            <Link href="/sign-in" passHref legacyBehavior>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Sign In
+              </NavigationMenuLink>
+            </Link>
           </NavigationMenuItem>
         )}
       </NavigationMenuList>
