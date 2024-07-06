@@ -6,7 +6,7 @@ import { useState, FormEventHandler } from 'react'
 import { useToast } from '@/components/ui/use-toast'
 import { Form } from '@/components/Form'
 
-export const SignInForm = () => {
+export const SignInFormHandler = () => {
   const router = useRouter()
   const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(false)

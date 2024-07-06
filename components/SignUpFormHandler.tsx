@@ -11,7 +11,7 @@ import { auth } from '@/lib/firebase'
 import { useToast } from '@/components/ui/use-toast'
 import { Form } from '@/components/Form'
 
-export const SignUpForm = () => {
+export const SignUpFormHandler = () => {
   const router = useRouter()
   const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(false)

@@ -12,15 +12,30 @@ import {
 } from '@/components/ui/card'
 import { OrFill } from '@/components/OrFill'
 import { ProviderButton } from '@/components/ProviderButton'
-import { SignUpForm } from '@/components/SignUpForm'
 
-export default function SignUpCard() {
+interface AuthCardProps {
+  title: string
+  description: string
+  formComponent: React.ReactNode
+  accountText: string
+  linkUrl: string
+  linkText: string
+}
+
+export const AuthCard: React.FC<AuthCardProps> = ({
+  title,
+  description,
+  formComponent,
+  accountText,
+  linkUrl,
+  linkText,
+}) => {
   return (
     <>
       <Card className="w-full max-w-[380px]">
         <CardHeader>
-          <CardTitle>Get started</CardTitle>
-          <CardDescription>Create your account</CardDescription>
+          <CardTitle>{title}</CardTitle>
+          <CardDescription>{description}</CardDescription>
         </CardHeader>
         <CardContent>
           <ProviderButton
@@ -37,14 +52,14 @@ export default function SignUpCard() {
           />
           <OrFill />
         </CardContent>
-        <SignUpForm />
+        {formComponent}
         <CardFooter className="text-xs flex gap-2">
-          <span>Already have an account?</span>
+          <span>{accountText}</span>
           <Link
-            href="/sign-in"
+            href={linkUrl}
             className="hover:opacity-55 transition-opacity underline"
           >
-            Sign In
+            {linkText}
           </Link>
         </CardFooter>
       </Card>

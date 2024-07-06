@@ -1,9 +1,17 @@
-import SignInCard from '@/components/SignInCard'
+import { AuthCard } from '@/components/AuthCard'
+import { SignInFormHandler } from '@/components/SignInFormHandler'
 
-export default async function page() {
+export default async function SignIn() {
   return (
     <main className="flex flex-col items-center justify-between p-24 gap-6">
-      <SignInCard />
+      <AuthCard
+        title="Sign in to Habitifier"
+        description="Welcome back! Sign in to your account"
+        formComponent={<SignInFormHandler />}
+        accountText="Don't have an account?"
+        linkUrl="Sign Up"
+        linkText="/sign-up"
+      />
     </main>
   )
 }
