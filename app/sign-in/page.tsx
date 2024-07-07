@@ -1,5 +1,5 @@
 import { AuthCard } from '@/components/auth/AuthCard'
-import { SignInFormHandler } from '@/components/auth/SignInFormHandler'
+import { SignInHandler } from '@/components/auth/SignInHandler'
 
 export default async function SignIn() {
   return (
@@ -7,10 +7,10 @@ export default async function SignIn() {
       <AuthCard
         title="Sign in to Habitifier"
         description="Welcome back! Sign in to your account"
-        formComponent={<SignInFormHandler />}
+        formComponent={<SignInHandler />}
         accountText="Don't have an account?"
-        linkUrl="Sign Up"
-        linkText="/sign-up"
+        linkUrl="/sign-up"
+        linkText="Sign Up"
       />
     </main>
   )

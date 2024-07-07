@@ -11,7 +11,7 @@ import {
   CardFooter,
 } from '@/components/ui/card'
 import { OrFill } from '@/components/auth/OrFill'
-import { ProviderButton } from '@/components/ProviderButton'
+import { ProviderButton } from '@/components/auth/ProviderButton'
 
 interface AuthCardProps {
   title: string
@@ -31,38 +31,36 @@ export const AuthCard: React.FC<AuthCardProps> = ({
   linkText,
 }) => {
   return (
-    <>
-      <Card className="w-full max-w-[380px]">
-        <CardHeader>
-          <CardTitle>{title}</CardTitle>
-          <CardDescription>{description}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ProviderButton
-            provider={'google'}
-            title="Continue with Google"
-            Icon={SiGoogle}
-            variant={'secondary'}
-          />
-          <ProviderButton
-            provider={'github'}
-            title="Continue with GitHub"
-            Icon={SiGithub}
-            variant={'secondary'}
-          />
-          <OrFill />
-        </CardContent>
-        {formComponent}
-        <CardFooter className="text-xs flex gap-2">
-          <span>{accountText}</span>
-          <Link
-            href={linkUrl}
-            className="hover:opacity-55 transition-opacity underline"
-          >
-            {linkText}
-          </Link>
-        </CardFooter>
-      </Card>
-    </>
+    <Card className="w-full max-w-[380px]">
+      <CardHeader>
+        <CardTitle>{title}</CardTitle>
+        <CardDescription>{description}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ProviderButton
+          provider={'google'}
+          title="Continue with Google"
+          Icon={SiGoogle}
+          variant={'secondary'}
+        />
+        <ProviderButton
+          provider={'github'}
+          title="Continue with GitHub"
+          Icon={SiGithub}
+          variant={'secondary'}
+        />
+        <OrFill />
+      </CardContent>
+      {formComponent}
+      <CardFooter className="text-xs flex gap-2">
+        <span>{accountText}</span>
+        <Link
+          href={linkUrl}
+          className="hover:opacity-55 transition-opacity underline"
+        >
+          {linkText}
+        </Link>
+      </CardFooter>
+    </Card>
   )
 }

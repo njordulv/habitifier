@@ -1,5 +1,5 @@
 import { AuthCard } from '@/components/auth/AuthCard'
-import { SignUpFormHandler } from '@/components/auth/SignUpFormHandler'
+import { SignUpHandler } from '@/components/auth/SignUpHandler'
 
 export default async function SignUp() {
   return (
@@ -7,10 +7,10 @@ export default async function SignUp() {
       <AuthCard
         title="Get started"
         description="Create your account"
-        formComponent={<SignUpFormHandler />}
+        formComponent={<SignUpHandler />}
         accountText="Already have an account?"
-        linkUrl="Sign In"
-        linkText="/sign-in"
+        linkUrl="/sign-in"
+        linkText="Sign In"
       />
     </main>
   )
