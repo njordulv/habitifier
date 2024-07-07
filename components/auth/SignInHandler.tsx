@@ -6,7 +6,7 @@ import { useState } from 'react'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { useToast } from '@/components/ui/use-toast'
+import { useMessages } from '@/hooks/useMessage'
 import {
   Form,
   FormControl,
@@ -32,7 +32,7 @@ type FormData = z.infer<typeof FormSchema>
 
 export const SignInHandler = () => {
   const router = useRouter()
-  const { toast } = useToast()
+  const { showMessage } = useMessages()
   const [isLoading, setIsLoading] = useState(false)
   const form = useForm<FormData>({
     resolver: zodResolver(FormSchema),
@@ -53,23 +53,19 @@ export const SignInHandler = () => {
       })
 
       if (res && !res.error) {
-        toast({
-          title: 'Success',
-          description: 'Signed in successfully!',
-        })
+        showMessage('Signed in successfully!', 'success', 'primary')
         router.replace('/profile')
       } else {
         throw new Error(res?.error || 'Failed to sign in')
       }
     } catch (error) {
-      toast({
-        title: 'Error',
-        description:
-          error instanceof Error
-            ? error.message
-            : 'An error occurred during sign in',
-        variant: 'destructive',
-      })
+      showMessage(
+        error instanceof Error
+          ? error.message
+          : 'An error occurred during sign in',
+        'error',
+        'destructive'
+      )
     } finally {
       setIsLoading(false)
     }

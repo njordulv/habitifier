@@ -52,18 +52,22 @@
 
     --primary: 0 0% 98%;
     --primary-foreground: 240 5.9% 10%;
+    --primary-border: 0 0% 80%;
 
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
+    --secondary-border: 240 3.7% 30%;
 
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 50%;
 
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
+    --accent-border: 240 3.7% 30%;
 
     --destructive: 0 62.8% 37%;
     --destructive-foreground: 0 0% 98%;
+    --destructive-border: 0 40% 50%;
 
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
@@ -103,6 +107,30 @@ h2 {
 
 form {
   position: relative;
+}
+
+.toast-primary {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-color: hsl(var(--primary-border));
+}
+
+.toast-secondary {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  border-color: hsl(var(--secondary-border));
+}
+
+.toast-accent {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+  border-color: hsl(var(--accent-border));
+}
+
+.toast-destructive {
+  background-color: hsl(var(--destructive));
+  color: hsl(var(--destructive-foreground));
+  border-color: hsl(var(--destructive-border));
 }
 
 @keyframes spin {

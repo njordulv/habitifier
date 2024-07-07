@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Providers } from '@/components/Providers'
 import { Header } from '@/components/Header'
-import { Toaster } from '@/components/ui/toaster'
+import { Toaster } from '@/components/ui/sonner'
 import { siteConfig } from '@/configs/site'
 import '@/styles/globals.css'
 
