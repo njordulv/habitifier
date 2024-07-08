@@ -2,8 +2,7 @@ import type { AuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from 'next-auth/providers/github'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '@/lib/firebase'
+import { supabase } from '@/lib/supabase'
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -35,17 +34,18 @@ export const authOptions: AuthOptions = {
         }
 
         try {
-          const userCredential = await signInWithEmailAndPassword(
-            auth,
-            credentials.email,
-            credentials.password
-          )
-          const user = userCredential.user
-          if (user) {
+          const { data, error } = await supabase.auth.signInWithPassword({
+            email: credentials.email,
+            password: credentials.password,
+          })
+
+          if (error) throw error
+
+          if (data.user) {
             return {
-              id: user.uid,
-              email: user.email,
-              name: user.displayName,
+              id: data.user.id,
+              email: data.user.email,
+              name: data.user.user_metadata.full_name,
             }
           } else {
             return null

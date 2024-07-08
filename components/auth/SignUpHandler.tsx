@@ -6,11 +6,7 @@ import { useState } from 'react'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import {
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-} from 'firebase/auth'
-import { auth } from '@/lib/firebase'
+import { supabase } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
 import {
   Form,
@@ -51,14 +47,15 @@ export const SignUpHandler = () => {
     setIsLoading(true)
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        values.email,
-        values.password
-      )
-      const user = userCredential.user
+      const { data, error } = await supabase.auth.signUp({
+        email: values.email,
+        password: values.password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+        },
+      })
 
-      await sendEmailVerification(user)
+      if (error) throw error
 
       const res = await signIn('credentials', {
         email: values.email,
@@ -121,7 +118,7 @@ export const SignUpHandler = () => {
                 <FormControl>
                   <Input
                     placeholder="••••••••••••"
-                    autoComplete="password"
+                    autoComplete="new-password"
                     {...field}
                     type="password"
                   />
