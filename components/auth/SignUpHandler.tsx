@@ -6,7 +6,6 @@ import { useState } from 'react'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { supabase } from '@/lib/supabase'
 import { useMessages } from '@/hooks/useMessage'
 import {
   Form,
@@ -20,6 +19,12 @@ import { CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
 
 const FormSchema = z.object({
   name: z.string().min(1, 'Name is required'),
