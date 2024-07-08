@@ -112,13 +112,8 @@ export const SignInHandler = () => {
           />
         </CardContent>
         <CardContent className="flex flex-col justify-between">
-          <Button
-            variant="default"
-            className="w-full"
-            type="submit"
-            disabled={isLoading}
-          >
-            {isLoading ? <Spinner /> : 'Sign In'}
+          <Button variant="default" type="submit" disabled={isLoading}>
+            {isLoading ? <Spinner size={20} /> : 'Sign In'}
           </Button>
         </CardContent>
       </form>

@@ -41,13 +41,13 @@
   :root {
     --font: 'Inter', sans-serif;
 
-    --background: 240 10% 3.9%;
+    --background: 0deg 0% 9%;
     --foreground: 0 0% 98%;
 
-    --card: 240 10% 3.9%;
+    --card: 0deg 0% 9%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 10% 3.9%;
+    --popover: 0deg 0% 9%;
     --popover-foreground: 0 0% 98%;
 
     --primary: 0 0% 98%;
@@ -75,8 +75,8 @@
     --destructive-200: 10.9deg 23.4% 9.2%;
     --destructive-100: 10deg 32.8% 7%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
+    --border: 0deg 1% 20.3%;
+    --input: 0deg 1% 20.3%;
     --ring: 240 4.9% 83.9%;
 
     --radius: 0.5rem;

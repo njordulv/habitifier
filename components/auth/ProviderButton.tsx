@@ -46,7 +46,11 @@ export const ProviderButton: React.FC<ProviderProps> = ({
       disabled={isLoading}
       aria-label={title}
     >
-      {isLoading ? <Spinner /> : <Icon size={18} aria-hidden="true" />}
+      {isLoading ? (
+        <Spinner size={20} />
+      ) : (
+        <Icon size={18} aria-hidden="true" />
+      )}
       <span>{title}</span>
     </Button>
   )
