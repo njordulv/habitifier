@@ -7,7 +7,7 @@ import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { supabase } from '@/lib/supabase'
-import { useToast } from '@/components/ui/use-toast'
+import { useMessages } from '@/hooks/useMessage'
 import {
   Form,
   FormControl,
@@ -33,7 +33,7 @@ type FormData = z.infer<typeof FormSchema>
 
 export const SignUpHandler = () => {
   const router = useRouter()
-  const { toast } = useToast()
+  const { showMessage } = useMessages()
   const [isLoading, setIsLoading] = useState(false)
   const form = useForm<FormData>({
     resolver: zodResolver(FormSchema),
@@ -57,6 +57,12 @@ export const SignUpHandler = () => {
 
       if (error) throw error
 
+      showMessage(
+        'Registration successful! Please check your email for verification.',
+        'success',
+        'primary'
+      )
+
       const res = await signIn('credentials', {
         email: values.email,
         password: values.password,
@@ -67,22 +73,13 @@ export const SignUpHandler = () => {
         throw new Error(res.error)
       }
 
-      toast({
-        title: 'Success',
-        description:
-          'Registration successful! Please check your email for verification.',
-      })
-
       router.replace('/profile')
-    } catch (error) {
-      toast({
-        title: 'Error',
-        description:
-          error instanceof Error
-            ? error.message
-            : 'An error occurred during signup',
-        variant: 'destructive',
-      })
+    } catch (error: any) {
+      showMessage(
+        error.message || 'An error occurred during signup',
+        'error',
+        'destructive'
+      )
     } finally {
       setIsLoading(false)
     }
@@ -103,6 +100,7 @@ export const SignUpHandler = () => {
                     placeholder="your.email@provider.com"
                     autoComplete="email"
                     {...field}
+                    error={!!form.formState.errors.email}
                   />
                 </FormControl>
                 <FormMessage className="absolute !m-0" />
@@ -121,6 +119,7 @@ export const SignUpHandler = () => {
                     autoComplete="new-password"
                     {...field}
                     type="password"
+                    error={!!form.formState.errors.password}
                   />
                 </FormControl>
                 <FormMessage className="absolute !m-0" />

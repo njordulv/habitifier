@@ -58,11 +58,9 @@ export const SignInHandler = () => {
       } else {
         throw new Error(res?.error || 'Failed to sign in')
       }
-    } catch (error) {
+    } catch (error: any) {
       showMessage(
-        error instanceof Error
-          ? error.message
-          : 'An error occurred during sign in',
+        error.message || 'An error occurred during sign in',
         'error',
         'destructive'
       )
@@ -86,6 +84,7 @@ export const SignInHandler = () => {
                     placeholder="your.email@provider.com"
                     autoComplete="email"
                     {...field}
+                    error={!!form.formState.errors.email}
                   />
                 </FormControl>
                 <FormMessage className="absolute !m-0" />
@@ -104,6 +103,7 @@ export const SignInHandler = () => {
                     placeholder="••••••••••••"
                     autoComplete="password"
                     {...field}
+                    error={!!form.formState.errors.email}
                   />
                 </FormControl>
                 <FormMessage className="absolute !m-0" />

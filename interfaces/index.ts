@@ -17,3 +17,12 @@ export interface ProfilePictureProps extends ProfileProps {
   image?: string | null
   email?: string | null
 }
+
+export interface AuthCardProps {
+  title: string
+  description: string
+  formComponent: React.ReactNode
+  accountText: string
+  linkUrl: string
+  linkText: string
+}

@@ -12,15 +12,7 @@ import {
 } from '@/components/ui/card'
 import { OrFill } from '@/components/auth/OrFill'
 import { ProviderButton } from '@/components/auth/ProviderButton'
-
-interface AuthCardProps {
-  title: string
-  description: string
-  formComponent: React.ReactNode
-  accountText: string
-  linkUrl: string
-  linkText: string
-}
+import { AuthCardProps } from '@/interfaces'
 
 export const AuthCard: React.FC<AuthCardProps> = ({
   title,

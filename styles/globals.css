@@ -68,6 +68,12 @@
     --destructive: 0 62.8% 37%;
     --destructive-foreground: 0 0% 98%;
     --destructive-border: 0 40% 50%;
+    --destructive-600: 9.7deg 85.2% 62.9%;
+    --destructive-500: 7.9deg 71.6% 29%;
+    --destructive-400: 6.7deg 60% 20.6%;
+    --destructive-300: 7.5deg 51.3% 15.3%;
+    --destructive-200: 10.9deg 23.4% 9.2%;
+    --destructive-100: 10deg 32.8% 7%;
 
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
@@ -131,6 +137,36 @@ form {
   background-color: hsl(var(--destructive));
   color: hsl(var(--destructive-foreground));
   border-color: hsl(var(--destructive-border));
+}
+
+.bg-destructive {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--destructive-default) / var(--tw-bg-opacity));
+}
+
+.bg-destructive-200 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--destructive-200) / var(--tw-bg-opacity));
+}
+
+.bg-destructive-300 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--destructive-300) / var(--tw-bg-opacity));
+}
+
+.bg-destructive-400 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--destructive-400) / var(--tw-bg-opacity));
+}
+
+.bg-destructive-500 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--destructive-500) / var(--tw-bg-opacity));
+}
+
+.bg-destructive-600 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--destructive-600) / var(--tw-bg-opacity));
 }
 
 @keyframes spin {

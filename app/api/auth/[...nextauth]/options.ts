@@ -50,9 +50,11 @@ export const authOptions: AuthOptions = {
           } else {
             return null
           }
-        } catch (error) {
-          console.error('Error during Firebase authentication:', error)
-          return null
+        } catch (error: any) {
+          console.error('Error during Supabase authentication:', error)
+          throw new Error(
+            error.message || 'Error during Supabase authentication'
+          )
         }
       },
     }),
