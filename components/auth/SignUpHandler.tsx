@@ -22,6 +22,7 @@ import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 
 const FormSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
   email: z.string().min(1, 'Email is required').email('Invalid email address'),
   password: z
     .string()
@@ -38,6 +39,7 @@ export const SignUpHandler = () => {
   const form = useForm<FormData>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
+      name: '',
       email: '',
       password: '',
     },
@@ -51,6 +53,9 @@ export const SignUpHandler = () => {
         email: values.email,
         password: values.password,
         options: {
+          data: {
+            full_name: values.name,
+          },
           emailRedirectTo: `${window.location.origin}/auth/callback`,
         },
       })
@@ -91,13 +96,30 @@ export const SignUpHandler = () => {
         <CardContent>
           <FormField
             control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Awesome You"
+                    {...field}
+                    error={!!form.formState.errors.name}
+                  />
+                </FormControl>
+                <FormMessage className="absolute !m-0" />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="your.email@provider.com"
+                    placeholder="email@provider.com"
                     autoComplete="email"
                     {...field}
                     error={!!form.formState.errors.email}

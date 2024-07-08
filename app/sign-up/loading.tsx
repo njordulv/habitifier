@@ -3,7 +3,7 @@ import { OrFill } from '@/components/auth/OrFill'
 
 export default function loading() {
   return (
-    <main className="flex flex-col items-center justify-between p-24 gap-6">
+    <main className="flex flex-col items-center justify-between p-5 md:p-24 gap-6">
       <div className="w-full max-w-[380px] flex flex-col p-6 gap-6 rounded-xl border">
         <div className="flex flex-col gap-2">
           <Skeleton className="h-8 w-full max-w-[40%] rounded-md" />
@@ -20,7 +20,11 @@ export default function loading() {
             <Skeleton className="h-9" />
           </div>
           <div className="space-y-3">
-            <Skeleton className="h-4 w-[21%]" />
+            <Skeleton className="h-4 w-[13%]" />
+            <Skeleton className="h-9" />
+          </div>
+          <div className="space-y-3">
+            <Skeleton className="h-4 w-[20%]" />
             <Skeleton className="h-9" />
           </div>
         </div>

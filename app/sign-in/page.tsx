@@ -3,7 +3,7 @@ import { SignInHandler } from '@/components/auth/SignInHandler'
 
 export default async function SignIn() {
   return (
-    <main className="flex flex-col items-center justify-between p-24 gap-6">
+    <main className="flex flex-col items-center justify-between p-5 md:p-24 gap-6">
       <AuthCard
         title="Sign in to Habitifier"
         description="Welcome back! Sign in to your account"

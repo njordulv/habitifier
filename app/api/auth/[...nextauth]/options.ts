@@ -17,6 +17,11 @@ export const authOptions: AuthOptions = {
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
+        username: {
+          label: 'name',
+          type: 'text',
+          required: false,
+        },
         email: {
           label: 'email',
           type: 'email',
