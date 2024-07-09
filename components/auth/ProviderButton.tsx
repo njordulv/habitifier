@@ -1,10 +1,10 @@
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import { useState } from 'react'
 import { ProviderProps } from '@/interfaces'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
-import { useToast } from '@/components/ui/use-toast'
+import { useMessages } from '@/hooks/useMessage'
 
 export const ProviderButton: React.FC<ProviderProps> = ({
   provider,
@@ -13,9 +13,10 @@ export const ProviderButton: React.FC<ProviderProps> = ({
   ...props
 }) => {
   const searchParams = useSearchParams()
+  const router = useRouter()
   const callbackUrl = searchParams.get('callbackUrl') || '/profile'
   const [isLoading, setIsLoading] = useState(false)
-  const { toast } = useToast()
+  const { showMessage } = useMessages()
 
   const handleSignIn = async () => {
     setIsLoading(true)
@@ -23,17 +24,19 @@ export const ProviderButton: React.FC<ProviderProps> = ({
       const res = await signIn(provider, { callbackUrl, redirect: false })
 
       if (res?.error) {
-        toast({
-          title: 'Sign in error:',
-          description: res.error,
-        })
+        showMessage(res.error || 'Sign in error', 'error', 'destructive')
+        setIsLoading(false)
+      } else if (res?.url) {
+        router.push(res.url)
       }
     } catch (error) {
-      toast({
-        title: 'Sign in error:',
-        description: error instanceof Error ? error.message : String(error),
-      })
-    } finally {
+      showMessage(
+        error instanceof Error
+          ? error.message
+          : String(error) || 'Sign in error',
+        'error',
+        'destructive'
+      )
       setIsLoading(false)
     }
   }

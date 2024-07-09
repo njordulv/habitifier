@@ -15,7 +15,7 @@ export const Header = () => {
           name={session.user.name}
           email={session.user.email}
           image={session.user.image}
-          className="absolute right-2 top-2"
+          className="absolute right-2 top-2 rounded-full flex border border-solid border-slate-500"
         />
       )}
     </header>

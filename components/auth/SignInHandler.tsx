@@ -59,13 +59,12 @@ export const SignInHandler = () => {
         throw new Error(res?.error || 'Failed to sign in')
       }
     } catch (error: any) {
+      setIsLoading(false)
       showMessage(
         error.message || 'An error occurred during sign in',
         'error',
         'destructive'
       )
-    } finally {
-      setIsLoading(false)
     }
   }
 

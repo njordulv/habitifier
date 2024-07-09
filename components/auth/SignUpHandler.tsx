@@ -85,13 +85,12 @@ export const SignUpHandler = () => {
 
       router.replace('/profile')
     } catch (error: any) {
+      setIsLoading(false)
       showMessage(
         error.message || 'An error occurred during signup',
         'error',
         'destructive'
       )
-    } finally {
-      setIsLoading(false)
     }
   }
 
