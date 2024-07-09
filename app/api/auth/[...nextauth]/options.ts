@@ -3,6 +3,7 @@ import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from 'next-auth/providers/github'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { createClient } from '@supabase/supabase-js'
+import { ListUsersParams } from '@/interfaces'
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -79,58 +80,110 @@ export const authOptions: AuthOptions = {
         const name = user.name ?? ''
 
         try {
-          // Попытка создать пользователя в Supabase Auth
-          const { data, error } = await supabaseAdmin.auth.admin.createUser({
-            email: email,
-            email_confirm: true,
-            user_metadata: { full_name: name },
-            app_metadata: { provider: account.provider },
-          })
+          // Checking existing user in auth.users
+          const { data: authUser, error: authError } =
+            await supabaseAdmin.auth.admin.listUsers({
+              filter: {
+                email: email,
+              },
+            } as ListUsersParams)
 
-          if (error && error.message !== 'User already registered') {
-            console.error('Error creating user in Supabase:', error)
+          if (authError) {
+            console.error('Error checking auth user in Supabase:', authError)
             return false
           }
 
-          // Если пользователь уже существует или был успешно создан
-          if (
-            data.user ||
-            (error && error.message === 'User already registered')
-          ) {
-            // Проверка/создание записи в таблице 'users'
-            const { data: existingUser, error: fetchError } = await supabase
-              .from('users')
-              .select('*')
-              .eq('email', email)
-              .single()
+          let userId
 
-            if (fetchError && fetchError.code !== 'PGRST116') {
-              throw fetchError
+          if (authUser && authUser.users.length > 0) {
+            // User exists, refreshing metadata
+            userId = authUser.users[0].id
+            const { error: updateError } =
+              await supabaseAdmin.auth.admin.updateUserById(userId, {
+                user_metadata: { full_name: name },
+                app_metadata: { provider: account.provider },
+              })
+
+            if (updateError) {
+              console.error(
+                'Error updating auth user in Supabase:',
+                updateError
+              )
+              return false
+            }
+          } else {
+            // User doesn't exist, creating a new one
+            const { data: newUser, error: createError } =
+              await supabaseAdmin.auth.admin.createUser({
+                email: email,
+                email_confirm: true,
+                user_metadata: { full_name: name },
+                app_metadata: { provider: account.provider },
+              })
+
+            if (createError) {
+              console.error(
+                'Error creating auth user in Supabase:',
+                createError
+              )
+              return false
             }
 
-            if (!existingUser) {
-              const { error: insertError } = await supabase
-                .from('users')
-                .insert([
-                  {
-                    email: email,
-                    full_name: name,
-                    created_at: new Date().toISOString(),
-                  },
-                ])
+            userId = newUser.user.id
+          }
+          // Checking/refreshing data in the 'users' table
+          const { data: existingUser, error: fetchError } = await supabaseAdmin
+            .from('users')
+            .select('*')
+            .eq('email', email)
+            .single()
 
-              if (insertError) {
-                throw insertError
-              }
+          if (fetchError && fetchError.code !== 'PGRST116') {
+            console.error('Error fetching user from users table:', fetchError)
+            return false
+          }
+
+          if (existingUser) {
+            // Refreshing existing user
+            const { error: updateError } = await supabaseAdmin
+              .from('users')
+              .update({
+                full_name: name,
+                // Not refreshing id as it already exists & can be of another type
+              })
+              .eq('email', email)
+
+            if (updateError) {
+              console.error('Error updating user in users table:', updateError)
+              return false
+            }
+          } else {
+            // Creating new user
+            const { error: insertError } = await supabaseAdmin
+              .from('users')
+              .insert([
+                {
+                  // Not turning on id, let Supabase generate it automatically
+                  email: email,
+                  full_name: name,
+                  created_at: new Date().toISOString(),
+                },
+              ])
+
+            if (insertError) {
+              console.error('Error creating user in users table:', insertError)
+              return false
             }
           }
+
+          return true // Auth success
         } catch (error) {
-          console.error('Error during Supabase user creation/insert:', error)
+          console.error('Error during Supabase user creation/update:', error)
           return false
         }
       }
 
-      return true
+      return true // For other providers
     },
     async jwt({ token, user }) {
       if (user) {

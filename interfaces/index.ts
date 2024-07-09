@@ -26,3 +26,11 @@ export interface AuthCardProps {
   linkUrl: string
   linkText: string
 }
+
+export interface ListUsersParams {
+  page?: number
+  perPage?: number
+  filter?: {
+    email?: string
+  }
+}

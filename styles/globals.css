@@ -99,7 +99,7 @@ nav {
 
 main {
   @apply max-w-6xl mx-auto;
-  min-height: calc(100vh - 56px);
+  min-height: calc(100vh - 52px);
 }
 p {
   @apply mt-2;
