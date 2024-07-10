@@ -6,8 +6,8 @@ export default function loading() {
     <main className="flex flex-col items-center justify-between p-5 md:p-20 gap-6">
       <div className="w-full max-w-[380px] flex flex-col p-6 gap-6 rounded-xl border">
         <div className="flex flex-col gap-2">
-          <Skeleton className="h-8 w-full max-w-[40%] rounded-md" />
-          <Skeleton className="h-4 w-full max-w-[43%] rounded-md" />
+          <Skeleton className="h-8 w-full max-w-[37%] rounded-md" />
+          <Skeleton className="h-4 w-full max-w-[39%] rounded-md" />
         </div>
         <div className="flex flex-col gap-4">
           <Skeleton className="h-9 rounded-md" />
@@ -24,7 +24,7 @@ export default function loading() {
             <Skeleton className="h-9" />
           </div>
           <div className="space-y-3">
-            <Skeleton className="h-4 w-[20%]" />
+            <Skeleton className="h-4 w-[19%]" />
             <Skeleton className="h-9" />
           </div>
         </div>
@@ -33,7 +33,7 @@ export default function loading() {
         </div>
         <div className="flex flex-col gap-6">
           <div className="space-y-3">
-            <Skeleton className="h-4 w-[60%]" />
+            <Skeleton className="h-4 w-[55%]" />
           </div>
         </div>
       </div>

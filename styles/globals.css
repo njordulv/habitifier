@@ -1,34 +1,34 @@
 @font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter/Inter-Light.ttf') format('truetype');
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit/Outfit-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter/Inter-Regular.ttf') format('truetype');
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit/Outfit-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter/Inter-Medium.ttf') format('truetype');
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit/Outfit-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter/Inter-SemiBold.ttf') format('truetype');
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit/Outfit-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter/Inter-Bold.ttf') format('truetype');
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit/Outfit-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
@@ -39,7 +39,7 @@
 
 @layer base {
   :root {
-    --font: 'Inter', sans-serif;
+    --font: 'Outfit', sans-serif;
 
     --background: 0deg 0% 9%;
     --foreground: 0 0% 98%;
@@ -50,18 +50,18 @@
     --popover: 0deg 0% 9%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --primary-border: 0 0% 80%;
+    --primary: 194deg 85% 48%;
+    --primary-foreground: 194 10% 95%;
+    --primary-border: 194deg 85% 28%;
 
-    --secondary: 240 3.7% 15.9%;
+    --secondary: 240 3.7% 16%;
     --secondary-foreground: 0 0% 98%;
     --secondary-border: 240 3.7% 30%;
 
-    --muted: 240 3.7% 15.9%;
+    --muted: 240 3.7% 16%;
     --muted-foreground: 240 5% 50%;
 
-    --accent: 240 3.7% 15.9%;
+    --accent: 240 3.7% 16%;
     --accent-foreground: 0 0% 98%;
     --accent-border: 240 3.7% 30%;
 
@@ -105,10 +105,10 @@ p {
   @apply mt-2;
 }
 h1 {
-  @apply scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl;
+  @apply scroll-m-20 text-4xl font-bold lg:text-5xl tracking-wide;
 }
 h2 {
-  @apply scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0;
+  @apply scroll-m-20 text-3xl font-semibold transition-colors first:mt-0;
 }
 
 form {
@@ -147,33 +147,4 @@ form {
 .bg-destructive-200 {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--destructive-200) / var(--tw-bg-opacity));
-}
-
-.bg-destructive-300 {
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--destructive-300) / var(--tw-bg-opacity));
-}
-
-.bg-destructive-400 {
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--destructive-400) / var(--tw-bg-opacity));
-}
-
-.bg-destructive-500 {
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--destructive-500) / var(--tw-bg-opacity));
-}
-
-.bg-destructive-600 {
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--destructive-600) / var(--tw-bg-opacity));
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-.animate-spin {
-  animation: spin 1.5s linear infinite;
 }

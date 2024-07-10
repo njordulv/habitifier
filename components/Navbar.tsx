@@ -42,7 +42,7 @@ export const Navbar = () => {
             </NavigationMenuItem>
             <NavigationMenuItem>
               <Button
-                className={`${navigationMenuTriggerStyle()} text-white`}
+                className={`${navigationMenuTriggerStyle()} text-white shadow-none`}
                 onClick={handleSignOut}
               >
                 Sign Out
