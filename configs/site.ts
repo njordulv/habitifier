@@ -10,4 +10,22 @@ export const siteConfig = {
       href: '/',
     },
   ],
+  navAuth: [
+    {
+      label: 'Dashboard',
+      href: '/dashboard',
+    },
+    {
+      label: 'Habits',
+      href: '/habits',
+    },
+    {
+      label: 'Goals',
+      href: '/goals',
+    },
+    {
+      label: 'Progress',
+      href: '/progress',
+    },
+  ],
 }

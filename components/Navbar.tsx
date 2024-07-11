@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/configs/site'
 
 const navItems = siteConfig.nav
+const navAuthItems = siteConfig.navAuth
 
 export const Navbar = () => {
   const { data: session } = useSession()
@@ -33,20 +34,15 @@ export const Navbar = () => {
         ))}
         {session && (
           <>
-            <NavigationMenuItem>
-              <Link href="/dashboard" passHref legacyBehavior>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Dashboard
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/habits" passHref legacyBehavior>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Habits
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
+            {navAuthItems.map((item) => (
+              <NavigationMenuItem key={item.label}>
+                <Link href={item.href} passHref legacyBehavior>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    {item.label}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            ))}
 
             <NavigationMenuItem>
               <Button
