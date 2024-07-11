@@ -115,6 +115,12 @@ form {
   position: relative;
 }
 
+input,
+textarea {
+  background: hsl(var(--background));
+  border: 1px solid hsl(var(--input));
+}
+
 .toast-primary {
   background-color: hsl(var(--primary));
   color: hsl(var(--primary-foreground));

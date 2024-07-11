@@ -41,6 +41,14 @@ export const Navbar = () => {
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
+              <Link href="/habits" passHref legacyBehavior>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Habits
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
               <Button
                 className={`${navigationMenuTriggerStyle()} text-white shadow-none`}
                 onClick={handleSignOut}
