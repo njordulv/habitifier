@@ -83,7 +83,7 @@ export const SignUpHandler = () => {
         throw new Error(res.error)
       }
 
-      router.replace('/profile')
+      router.replace('/dashboard')
     } catch (error: any) {
       setIsLoading(false)
       showMessage(

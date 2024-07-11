@@ -54,7 +54,7 @@ export const SignInHandler = () => {
 
       if (res && !res.error) {
         showMessage('Signed in successfully!', 'success', 'primary')
-        router.replace('/profile')
+        router.replace('/dashboard')
       } else {
         throw new Error(res?.error || 'Failed to sign in')
       }

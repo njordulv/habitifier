@@ -14,7 +14,7 @@ export const ProviderButton: React.FC<ProviderProps> = ({
 }) => {
   const searchParams = useSearchParams()
   const router = useRouter()
-  const callbackUrl = searchParams.get('callbackUrl') || '/profile'
+  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard'
   const [isLoading, setIsLoading] = useState(false)
   const { showMessage } = useMessages()
 

@@ -34,9 +34,9 @@ export const Navbar = () => {
         {session && (
           <>
             <NavigationMenuItem>
-              <Link href="/profile" passHref legacyBehavior>
+              <Link href="/dashboard" passHref legacyBehavior>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Profile
+                  Dashboard
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
