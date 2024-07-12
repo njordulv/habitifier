@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useSession, signOut } from 'next-auth/react'
+// import { useSession, signOut } from 'next-auth/react'
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -16,9 +16,9 @@ const navItems = siteConfig.nav
 const navAuthItems = siteConfig.navAuth
 
 export const Navbar = () => {
-  const { data: session } = useSession()
+  // const { data: session } = useSession()
 
-  const handleSignOut = () => signOut({ callbackUrl: '/' })
+  // const handleSignOut = () => signOut({ callbackUrl: '/' })
 
   return (
     <NavigationMenu>
@@ -32,7 +32,7 @@ export const Navbar = () => {
             </Link>
           </NavigationMenuItem>
         ))}
-        {session && (
+        {/* {session && (
           <>
             {navAuthItems.map((item) => (
               <NavigationMenuItem key={item.label}>
@@ -62,7 +62,7 @@ export const Navbar = () => {
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
-        )}
+        )} */}
       </NavigationMenuList>
     </NavigationMenu>
   )

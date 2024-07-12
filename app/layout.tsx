@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Providers } from '@/components/Providers'
 import { Header } from '@/components/Header'
 import { Toaster } from '@/components/ui/sonner'
 import { siteConfig } from '@/configs/site'
@@ -21,11 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Providers>
-          <Header />
-          {children}
-          <Toaster />
-        </Providers>
+        <Header />
+        {children}
+        <Toaster />
       </body>
     </html>
   )
