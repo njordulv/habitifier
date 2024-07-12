@@ -28,7 +28,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { createClient } from '@/utils/supabase/client'
-import { SignInHandlerProps } from '@/interfaces'
+import { SignInProps } from '@/interfaces'
 
 const FormSchema = z.object({
   email: z.string().min(1, 'Email is required').email('Invalid email address'),
@@ -40,7 +40,7 @@ const FormSchema = z.object({
 
 type FormData = z.infer<typeof FormSchema>
 
-export const SignInHandler = ({ formAction }: SignInHandlerProps) => {
+export const SignUp = ({ formAction }: SignInProps) => {
   const router = useRouter()
   const supabase = createClient()
   const [isLoading, setIsLoading] = useState(false)
@@ -57,14 +57,14 @@ export const SignInHandler = ({ formAction }: SignInHandlerProps) => {
   const onSubmit = async (values: FormData) => {
     setIsLoading(true)
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signUp({
         email: values.email,
         password: values.password,
       })
 
       if (error) throw error
 
-      showMessage('Signed in successfully!', 'success', 'primary')
+      showMessage('Signed up successfully!', 'success', 'default')
       router.replace('/dashboard')
     } catch (error: any) {
       setIsLoading(false)
@@ -79,8 +79,8 @@ export const SignInHandler = ({ formAction }: SignInHandlerProps) => {
   return (
     <Card className="w-full max-w-[380px]">
       <CardHeader>
-        <CardTitle>Sign in to Habitifier</CardTitle>
-        <CardDescription>Welcome back! Sign in to your account</CardDescription>
+        <CardTitle>Get started</CardTitle>
+        <CardDescription>Create your account</CardDescription>
       </CardHeader>
       <CardContent>
         <OrFill />
@@ -132,18 +132,19 @@ export const SignInHandler = ({ formAction }: SignInHandlerProps) => {
           </CardContent>
           <CardContent className="flex flex-col justify-between">
             <Button variant="outline" type="submit" disabled={isLoading}>
-              {isLoading ? <Spinner size={20} /> : 'Sign In'}
+              {isLoading && <Spinner size={18} />}
+              <span>Sign Up</span>
             </Button>
           </CardContent>
         </form>
       </Form>
       <CardFooter className="text-xs flex gap-2">
-        <span>{`Don't have an account?`}</span>
+        <span>Already have an account?</span>
         <Link
-          href={'/sign-up'}
+          href={'/sign-in'}
           className="hover:opacity-55 transition-opacity underline"
         >
-          Sign Up
+          Sign In
         </Link>
       </CardFooter>
     </Card>
