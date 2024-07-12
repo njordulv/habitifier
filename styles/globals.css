@@ -1,4 +1,4 @@
-/* @font-face {
+@font-face {
   font-family: 'Outfit';
   src: url('/fonts/Outfit/Outfit-Light.ttf') format('truetype');
   font-weight: 300;
@@ -31,7 +31,7 @@
   src: url('/fonts/Outfit/Outfit-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
-} */
+}
 
 @tailwind base;
 @tailwind components;
@@ -39,7 +39,7 @@
 
 @layer base {
   :root {
-    --font: sans-serif;
+    --font: 'Outfit', sans-serif;
 
     --background: 0deg 0% 9%;
     --foreground: 0 0% 98%;
