@@ -30,7 +30,6 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { createClient } from '@/utils/supabase/client'
-import { SignInProps } from '@/interfaces'
 
 const FormSchema = z.object({
   email: z.string().min(1, 'Email is required').email('Invalid email address'),
@@ -42,7 +41,7 @@ const FormSchema = z.object({
 
 type FormData = z.infer<typeof FormSchema>
 
-export const SignIn = ({ formAction }: SignInProps) => {
+export const SignIn = () => {
   const router = useRouter()
   const supabase = createClient()
   const [isLoading, setIsLoading] = useState(false)
@@ -100,11 +99,7 @@ export const SignIn = ({ formAction }: SignInProps) => {
         <OrFill />
       </CardContent>
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          method="POST"
-          action={formAction}
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)}>
           <CardContent>
             <FormField
               control={form.control}
