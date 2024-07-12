@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { SiGoogle, SiGithub } from 'react-icons/si'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import * as z from 'zod'
@@ -15,6 +16,7 @@ import {
   CardTitle,
   CardFooter,
 } from '@/components/ui/card'
+import { ProviderButton } from '@/components/auth/ProviderButton'
 import { OrFill } from '@/components/auth/OrFill'
 import {
   Form,
@@ -83,6 +85,18 @@ export const SignUp = ({ formAction }: SignInProps) => {
         <CardDescription>Create your account</CardDescription>
       </CardHeader>
       <CardContent>
+        <ProviderButton
+          provider={'google'}
+          title="Continue with Google"
+          Icon={SiGoogle}
+          variant={'secondary'}
+        />
+        <ProviderButton
+          provider={'github'}
+          title="Continue with Github"
+          Icon={SiGithub}
+          variant={'secondary'}
+        />
         <OrFill />
       </CardContent>
       <Form {...form}>

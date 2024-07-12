@@ -9,7 +9,7 @@ type ButtonProps = ComponentProps<typeof Button>
 type ProfileProps = ComponentProps<typeof Avatar>
 
 export interface ProviderProps extends ButtonProps {
-  provider: string
+  provider: 'github' | 'google'
   title: string
   Icon: IconType
 }
