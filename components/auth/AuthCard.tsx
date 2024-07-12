@@ -11,7 +11,7 @@ import {
   CardFooter,
 } from '@/components/ui/card'
 import { OrFill } from '@/components/auth/OrFill'
-import { ProviderButton } from '@/components/auth/ProviderButton'
+// import { ProviderButton } from '@/components/auth/ProviderButton'
 import { AuthCardProps } from '@/interfaces'
 
 export const AuthCard: React.FC<AuthCardProps> = ({
@@ -29,7 +29,7 @@ export const AuthCard: React.FC<AuthCardProps> = ({
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
-        <ProviderButton
+        {/* <ProviderButton
           provider={'google'}
           title="Continue with Google"
           Icon={SiGoogle}
@@ -40,7 +40,7 @@ export const AuthCard: React.FC<AuthCardProps> = ({
           title="Continue with GitHub"
           Icon={SiGithub}
           variant={'secondary'}
-        />
+        /> */}
         <OrFill />
       </CardContent>
       {formComponent}

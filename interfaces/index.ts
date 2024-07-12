@@ -2,6 +2,7 @@ import { ComponentProps } from 'react'
 import { IconType } from 'react-icons'
 import { Button } from '@/components/ui/button'
 import { Avatar } from '@/components/ui/avatar'
+import type { login } from '@/app/login/actions'
 
 type ButtonProps = ComponentProps<typeof Button>
 type ProfileProps = ComponentProps<typeof Avatar>
@@ -10,6 +11,10 @@ export interface ProviderProps extends ButtonProps {
   provider: string
   title: string
   Icon: IconType
+}
+
+export interface SignInHandlerProps {
+  formAction: typeof login
 }
 
 export interface ProfilePictureProps extends ProfileProps {

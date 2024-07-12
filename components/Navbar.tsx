@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-// import { useSession, signOut } from 'next-auth/react'
+import { logout } from '@/app/logout/actions'
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -16,9 +16,9 @@ const navItems = siteConfig.nav
 const navAuthItems = siteConfig.navAuth
 
 export const Navbar = () => {
-  // const { data: session } = useSession()
-
-  // const handleSignOut = () => signOut({ callbackUrl: '/' })
+  const handleSignOut = async () => {
+    await logout()
+  }
 
   return (
     <NavigationMenu>
@@ -63,6 +63,14 @@ export const Navbar = () => {
             </Link>
           </NavigationMenuItem>
         )} */}
+        <NavigationMenuItem>
+          <Button
+            className={`${navigationMenuTriggerStyle()} text-white shadow-none`}
+            onClick={() => handleSignOut()}
+          >
+            Sign Out
+          </Button>
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   )

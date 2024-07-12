@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation'
 
 import { createClient } from '@/utils/supabase/server'
 
-export default async function PrivatePage() {
+export default async function DashboardPage() {
   const supabase = createClient()
 
   const { data, error } = await supabase.auth.getUser()
@@ -10,5 +10,10 @@ export default async function PrivatePage() {
     redirect('/login')
   }
 
-  return <p>Hello {data.user.email}</p>
+  return (
+    <main className="flex flex-col items-center justify-between p-24">
+      <h1>Profile</h1>
+      <p>Hello {data.user.email}</p>
+    </main>
+  )
 }

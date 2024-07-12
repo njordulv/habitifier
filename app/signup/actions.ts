@@ -2,9 +2,10 @@
 
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+
 import { createClient } from '@/utils/supabase/server'
 
-export async function login(formData: FormData) {
+export async function signup(formData: FormData) {
   const supabase = createClient()
 
   const data = {
@@ -17,13 +18,13 @@ export async function login(formData: FormData) {
     return redirect('/error')
   }
 
-  const { error } = await supabase.auth.signInWithPassword(data)
+  const { error } = await supabase.auth.signUp(data)
 
   if (error) {
-    console.error('Error logging in:', error)
+    console.error('Error signing up:', error)
     return redirect('/error')
   }
 
   revalidatePath('/', 'layout')
-  redirect('/dashboard')
+  redirect('/')
 }
