@@ -21,9 +21,9 @@ const navAuthItems = siteConfig.navAuth
 
 export const Navbar = () => {
   const router = useRouter()
+  const supabase = createClient()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  const supabase = createClient()
 
   useEffect(() => {
     const checkAuth = async () => {
