@@ -36,24 +36,17 @@ export const ProviderButton: React.FC<ProviderProps> = ({
         'error',
         'destructive'
       )
-    } finally {
-      setIsLoading(false)
     }
   }
 
   return (
     <Button
       {...props}
-      className="w-full flex gap-2"
       onClick={handleSignIn}
       disabled={isLoading}
       aria-label={title}
     >
-      {isLoading ? (
-        <Spinner size={20} />
-      ) : (
-        <Icon size={18} aria-hidden="true" />
-      )}
+      {isLoading ? <Spinner size={20} /> : <Icon size={18} />}
       <span>{title}</span>
     </Button>
   )

@@ -9,10 +9,7 @@ interface HabitProps {
   user_id: string
   title: string
   description: string | null
-  frequency: string
-  start_date: string
-  end_date: string | null
-  is_active: boolean
+  repeat: string
 }
 
 export const List = () => {
@@ -62,13 +59,8 @@ export const List = () => {
       <ul>
         {habits.map((habit: HabitProps, index: number) => (
           <li key={habit.id}>
-            {index + 1}. {habit.title} - {habit.frequency}
+            {index + 1}. {habit.title} - {habit.repeat}
             {habit.description && <p>{habit.description}</p>}
-            <p>Start Date: {new Date(habit.start_date).toLocaleDateString()}</p>
-            {habit.end_date && (
-              <p>End Date: {new Date(habit.end_date).toLocaleDateString()}</p>
-            )}
-            <p>Status: {habit.is_active ? 'Active' : 'Inactive'}</p>
           </li>
         ))}
       </ul>

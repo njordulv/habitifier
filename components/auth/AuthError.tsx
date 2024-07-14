@@ -37,7 +37,7 @@ export default function AuthError() {
       </CardHeader>
       <CardContent>
         {error && <div>{error}</div>}
-        <Button variant="outline" onClick={backHandler} disabled={isLoading}>
+        <Button variant="secondary" onClick={backHandler} disabled={isLoading}>
           {isLoading && <Spinner size={18} />}
           <span>Back to Sign In</span>
         </Button>

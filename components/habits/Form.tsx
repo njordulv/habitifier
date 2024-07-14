@@ -13,9 +13,7 @@ export const Form = () => {
   const supabase = createClient()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [frequency, setFrequency] = useState('')
-  const [startDate, setStartDate] = useState('')
-  const [endDate, setEndDate] = useState('')
+  const [repeat, setRepaet] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [userId, setUserId] = useState<string | null>(null)
   const { showMessage } = useMessages()
@@ -50,7 +48,7 @@ export const Form = () => {
       if (userCheckError || !userExists) {
         const { error: insertError } = await supabase
           .from('users')
-          .insert({ id: userId, username: 'defaultUsername' })
+          .insert({ id: userId })
 
         if (insertError) throw insertError
       }
@@ -59,10 +57,7 @@ export const Form = () => {
         user_id: userId,
         title,
         description,
-        frequency,
-        start_date: startDate,
-        end_date: endDate || null,
-        is_active: true,
+        repeat,
       })
       if (error) throw error
       showMessage('Habit added successfully!', 'success', 'default')
@@ -94,23 +89,10 @@ export const Form = () => {
           />
           <Input
             type="text"
-            placeholder="Frequency"
-            value={frequency}
-            onChange={(e) => setFrequency(e.target.value)}
+            placeholder="repeat"
+            value={repeat}
+            onChange={(e) => setRepaet(e.target.value)}
             required
-          />
-          <Input
-            type="date"
-            placeholder="Start Date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            required
-          />
-          <Input
-            type="date"
-            placeholder="End Date (optional)"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
           />
           <Button type="submit" variant="outline" disabled={isLoading}>
             {isLoading && <Spinner size={20} />} Add Habit
