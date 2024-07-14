@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
-
 import { createClient } from '@/utils/supabase/server'
+import { Hero } from '@/components/dashboard/Hero'
 
 export default async function DashboardPage() {
   const supabase = createClient()
@@ -11,9 +11,8 @@ export default async function DashboardPage() {
   }
 
   return (
-    <main className="flex flex-col items-center justify-between p-24">
-      <h1>Profile</h1>
-      <p>Hello {data.user.email}</p>
+    <main className="flex flex-col items-center text-center">
+      <Hero data={data} />
     </main>
   )
 }

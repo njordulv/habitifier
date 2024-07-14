@@ -7,7 +7,6 @@ import { Card, CardTitle, CardContent, CardHeader } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
-import { User } from '@supabase/supabase-js'
 
 export const Form = () => {
   const supabase = createClient()
