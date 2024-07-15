@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { DaysOfWeek } from '@/components/habits/DaysOfWeek'
 import { DayTime } from '@/components/habits/DayTime'
+import { DailyGoal } from '@/components/habits/DailyGoal'
 
 export const Form = () => {
   const supabase = createClient()
@@ -22,6 +23,8 @@ export const Form = () => {
   const [selectedTime, setSelectedTime] = useState<string | undefined>(
     undefined
   )
+  const [goal, setGoal] = useState(0)
+  const [count, setCount] = useState(0)
   const { showMessage } = useMessages()
 
   useEffect(() => {
@@ -66,6 +69,7 @@ export const Form = () => {
         repeat,
         days: selectedDays.join(','),
         time_of_day: selectedTime,
+        daily_goal: goal,
       })
       if (error) throw error
       showMessage('Habit added successfully!', 'success', 'default')
@@ -115,6 +119,10 @@ export const Form = () => {
               selectedDays={selectedDays}
               setSelectedDays={setSelectedDays}
             />
+          </div>
+          <div>
+            <Label>Daily Goal</Label>
+            <DailyGoal goal={goal} setGoal={setGoal} />
           </div>
           <Button type="submit" variant="outline" disabled={isLoading}>
             {isLoading && <Spinner size={20} />} Add Habit

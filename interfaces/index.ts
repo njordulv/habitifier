@@ -44,3 +44,8 @@ export interface DayTimeProps {
   selectedTime: string | undefined
   setSelectedTime: (value: string | undefined) => void
 }
+
+export interface GoalProps {
+  goal: number
+  setGoal: (goal: number) => void
+}

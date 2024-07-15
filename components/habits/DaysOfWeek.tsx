@@ -27,7 +27,7 @@ export const DaysOfWeek: React.FC<DaysOfWeekProps> = ({
           key={day.id}
           variant={selectedDays.includes(day.id) ? 'outline' : 'secondary'}
           onClick={(event) => handleButtonClick(day.id, event)}
-          className="border"
+          className="border px-[14px]"
         >
           {day.name}
         </Button>
