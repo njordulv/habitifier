@@ -10,7 +10,7 @@ export const DailyGoal = ({ goal, setGoal }: GoalProps) => {
 
   const minusHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    if (goal > 0) {
+    if (goal > 1) {
       setGoal(goal - 1)
     }
   }
