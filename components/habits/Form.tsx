@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { DaysOfWeek } from '@/components/habits/DaysOfWeek'
+import { DayTime } from '@/components/habits/DayTime'
 
 export const Form = () => {
   const supabase = createClient()
@@ -18,6 +19,9 @@ export const Form = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [userId, setUserId] = useState<string | null>(null)
   const [selectedDays, setSelectedDays] = useState<string[]>([])
+  const [selectedTime, setSelectedTime] = useState<string | undefined>(
+    undefined
+  )
   const { showMessage } = useMessages()
 
   useEffect(() => {
@@ -60,7 +64,8 @@ export const Form = () => {
         title,
         description,
         repeat,
-        days: selectedDays,
+        days: selectedDays.join(','),
+        time_of_day: selectedTime,
       })
       if (error) throw error
       showMessage('Habit added successfully!', 'success', 'default')
@@ -97,6 +102,13 @@ export const Form = () => {
             onChange={(e) => setRepeat(e.target.value)}
             required
           />
+          <div>
+            <Label>Time of the day</Label>
+            <DayTime
+              selectedTime={selectedTime}
+              setSelectedTime={setSelectedTime}
+            />
+          </div>
           <div>
             <Label>Interval</Label>
             <DaysOfWeek

@@ -39,3 +39,8 @@ export interface DaysOfWeekProps {
   selectedDays: string[]
   setSelectedDays: (days: string[]) => void
 }
+
+export interface DayTimeProps {
+  selectedTime: string | undefined
+  setSelectedTime: (value: string | undefined) => void
+}
