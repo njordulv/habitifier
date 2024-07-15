@@ -5,7 +5,7 @@ Track your progress, set goals, and achieve a better you with ease.
 
 ## Features
 
-- User registration and login using NextAuth
+- User registration and login using Supabase
 - Dashboard displaying current habits and their status
 - Ability to add, edit, and delete habits
 - Calendar for tracking habit completion by day
@@ -18,7 +18,7 @@ Track your progress, set goals, and achieve a better you with ease.
 - Framework: Next.js
 - UI design system: Shadcn-UI, Tailwind CSS
 - Languages: TypeScript
-- Authentication library: NextAuth
+- Authentication library: Supabase Server-Side Auth
 - Database: Supabase
 
 ## Getting Started
