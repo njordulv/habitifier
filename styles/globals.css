@@ -105,7 +105,7 @@ p {
   @apply mt-2;
 }
 h1 {
-  @apply scroll-m-20 text-4xl font-semibold lg:text-5xl tracking-wide;
+  @apply scroll-m-20 text-4xl font-medium lg:text-5xl tracking-wide;
 }
 h2 {
   @apply scroll-m-20 text-3xl font-medium transition-colors first:mt-0 text-primary-foreground/70;

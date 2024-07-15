@@ -4,17 +4,20 @@ import { useState, useEffect } from 'react'
 import { useMessages } from '@/hooks/useMessage'
 import { createClient } from '@/utils/supabase/client'
 import { Card, CardTitle, CardContent, CardHeader } from '@/components/ui/card'
+import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
+import { DaysOfWeek } from '@/components/habits/DaysOfWeek'
 
 export const Form = () => {
   const supabase = createClient()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [repeat, setRepaet] = useState('')
+  const [repeat, setRepeat] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [userId, setUserId] = useState<string | null>(null)
+  const [selectedDays, setSelectedDays] = useState<string[]>([])
   const { showMessage } = useMessages()
 
   useEffect(() => {
@@ -57,6 +60,7 @@ export const Form = () => {
         title,
         description,
         repeat,
+        days: selectedDays,
       })
       if (error) throw error
       showMessage('Habit added successfully!', 'success', 'default')
@@ -88,11 +92,18 @@ export const Form = () => {
           />
           <Input
             type="text"
-            placeholder="repeat"
+            placeholder="Repeat"
             value={repeat}
-            onChange={(e) => setRepaet(e.target.value)}
+            onChange={(e) => setRepeat(e.target.value)}
             required
           />
+          <div>
+            <Label>Interval</Label>
+            <DaysOfWeek
+              selectedDays={selectedDays}
+              setSelectedDays={setSelectedDays}
+            />
+          </div>
           <Button type="submit" variant="outline" disabled={isLoading}>
             {isLoading && <Spinner size={20} />} Add Habit
           </Button>

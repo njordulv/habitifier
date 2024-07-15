@@ -34,3 +34,8 @@ export interface ListUsersParams {
     email?: string
   }
 }
+
+export interface DaysOfWeekProps {
+  selectedDays: string[]
+  setSelectedDays: (days: string[]) => void
+}

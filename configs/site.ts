@@ -28,4 +28,13 @@ export const siteConfig = {
       href: '/progress',
     },
   ],
+  daysOfWeek: [
+    { id: 'monday', label: 'Monday', name: 'M' },
+    { id: 'tuesday', label: 'Tuesday', name: 'T' },
+    { id: 'wednesday', label: 'Wednesday', name: 'W' },
+    { id: 'thursday', label: 'Thursday', name: 'T' },
+    { id: 'friday', label: 'Friday', name: 'F' },
+    { id: 'saturday', label: 'Saturday', name: 'S' },
+    { id: 'sunday', label: 'Sunday', name: 'S' },
+  ],
 }
