@@ -41,6 +41,7 @@
   :root {
     --font: 'Outfit', sans-serif;
 
+    --dark: 0deg 0% 5%;
     --background: 0deg 0% 9%;
     --foreground: 0 0% 98%;
 

@@ -2,6 +2,7 @@
 
 import { createClient } from '@/utils/supabase/client'
 import { useState, useEffect, useCallback, useMemo } from 'react'
+import { iconsLibrary } from '@/config/icons'
 import { ListSkeleton } from '@/components/habits/ListSkeleton'
 import { HabitProps } from '@/interfaces'
 
@@ -40,39 +41,51 @@ export const List = () => {
   }, [fetchHabits])
 
   const renderedHabits = useMemo(() => {
-    return habits.map((habit: HabitProps) => (
-      <li key={habit.id} className="border rounded-md p-6 flex flex-col gap-2">
-        <h3 className="text-lg font-semibold">{habit.name}</h3>
+    return habits.map((habit: HabitProps) => {
+      const IconComponent =
+        iconsLibrary.habitIcons.find((i) => i.label === habit.icon)?.icon ||
+        iconsLibrary.habitIcons[0].icon
 
-        {habit.description && (
-          <div className="text-sm text-muted-foreground">
-            {habit.description}
+      return (
+        <li
+          key={habit.id}
+          className="border rounded-md p-6 flex flex-col gap-2"
+        >
+          <div className="flex items-center gap-2">
+            <IconComponent size={24} className="text-primary" />
+            <h3 className="text-lg font-semibold">{habit.name}</h3>
           </div>
-        )}
 
-        <div className="flex flex-wrap gap-2">
-          {habit.days && (
-            <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-lg capitalize">
-              {habit.days}
-            </span>
+          {habit.description && (
+            <div className="text-sm text-muted-foreground">
+              {habit.description}
+            </div>
           )}
-          {habit.time_of_day && (
-            <span className="text-xs bg-secondary text-white px-2 py-1 rounded-full">
-              Every {habit.time_of_day}
-            </span>
-          )}
-        </div>
 
-        {habit.daily_goal && (
-          <div className="flex items-center">
-            <span className="text-sm font-medium">Daily Goal:</span>
-            <span className="text-sm text-primary px-2">
-              {habit.daily_goal}
-            </span>
+          <div className="flex flex-wrap gap-2">
+            {habit.days && (
+              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-lg capitalize">
+                {habit.days}
+              </span>
+            )}
+            {habit.time_of_day && (
+              <span className="text-xs bg-secondary text-white px-2 py-1 rounded-lg">
+                Every {habit.time_of_day}
+              </span>
+            )}
           </div>
-        )}
-      </li>
-    ))
+
+          {habit.daily_goal && (
+            <div className="flex items-center">
+              <span className="text-sm font-medium">Daily Goal:</span>
+              <span className="text-sm text-primary px-2">
+                {habit.daily_goal}
+              </span>
+            </div>
+          )}
+        </li>
+      )
+    })
   }, [habits])
 
   if (isLoading) return <ListSkeleton />

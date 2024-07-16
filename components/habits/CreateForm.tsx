@@ -98,7 +98,7 @@ export const CreateForm = () => {
       setDescription('')
       setGoal(1)
       setIcon('Water')
-      setSelectedTime('morning')
+      setSelectedTime('everytime')
       setSelectedDays([])
     } catch (error: any) {
       showMessage(error.message || 'An error occurred', 'error', 'destructive')
@@ -167,7 +167,7 @@ export const CreateForm = () => {
                 name="icon"
                 render={() => (
                   <FormItem className="flex flex-col gap-[3px]">
-                    <FormLabel>Coose Icon</FormLabel>
+                    <FormLabel>Choose Icon</FormLabel>
                     <FormControl>
                       <HabitIcons icon={icon} setIcon={setIcon} />
                     </FormControl>
@@ -190,10 +190,10 @@ export const CreateForm = () => {
               )}
             />
             <FormField
-              name="Interval"
+              name="days_of_week"
               render={() => (
                 <FormItem>
-                  <FormLabel>Interval</FormLabel>
+                  <FormLabel>What days of the week</FormLabel>
                   <FormControl>
                     <DaysOfWeek
                       selectedDays={selectedDays}

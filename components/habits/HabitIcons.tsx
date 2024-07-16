@@ -25,18 +25,18 @@ export const HabitIcons: React.FC<HabitIconProps> = ({ icon, setIcon }) => {
           {React.createElement(selectedIcon.icon, { size: 24 })}
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="max-w-[380px]">
+      <AlertDialogContent className="max-w-[330px]">
         <AlertDialogHeader>
-          <AlertDialogTitle>Choose icon for your task</AlertDialogTitle>
+          <AlertDialogTitle>Select task icon</AlertDialogTitle>
           <AlertDialogDescription>
-            Select an icon that best represents your habit or task.
+            Choose a visual identifier for your habit
           </AlertDialogDescription>
         </AlertDialogHeader>
         <div className="flex flex-wrap justify-between gap-2">
           {iconsLibrary.habitIcons.map((iconItem) => (
             <AlertDialogAction
               key={iconItem.id}
-              className="bg-secondary"
+              className="bg-secondary px-2"
               onClick={() => setIcon(iconItem.label)}
             >
               {React.createElement(iconItem.icon, { size: 24 })}

@@ -45,6 +45,7 @@ export interface HabitProps {
   days: string[]
   time_of_day: string
   daily_goal: number
+  icon: HabitIconType['label']
 }
 
 export interface DaysOfWeekProps {

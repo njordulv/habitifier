@@ -19,7 +19,7 @@ export const DayTime: React.FC<DayTimeProps> = ({
   return (
     <Select value={selectedTime} onValueChange={setSelectedTime}>
       <SelectTrigger>
-        <SelectValue placeholder="Morning" />
+        <SelectValue placeholder="Everytime" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
