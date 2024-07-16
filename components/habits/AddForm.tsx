@@ -23,7 +23,7 @@ import { DayTime } from '@/components/habits/DayTime'
 import { DailyGoal } from '@/components/habits/DailyGoal'
 
 const FormSchema = z.object({
-  title: z.string().min(1, 'Title is required').max(60, 'Title is too long'),
+  title: z.string().min(3, 'Title is required').max(60, 'Title is too long'),
 })
 
 type FormData = z.infer<typeof FormSchema>
@@ -182,8 +182,13 @@ export const AddForm = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" variant="outline" disabled={isLoading}>
-              {isLoading && <Spinner size={20} />} Add Habit
+            <Button
+              type="submit"
+              variant="outline"
+              disabled={isLoading}
+              icon={isLoading && <Spinner size={18} />}
+            >
+              Add Habit
             </Button>
           </form>
         </Form>

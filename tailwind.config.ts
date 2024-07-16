@@ -27,6 +27,7 @@ const config = {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
+          light: 'hsl(var(--primary-light))',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -35,6 +36,12 @@ const config = {
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
+          '100': 'hsl(var(--destructive-100))',
+          '200': 'hsl(var(--destructive-200))',
+          '300': 'hsl(var(--destructive-300))',
+          '400': 'hsl(var(--destructive-400))',
+          '500': 'hsl(var(--destructive-500))',
+          '600': 'hsl(var(--destructive-600))',
         },
         muted: {
           DEFAULT: 'hsl(var(--muted))',

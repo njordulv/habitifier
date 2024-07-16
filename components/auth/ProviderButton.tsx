@@ -43,11 +43,11 @@ export const ProviderButton: React.FC<ProviderProps> = ({
     <Button
       {...props}
       onClick={handleSignIn}
-      disabled={isLoading}
       aria-label={title}
+      disabled={isLoading}
+      icon={isLoading ? <Spinner size={20} /> : <Icon size={18} />}
     >
-      {isLoading ? <Spinner size={20} /> : <Icon size={18} />}
-      <span>{title}</span>
+      {title}
     </Button>
   )
 }

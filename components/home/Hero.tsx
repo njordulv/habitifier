@@ -36,10 +36,9 @@ export const Hero = () => {
           size="lg"
           onClick={signInHandler}
           disabled={isLoading}
-          className="flex gap-1"
+          icon={isLoading && <Spinner size={18} />}
         >
-          {isLoading && <Spinner size={18} />}
-          <span>Get Started</span>
+          Get Started
         </Button>
       </div>
     </section>

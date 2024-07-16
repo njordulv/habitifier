@@ -9,7 +9,9 @@ interface HabitProps {
   user_id: string
   title: string
   description: string | null
-  repeat: string
+  days: string[]
+  time_of_day: string
+  daily_goal: number
 }
 
 export const List = () => {
@@ -56,11 +58,16 @@ export const List = () => {
 
   return (
     <div className="w-full max-w-[380px] justify-center items-center">
-      <ul>
+      <ul className="flex flex-col gap-3">
         {habits.map((habit: HabitProps, index: number) => (
-          <li key={habit.id}>
-            {index + 1}. {habit.title} - {habit.repeat}
-            {habit.description && <p>{habit.description}</p>}
+          <li key={habit.id} className="border rounded-md p-6">
+            <div>{habit.title}</div>
+            {habit.description && (
+              <p className="text-muted-foreground">{habit.description}</p>
+            )}
+            {habit.days && <p>{habit.days}</p>}
+            {habit.time_of_day && <p>{habit.time_of_day}</p>}
+            {habit.daily_goal && <p>{habit.daily_goal}</p>}
           </li>
         ))}
       </ul>

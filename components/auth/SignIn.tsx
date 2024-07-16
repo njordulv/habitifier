@@ -140,9 +140,13 @@ export const SignIn = () => {
             />
           </CardContent>
           <CardContent className="flex flex-col justify-between">
-            <Button variant="outline" type="submit" disabled={isLoading}>
-              {isLoading && <Spinner size={18} />}
-              <span>Sign In</span>
+            <Button
+              variant="outline"
+              type="submit"
+              disabled={isLoading}
+              icon={isLoading && <Spinner size={18} />}
+            >
+              Sign In
             </Button>
           </CardContent>
         </form>
