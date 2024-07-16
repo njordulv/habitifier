@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Header } from '@/components/Header'
 import { Toaster } from '@/components/ui/sonner'
-import { siteConfig } from '@/configs/site'
+import { siteConfig } from '@/config/site'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {

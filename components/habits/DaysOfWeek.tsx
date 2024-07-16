@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { siteConfig } from '@/configs/site'
+import { siteConfig } from '@/config/site'
 import { DaysOfWeekProps } from '@/interfaces'
 
 export const DaysOfWeek: React.FC<DaysOfWeekProps> = ({

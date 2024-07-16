@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { SignOut } from '@/components/SignOut'
-import { siteConfig } from '@/configs/site'
+import { siteConfig } from '@/config/site'
 import { useSession } from '@/hooks/useSession'
 import {
   NavigationMenu,

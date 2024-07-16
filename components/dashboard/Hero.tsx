@@ -1,4 +1,4 @@
-import { AddHabit } from './AddHabit'
+import { AddHabit } from '@/components/dashboard/AddHabit'
 
 interface Props {
   data: any

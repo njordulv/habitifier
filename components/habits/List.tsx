@@ -2,7 +2,7 @@
 
 import { createClient } from '@/utils/supabase/client'
 import { useState, useEffect, useCallback, useMemo } from 'react'
-import { ListSkeleton } from './ListSkeleton'
+import { ListSkeleton } from '@/components/habits/ListSkeleton'
 import { HabitProps } from '@/interfaces'
 
 const supabase = createClient()

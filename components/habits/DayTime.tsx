@@ -1,4 +1,4 @@
-import { siteConfig } from '@/configs/site'
+import { siteConfig } from '@/config/site'
 import { DayTimeProps } from '@/interfaces'
 
 import {
