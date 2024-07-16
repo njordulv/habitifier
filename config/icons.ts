@@ -18,7 +18,6 @@ import {
   GiTavernSign,
   GiToothbrush,
   GiNightSleep,
-  GiMoon,
   GiBed,
   GiShoppingBag,
   GiMusicalScore,
@@ -26,113 +25,164 @@ import {
   GiBasketballBall,
   GiGamepad,
   GiFilmStrip,
+  GiTooth,
+  GiTinker,
+  GiMeditation,
+  GiOrangeSlice,
+  GiForkKnifeSpoon,
 } from 'react-icons/gi'
 
 export const iconsLibrary = {
   habitIcons: [
     {
-      label: 'Beer',
-      icon: GiBeerStein,
-    },
-    {
-      label: 'Tomato',
-      icon: GiTomato,
-    },
-    {
-      label: 'Popcorn',
-      icon: GiPopcorn,
-    },
-    {
-      label: 'Car',
-      icon: GiCityCar,
-    },
-    {
-      label: 'Pepper',
-      icon: GiChiliPepper,
-    },
-    {
-      label: 'Pepper',
-      icon: GiCigarette,
-    },
-    {
+      id: 1,
       label: 'Water',
       icon: GiWaterBottle,
     },
     {
+      id: 2,
+      label: 'Beer',
+      icon: GiBeerStein,
+    },
+    {
+      id: 3,
+      label: 'Tomato',
+      icon: GiTomato,
+    },
+    {
+      id: 4,
+      label: 'Popcorn',
+      icon: GiPopcorn,
+    },
+    {
+      id: 5,
+      label: 'Car',
+      icon: GiCityCar,
+    },
+    {
+      id: 6,
+      label: 'Pepper',
+      icon: GiChiliPepper,
+    },
+    {
+      id: 7,
+      label: 'Cigarette',
+      icon: GiCigarette,
+    },
+    {
+      id: 8,
       label: 'Wine',
       icon: GiWineBottle,
     },
     {
+      id: 9,
       label: 'Walk',
       icon: GiWalk,
     },
     {
+      id: 10,
       label: 'Pills',
       icon: GiPill,
     },
     {
+      id: 11,
       label: 'Star',
       icon: GiDeathStar,
     },
     {
+      id: 12,
       label: 'Cycling',
       icon: GiCycling,
     },
     {
+      id: 13,
       label: 'Cake',
       icon: GiCakeSlice,
     },
     {
+      id: 14,
       label: 'Book',
       icon: GiBookCover,
     },
     {
+      id: 15,
       label: 'Teacher',
       icon: GiTeacher,
     },
     {
+      id: 16,
       label: 'Tavern',
       icon: GiTavernSign,
     },
     {
-      label: 'Tooth',
+      id: 17,
+      label: 'Brush',
       icon: GiToothbrush,
     },
     {
+      id: 18,
       label: 'Sleep',
       icon: GiNightSleep,
     },
     {
-      label: 'Moon',
-      icon: GiMoon,
-    },
-    {
+      id: 19,
       label: 'Bed',
       icon: GiBed,
     },
     {
+      id: 20,
       label: 'Shopping',
       icon: GiShoppingBag,
     },
     {
+      id: 21,
       label: 'Music',
       icon: GiMusicalScore,
     },
     {
+      id: 22,
       label: 'Weight',
       icon: GiWeight,
     },
     {
+      id: 23,
       label: 'Ball',
       icon: GiBasketballBall,
     },
     {
+      id: 24,
       label: 'Game',
       icon: GiGamepad,
     },
     {
+      id: 25,
       label: 'Movie',
       icon: GiFilmStrip,
+    },
+    {
+      id: 26,
+      label: 'Tooth',
+      icon: GiTooth,
+    },
+    {
+      id: 27,
+      label: 'Fix',
+      icon: GiTinker,
+    },
+    {
+      id: 28,
+      label: 'Meditation',
+      icon: GiMeditation,
+    },
+    {
+      id: 29,
+      label: 'Orange',
+      icon: GiOrangeSlice,
+    },
+    {
+      id: 30,
+      label: 'Kitchen',
+      icon: GiForkKnifeSpoon,
     },
   ],
 }

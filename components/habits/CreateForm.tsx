@@ -21,6 +21,7 @@ import { Spinner } from '@/components/ui/spinner'
 import { DaysOfWeek } from '@/components/habits/DaysOfWeek'
 import { DayTime } from '@/components/habits/DayTime'
 import { DailyGoal } from '@/components/habits/DailyGoal'
+import { HabitIcons } from './HabitIcons'
 
 const FormSchema = z.object({
   name: z.string().min(3, 'Name is required').max(60, 'Name is too long'),
@@ -38,6 +39,7 @@ export const CreateForm = () => {
     undefined
   )
   const [goal, setGoal] = useState(1)
+  const [icon, setIcon] = useState('Water')
   const { showMessage } = useMessages()
 
   const form = useForm<FormData>({
@@ -88,11 +90,16 @@ export const CreateForm = () => {
         days: selectedDays.join(', '),
         time_of_day: selectedTime,
         daily_goal: goal,
+        icon: icon,
       })
       if (error) throw error
       showMessage('Habit successfully saved', 'success', 'default')
       form.reset()
       setDescription('')
+      setGoal(1)
+      setIcon('Water')
+      setSelectedTime('morning')
+      setSelectedDays([])
     } catch (error: any) {
       showMessage(error.message || 'An error occurred', 'error', 'destructive')
     } finally {
@@ -144,17 +151,30 @@ export const CreateForm = () => {
                 </FormItem>
               )}
             />
-            <FormField
-              name="Daily Goal"
-              render={() => (
-                <FormItem>
-                  <FormLabel>Daily Goal</FormLabel>
-                  <FormControl>
-                    <DailyGoal goal={goal} setGoal={setGoal} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
+            <div className="space-y-2 flex gap-3 justify-between">
+              <FormField
+                name="Daily Goal"
+                render={() => (
+                  <FormItem>
+                    <FormLabel>Daily Goal</FormLabel>
+                    <FormControl>
+                      <DailyGoal goal={goal} setGoal={setGoal} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name="icon"
+                render={() => (
+                  <FormItem className="flex flex-col gap-[3px]">
+                    <FormLabel>Coose Icon</FormLabel>
+                    <FormControl>
+                      <HabitIcons icon={icon} setIcon={setIcon} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
             <FormField
               name="time of the day"
               render={() => (

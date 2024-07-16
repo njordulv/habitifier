@@ -2,9 +2,11 @@ import { ComponentProps } from 'react'
 import { IconType } from 'react-icons'
 import { Button } from '@/components/ui/button'
 import { Avatar } from '@/components/ui/avatar'
+import { iconsLibrary } from '@/config/icons'
 
 type ButtonProps = ComponentProps<typeof Button>
 type ProfileProps = ComponentProps<typeof Avatar>
+type HabitIconType = (typeof iconsLibrary.habitIcons)[number]
 
 export interface ProviderProps extends ButtonProps {
   provider: 'github' | 'google'
@@ -58,4 +60,9 @@ export interface DayTimeProps {
 export interface GoalProps {
   goal: number
   setGoal: (goal: number) => void
+}
+
+export interface HabitIconProps {
+  icon: HabitIconType['label']
+  setIcon: (icon: HabitIconType['label']) => void
 }
