@@ -23,12 +23,12 @@ import { DayTime } from '@/components/habits/DayTime'
 import { DailyGoal } from '@/components/habits/DailyGoal'
 
 const FormSchema = z.object({
-  title: z.string().min(3, 'Title is required').max(60, 'Title is too long'),
+  name: z.string().min(3, 'Name is required').max(60, 'Name is too long'),
 })
 
 type FormData = z.infer<typeof FormSchema>
 
-export const AddForm = () => {
+export const CreateForm = () => {
   const supabase = createClient()
   const [description, setDescription] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -43,7 +43,7 @@ export const AddForm = () => {
   const form = useForm<FormData>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      title: '',
+      name: '',
     },
   })
 
@@ -83,15 +83,16 @@ export const AddForm = () => {
 
       const { data, error } = await supabase.from('habits').insert({
         user_id: userId,
-        title: values.title,
+        name: values.name,
         description,
         days: selectedDays.join(', '),
         time_of_day: selectedTime,
         daily_goal: goal,
       })
       if (error) throw error
-      showMessage('Habit added successfully!', 'success', 'default')
+      showMessage('Habit successfully saved', 'success', 'default')
       form.reset()
+      setDescription('')
     } catch (error: any) {
       showMessage(error.message || 'An error occurred', 'error', 'destructive')
     } finally {
@@ -102,7 +103,7 @@ export const AddForm = () => {
   return (
     <Card className="w-full max-w-[380px]">
       <CardHeader>
-        <CardTitle>Add your habit</CardTitle>
+        <CardTitle>Create your habit</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -112,15 +113,15 @@ export const AddForm = () => {
           >
             <FormField
               control={form.control}
-              name="title"
+              name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Title</FormLabel>
+                  <FormLabel>Name</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
                       placeholder="Drink some water"
-                      error={!!form.formState.errors.title}
+                      error={!!form.formState.errors.name}
                     />
                   </FormControl>
                   <FormMessage className="absolute !m-0" />
@@ -135,7 +136,7 @@ export const AddForm = () => {
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder="Good for me"
+                      placeholder="Optional"
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                     />
@@ -188,7 +189,7 @@ export const AddForm = () => {
               disabled={isLoading}
               icon={isLoading && <Spinner size={18} />}
             >
-              Add Habit
+              Save
             </Button>
           </form>
         </Form>

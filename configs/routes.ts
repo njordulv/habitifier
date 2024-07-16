@@ -1,4 +1,4 @@
-export const protectedRoutes = ['/dashboard', '/habits', '/goals', '/progress']
+export const protectedRoutes = ['/dashboard', '/create', '/habits', '/goals']
 
 export const publicRoutes = ['/', '/sign-in', '/sign-up', '/about', '/contact']
 

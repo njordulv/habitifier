@@ -16,16 +16,16 @@ export const siteConfig = {
       href: '/dashboard',
     },
     {
+      label: 'Create',
+      href: '/create',
+    },
+    {
       label: 'Habits',
       href: '/habits',
     },
     {
       label: 'Goals',
       href: '/goals',
-    },
-    {
-      label: 'Progress',
-      href: '/progress',
     },
   ],
   daysOfWeek: [

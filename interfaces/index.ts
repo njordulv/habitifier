@@ -35,6 +35,16 @@ export interface ListUsersParams {
   }
 }
 
+export interface HabitProps {
+  id: string
+  user_id: string
+  name: string
+  description: string | null
+  days: string[]
+  time_of_day: string
+  daily_goal: number
+}
+
 export interface DaysOfWeekProps {
   selectedDays: string[]
   setSelectedDays: (days: string[]) => void
