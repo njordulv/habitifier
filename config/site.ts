@@ -28,6 +28,13 @@ export const siteConfig = {
       href: '/goals',
     },
   ],
+  units: [
+    { id: 1, label: 'glasses' },
+    { id: 2, label: 'times' },
+    { id: 3, label: 'pages' },
+    { id: 4, label: 'tries' },
+    { id: 5, label: 'kilometers' },
+  ],
   daysOfWeek: [
     { id: 'monday', label: 'Monday', name: 'M' },
     { id: 'tuesday', label: 'Tuesday', name: 'T' },

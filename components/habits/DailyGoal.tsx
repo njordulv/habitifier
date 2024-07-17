@@ -16,11 +16,11 @@ export const DailyGoal = () => {
 
   return (
     <div className="flex gap-2 items-center">
-      <Button variant="ghost" onClick={minusHandler}>
+      <Button variant="secondary" onClick={minusHandler}>
         <HiOutlineMinus />
       </Button>
       <span className="flex min-w-8 justify-center">{goal}</span>
-      <Button variant="ghost" onClick={plusHandler}>
+      <Button variant="secondary" onClick={plusHandler}>
         <HiOutlinePlus />
       </Button>
     </div>

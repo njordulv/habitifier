@@ -53,6 +53,8 @@ export interface CreateHabitState {
   increaseGoal: () => void
   decreaseGoal: () => void
   resetForm: () => void
+  goalUnit: string
+  setGoalUnit: (goalUnit: string) => void
   icon: string
   setIcon: (icon: string) => void
   timeOfDay: string

@@ -21,6 +21,7 @@ import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { DayTime } from '@/components/habits/DayTime'
 import { DailyGoal } from '@/components/habits/DailyGoal'
+import { GoalUnits } from '@/components/habits/GoalUnits'
 import { DaysOfWeek } from '@/components/habits/DaysOfWeek'
 import { HabitIcons } from '@/components/habits/HabitIcons'
 
@@ -36,6 +37,7 @@ export const CreateForm = () => {
     description,
     setDescription,
     goal,
+    goalUnit,
     icon,
     timeOfDay,
     weekDays,
@@ -91,6 +93,7 @@ export const CreateForm = () => {
         name: values.name,
         description,
         daily_goal: goal,
+        goal_units: goalUnit,
         icon,
         time_of_day: timeOfDay,
         days: weekDays.join(', '),
@@ -165,7 +168,7 @@ export const CreateForm = () => {
                 name="icon"
                 render={() => (
                   <FormItem className="flex flex-col gap-[3px]">
-                    <FormLabel>Choose Icon</FormLabel>
+                    <FormLabel>Icon</FormLabel>
                     <FormControl>
                       <HabitIcons />
                     </FormControl>
@@ -173,6 +176,17 @@ export const CreateForm = () => {
                 )}
               />
             </div>
+            <FormField
+              name="measures"
+              render={() => (
+                <FormItem>
+                  <FormLabel>Goal Measures</FormLabel>
+                  <FormControl>
+                    <GoalUnits />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
             <FormField
               name="time of the day"
               render={() => (
