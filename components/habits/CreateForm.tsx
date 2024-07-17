@@ -6,6 +6,7 @@ import { z } from 'zod'
 import { useState, useEffect } from 'react'
 import { useMessages } from '@/hooks/useMessage'
 import { createClient } from '@/utils/supabase/client'
+import { useCreateHabitStore } from '@/store/useCreateHabitStore'
 import {
   Form,
   FormControl,
@@ -18,10 +19,10 @@ import { Card, CardTitle, CardContent, CardHeader } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
-import { DaysOfWeek } from '@/components/habits/DaysOfWeek'
 import { DayTime } from '@/components/habits/DayTime'
 import { DailyGoal } from '@/components/habits/DailyGoal'
-import { HabitIcons } from './HabitIcons'
+import { DaysOfWeek } from '@/components/habits/DaysOfWeek'
+import { HabitIcons } from '@/components/habits/HabitIcons'
 
 const FormSchema = z.object({
   name: z.string().min(3, 'Name is required').max(60, 'Name is too long'),
@@ -31,15 +32,17 @@ type FormData = z.infer<typeof FormSchema>
 
 export const CreateForm = () => {
   const supabase = createClient()
-  const [description, setDescription] = useState('')
+  const {
+    description,
+    setDescription,
+    goal,
+    icon,
+    timeOfDay,
+    weekDays,
+    resetForm,
+  } = useCreateHabitStore()
   const [isLoading, setIsLoading] = useState(false)
   const [userId, setUserId] = useState<string | null>(null)
-  const [selectedDays, setSelectedDays] = useState<string[]>([])
-  const [selectedTime, setSelectedTime] = useState<string | undefined>(
-    undefined
-  )
-  const [goal, setGoal] = useState(1)
-  const [icon, setIcon] = useState('Water')
   const { showMessage } = useMessages()
 
   const form = useForm<FormData>({
@@ -87,19 +90,15 @@ export const CreateForm = () => {
         user_id: userId,
         name: values.name,
         description,
-        days: selectedDays.join(', '),
-        time_of_day: selectedTime,
         daily_goal: goal,
-        icon: icon,
+        icon,
+        time_of_day: timeOfDay,
+        days: weekDays.join(', '),
       })
       if (error) throw error
       showMessage('Habit successfully saved', 'success', 'default')
       form.reset()
-      setDescription('')
-      setGoal(1)
-      setIcon('Water')
-      setSelectedTime('everytime')
-      setSelectedDays([])
+      resetForm()
     } catch (error: any) {
       showMessage(error.message || 'An error occurred', 'error', 'destructive')
     } finally {
@@ -137,12 +136,11 @@ export const CreateForm = () => {
             />
             <FormField
               name="description"
-              render={({ field }) => (
+              render={() => (
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
                     <Input
-                      {...field}
                       placeholder="Optional"
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
@@ -158,7 +156,7 @@ export const CreateForm = () => {
                   <FormItem>
                     <FormLabel>Daily Goal</FormLabel>
                     <FormControl>
-                      <DailyGoal goal={goal} setGoal={setGoal} />
+                      <DailyGoal />
                     </FormControl>
                   </FormItem>
                 )}
@@ -169,7 +167,7 @@ export const CreateForm = () => {
                   <FormItem className="flex flex-col gap-[3px]">
                     <FormLabel>Choose Icon</FormLabel>
                     <FormControl>
-                      <HabitIcons icon={icon} setIcon={setIcon} />
+                      <HabitIcons />
                     </FormControl>
                   </FormItem>
                 )}
@@ -181,10 +179,7 @@ export const CreateForm = () => {
                 <FormItem>
                   <FormLabel>Time of the day</FormLabel>
                   <FormControl>
-                    <DayTime
-                      selectedTime={selectedTime}
-                      setSelectedTime={setSelectedTime}
-                    />
+                    <DayTime />
                   </FormControl>
                 </FormItem>
               )}
@@ -195,10 +190,7 @@ export const CreateForm = () => {
                 <FormItem>
                   <FormLabel>What days of the week</FormLabel>
                   <FormControl>
-                    <DaysOfWeek
-                      selectedDays={selectedDays}
-                      setSelectedDays={setSelectedDays}
-                    />
+                    <DaysOfWeek />
                   </FormControl>
                 </FormItem>
               )}

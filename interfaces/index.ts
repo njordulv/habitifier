@@ -2,11 +2,9 @@ import { ComponentProps } from 'react'
 import { IconType } from 'react-icons'
 import { Button } from '@/components/ui/button'
 import { Avatar } from '@/components/ui/avatar'
-import { iconsLibrary } from '@/config/icons'
 
 type ButtonProps = ComponentProps<typeof Button>
 type ProfileProps = ComponentProps<typeof Avatar>
-type HabitIconType = (typeof iconsLibrary.habitIcons)[number]
 
 export interface ProviderProps extends ButtonProps {
   provider: 'github' | 'google'
@@ -45,25 +43,20 @@ export interface HabitProps {
   days: string[]
   time_of_day: string
   daily_goal: number
-  icon: HabitIconType['label']
+  icon: string
 }
 
-export interface DaysOfWeekProps {
-  selectedDays: string[]
-  setSelectedDays: (days: string[]) => void
-}
-
-export interface DayTimeProps {
-  selectedTime: string | undefined
-  setSelectedTime: (value: string | undefined) => void
-}
-
-export interface GoalProps {
+export interface CreateHabitState {
+  description: string
+  setDescription: (description: string) => void
   goal: number
-  setGoal: (goal: number) => void
-}
-
-export interface HabitIconProps {
-  icon: HabitIconType['label']
-  setIcon: (icon: HabitIconType['label']) => void
+  increaseGoal: () => void
+  decreaseGoal: () => void
+  resetForm: () => void
+  icon: string
+  setIcon: (icon: string) => void
+  timeOfDay: string
+  setTimeOfDay: (time: string) => void
+  weekDays: string[]
+  setWeekDays: (weekDays: string[]) => void
 }

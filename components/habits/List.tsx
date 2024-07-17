@@ -1,7 +1,7 @@
 'use client'
 
-import { createClient } from '@/utils/supabase/client'
 import { useState, useEffect, useCallback, useMemo } from 'react'
+import { createClient } from '@/utils/supabase/client'
 import { iconsLibrary } from '@/config/icons'
 import { ListSkeleton } from '@/components/habits/ListSkeleton'
 import { HabitProps } from '@/interfaces'
@@ -29,7 +29,6 @@ export const List = () => {
       if (error) throw error
       setHabits(data || [])
     } catch (error) {
-      console.error('Error fetching habits:', error)
       setError('Failed to fetch habits')
     } finally {
       setIsLoading(false)

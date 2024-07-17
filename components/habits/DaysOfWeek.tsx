@@ -1,22 +1,21 @@
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
-import { DaysOfWeekProps } from '@/interfaces'
+import { useCreateHabitStore } from '@/store/useCreateHabitStore'
 
-export const DaysOfWeek: React.FC<DaysOfWeekProps> = ({
-  selectedDays,
-  setSelectedDays,
-}) => {
+export const DaysOfWeek = () => {
   const daysOfWeek = siteConfig.daysOfWeek
+  const { weekDays, setWeekDays } = useCreateHabitStore()
+
   const handleButtonClick = (
     id: string,
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.stopPropagation()
     event.preventDefault()
-    if (selectedDays.includes(id)) {
-      setSelectedDays(selectedDays.filter((day) => day !== id))
+    if (weekDays.includes(id)) {
+      setWeekDays(weekDays.filter((day) => day !== id))
     } else {
-      setSelectedDays([...selectedDays, id])
+      setWeekDays([...weekDays, id])
     }
   }
 
@@ -25,7 +24,7 @@ export const DaysOfWeek: React.FC<DaysOfWeekProps> = ({
       {daysOfWeek.map((day) => (
         <Button
           key={day.id}
-          variant={selectedDays.includes(day.id) ? 'outline' : 'secondary'}
+          variant={weekDays.includes(day.id) ? 'outline' : 'secondary'}
           onClick={(event) => handleButtonClick(day.id, event)}
           className="border px-[14px]"
         >

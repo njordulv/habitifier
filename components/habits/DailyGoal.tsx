@@ -1,18 +1,17 @@
 import { HiOutlinePlus, HiOutlineMinus } from 'react-icons/hi'
 import { Button } from '@/components/ui/button'
-import { GoalProps } from '@/interfaces'
+import { useCreateHabitStore } from '@/store/useCreateHabitStore'
 
-export const DailyGoal = ({ goal, setGoal }: GoalProps) => {
+export const DailyGoal = () => {
+  const { goal, increaseGoal, decreaseGoal } = useCreateHabitStore()
   const plusHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    setGoal(goal + 1)
+    increaseGoal()
   }
 
   const minusHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    if (goal > 1) {
-      setGoal(goal - 1)
-    }
+    decreaseGoal()
   }
 
   return (

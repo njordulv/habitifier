@@ -11,9 +11,10 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import { iconsLibrary } from '@/config/icons'
-import { HabitIconProps } from '@/interfaces'
+import { useCreateHabitStore } from '@/store/useCreateHabitStore'
 
-export const HabitIcons: React.FC<HabitIconProps> = ({ icon, setIcon }) => {
+export const HabitIcons = () => {
+  const { icon, setIcon } = useCreateHabitStore()
   const selectedIcon =
     iconsLibrary.habitIcons.find((i) => i.label === icon) ||
     iconsLibrary.habitIcons[0]

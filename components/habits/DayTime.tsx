@@ -1,5 +1,5 @@
 import { siteConfig } from '@/config/site'
-import { DayTimeProps } from '@/interfaces'
+import { useCreateHabitStore } from '@/store/useCreateHabitStore'
 
 import {
   Select,
@@ -10,14 +10,12 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-export const DayTime: React.FC<DayTimeProps> = ({
-  selectedTime,
-  setSelectedTime,
-}) => {
+export const DayTime = () => {
   const dayTime = siteConfig.dayTime
+  const { timeOfDay, setTimeOfDay } = useCreateHabitStore()
 
   return (
-    <Select value={selectedTime} onValueChange={setSelectedTime}>
+    <Select value={timeOfDay} onValueChange={setTimeOfDay}>
       <SelectTrigger>
         <SelectValue placeholder="Everytime" />
       </SelectTrigger>
