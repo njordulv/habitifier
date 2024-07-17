@@ -8,6 +8,8 @@ export const useCreateHabitStore = create<CreateHabitState>((set) => ({
   increaseGoal: () => set((state) => ({ goal: state.goal + 1 })),
   decreaseGoal: () =>
     set((state) => ({ goal: state.goal > 1 ? state.goal - 1 : 1 })),
+  color: 'cadetblue',
+  setColor: (el) => set({ color: el }),
   goalUnit: 'glasses',
   setGoalUnit: (unit) => set({ goalUnit: unit }),
   icon: 'Water',
@@ -21,6 +23,7 @@ export const useCreateHabitStore = create<CreateHabitState>((set) => ({
       description: '',
       goal: 1,
       goalUnit: 'glasses',
+      color: 'cadetblue',
       icon: 'Water',
       timeOfDay: 'everytime',
       weekDays: [],

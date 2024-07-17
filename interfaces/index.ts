@@ -40,10 +40,12 @@ export interface HabitProps {
   user_id: string
   name: string
   description: string | null
+  daily_goal: number
+  goal_units: string
+  color: string
+  icon: string
   days: string[]
   time_of_day: string
-  daily_goal: number
-  icon: string
 }
 
 export interface CreateHabitState {
@@ -53,6 +55,8 @@ export interface CreateHabitState {
   increaseGoal: () => void
   decreaseGoal: () => void
   resetForm: () => void
+  color: string
+  setColor: (color: string) => void
   goalUnit: string
   setGoalUnit: (goalUnit: string) => void
   icon: string

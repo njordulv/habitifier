@@ -51,7 +51,7 @@ export const List = () => {
           className="border rounded-md p-6 flex flex-col gap-2"
         >
           <div className="flex items-center gap-2">
-            <IconComponent size={24} className="text-primary" />
+            <IconComponent size={24} className={habit.color} />
             <h3 className="text-lg font-semibold">{habit.name}</h3>
           </div>
 

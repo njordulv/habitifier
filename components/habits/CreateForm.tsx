@@ -24,6 +24,7 @@ import { DailyGoal } from '@/components/habits/DailyGoal'
 import { GoalUnits } from '@/components/habits/GoalUnits'
 import { DaysOfWeek } from '@/components/habits/DaysOfWeek'
 import { HabitIcons } from '@/components/habits/HabitIcons'
+import { HabitColor } from '@/components/habits/HabitColor'
 
 const FormSchema = z.object({
   name: z.string().min(3, 'Name is required').max(60, 'Name is too long'),
@@ -38,6 +39,7 @@ export const CreateForm = () => {
     setDescription,
     goal,
     goalUnit,
+    color,
     icon,
     timeOfDay,
     weekDays,
@@ -94,6 +96,7 @@ export const CreateForm = () => {
         description,
         daily_goal: goal,
         goal_units: goalUnit,
+        color,
         icon,
         time_of_day: timeOfDay,
         days: weekDays.join(', '),
@@ -160,6 +163,17 @@ export const CreateForm = () => {
                     <FormLabel>Daily Goal</FormLabel>
                     <FormControl>
                       <DailyGoal />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name="color"
+                render={() => (
+                  <FormItem className="flex flex-col gap-[3px]">
+                    <FormLabel>Color</FormLabel>
+                    <FormControl>
+                      <HabitColor />
                     </FormControl>
                   </FormItem>
                 )}

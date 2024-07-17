@@ -1,4 +1,5 @@
 import React from 'react'
+import { GiPlainCircle } from 'react-icons/gi'
 import {
   AlertDialog,
   AlertDialogTitle,
@@ -10,37 +11,37 @@ import {
   AlertDialogCancel,
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
-import { iconsLibrary } from '@/config/icons'
+import { siteConfig } from '@/config/site'
 import { useCreateHabitStore } from '@/store/useCreateHabitStore'
 
-export const HabitIcons = () => {
-  const { icon, setIcon } = useCreateHabitStore()
-  const selectedIcon =
-    iconsLibrary.habitIcons.find((i) => i.label === icon) ||
-    iconsLibrary.habitIcons[0]
+const colors = siteConfig.colors
+
+export const HabitColor = () => {
+  const { color, setColor } = useCreateHabitStore()
+  const selectedColor = colors.find((c) => c.label === color) || colors[0]
 
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button variant="secondary">
-          {React.createElement(selectedIcon.icon, { size: 24 })}
+          <GiPlainCircle color={selectedColor.label} size={20} />
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className="max-w-[330px]">
         <AlertDialogHeader>
-          <AlertDialogTitle>Task icon</AlertDialogTitle>
+          <AlertDialogTitle>Task color</AlertDialogTitle>
           <AlertDialogDescription>
-            Choose a visual identifier for your habit
+            Choose a suitable color for your habit
           </AlertDialogDescription>
         </AlertDialogHeader>
         <div className="flex flex-wrap justify-between gap-2">
-          {iconsLibrary.habitIcons.map((iconItem) => (
+          {colors.map((colorOption) => (
             <AlertDialogAction
-              key={iconItem.id}
-              className="bg-secondary px-2"
-              onClick={() => setIcon(iconItem.label)}
+              key={colorOption.id}
+              className="bg-secondary hover:bg-secondary/50 w-full max-w-[40px] px-0"
+              onClick={() => setColor(colorOption.label)}
             >
-              {React.createElement(iconItem.icon, { size: 24 })}
+              <GiPlainCircle color={colorOption.label} size={20} />
             </AlertDialogAction>
           ))}
         </div>
