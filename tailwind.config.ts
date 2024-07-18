@@ -61,7 +61,7 @@ const config = {
           foreground: 'hsl(var(--card-foreground))',
         },
         custom: {
-          cadetblue: 'hsl(181.8, 50%, 25.5%)',
+          fuchsia: 'hsl(295deg 90% 60%)',
           aquamarine: 'hsl(159.8, 100%, 74.9%)',
           bisque: 'hsl(32.5, 100%, 88.4%)',
           burlywood: 'hsl(33.8, 56.9%, 70%)',

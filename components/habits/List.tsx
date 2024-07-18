@@ -46,42 +46,49 @@ export const List = () => {
         iconsLibrary.habitIcons[0].icon
 
       return (
-        <li
-          key={habit.id}
-          className="border rounded-md p-6 flex flex-col gap-2"
-        >
-          <div className="flex items-center gap-2">
-            <IconComponent size={24} className={habit.color} />
-            <h3 className="text-lg font-semibold">{habit.name}</h3>
-          </div>
-
-          {habit.description && (
-            <div className="text-sm text-muted-foreground">
-              {habit.description}
+        <li key={habit.id} className={habit.color}>
+          <div className="border rounded-md p-6 flex flex-col gap-2">
+            <div className="flex items-center gap-2">
+              <IconComponent size={24} className={`${habit.color}`} />
+              <h3 className="text-lg font-semibold text-white">{habit.name}</h3>
             </div>
-          )}
 
-          <div className="flex flex-wrap gap-2">
+            {habit.description && (
+              <div className="text-sm text-muted-foreground">
+                {habit.description}
+              </div>
+            )}
+
             {habit.days && (
-              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-lg capitalize">
-                {habit.days}
-              </span>
+              <div className="flex flex-wrap gap-2">
+                <span
+                  className={`text-xs ${habit.color} bg-dark px-2 py-1 rounded-lg capitalize`}
+                >
+                  {habit.days}
+                </span>
+              </div>
             )}
-            {habit.time_of_day && (
-              <span className="text-xs bg-secondary text-white px-2 py-1 rounded-lg">
-                Every {habit.time_of_day}
-              </span>
-            )}
-          </div>
 
-          {habit.daily_goal && (
-            <div className="flex items-center">
-              <span className="text-sm font-medium">Daily Goal:</span>
-              <span className="text-sm text-primary px-2">
-                {habit.daily_goal}
-              </span>
+            <div className="flex gap-2 justify-between">
+              {habit.time_of_day && (
+                <div className="text-xs text-white flex items-center gap-1">
+                  <span>
+                    {habit.time_of_day === 'everytime'
+                      ? `Repeat ${habit.time_of_day}`
+                      : `Repeat every ${habit.time_of_day}`}
+                  </span>
+                </div>
+              )}
+              {habit.daily_goal && (
+                <div className="flex items-center gap-[2px] text-sm text-muted-foreground">
+                  <span className={habit.color}>0</span>
+                  <span className="color-dark">/</span>
+                  <span className="color-dark">{habit.daily_goal}</span>
+                  <span>&nbsp;{habit.goal_units}</span>
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </li>
       )
     })

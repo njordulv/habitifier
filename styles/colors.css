@@ -1,0 +1,287 @@
+.fuchsia {
+  @apply text-custom-fuchsia;
+}
+
+.fuchsia .color-dark {
+  @apply text-custom-fuchsia/40;
+}
+
+.fuchsia .bg-dark {
+  @apply bg-custom-fuchsia/10;
+}
+
+.cornflowerblue {
+  @apply text-custom-cornflowerblue;
+}
+
+.cornflowerblue .color-dark {
+  @apply text-custom-cornflowerblue/40;
+}
+
+.cornflowerblue .bg-dark {
+  @apply bg-custom-cornflowerblue/10;
+}
+
+.aquamarine {
+  @apply text-custom-aquamarine;
+}
+
+.aquamarine .color-dark {
+  @apply text-custom-aquamarine/40;
+}
+
+.aquamarine .bg-dark {
+  @apply bg-custom-aquamarine/10;
+}
+
+.bisque {
+  @apply text-custom-bisque;
+}
+
+.bisque .color-dark {
+  @apply text-custom-bisque/40;
+}
+
+.bisque .bg-dark {
+  @apply bg-custom-bisque/10;
+}
+
+.burlywood {
+  @apply text-custom-burlywood;
+}
+
+.burlywood .color-dark {
+  @apply text-custom-burlywood/40;
+}
+
+.burlywood .bg-dark {
+  @apply bg-custom-burlywood/10;
+}
+
+.deepskyblue {
+  @apply text-custom-deepskyblue;
+}
+
+.deepskyblue .color-dark {
+  @apply text-custom-deepskyblue/40;
+}
+
+.deepskyblue .bg-dark {
+  @apply bg-custom-deepskyblue/10;
+}
+
+.crimson {
+  @apply text-custom-crimson;
+}
+
+.crimson .color-dark {
+  @apply text-custom-crimson/40;
+}
+
+.crimson .bg-dark {
+  @apply bg-custom-crimson/10;
+}
+
+.darkorange {
+  @apply text-custom-darkorange;
+}
+
+.darkorange .color-dark {
+  @apply text-custom-darkorange/40;
+}
+
+.darkorange .bg-dark {
+  @apply bg-custom-darkorange/10;
+}
+
+.darkturquoise {
+  @apply text-custom-darkturquoise;
+}
+
+.darkturquoise .color-dark {
+  @apply text-custom-darkturquoise/40;
+}
+
+.darkturquoise .bg-dark {
+  @apply bg-custom-darkturquoise/10;
+}
+
+.deeppink {
+  @apply text-custom-deeppink;
+}
+
+.deeppink .color-dark {
+  @apply text-custom-deeppink/40;
+}
+
+.deeppink .bg-dark {
+  @apply bg-custom-deeppink/10;
+}
+
+.hotpink {
+  @apply text-custom-hotpink;
+}
+
+.hotpink .color-dark {
+  @apply text-custom-hotpink/40;
+}
+
+.hotpink .bg-dark {
+  @apply bg-custom-hotpink/10;
+}
+
+.indianred {
+  @apply text-custom-indianred;
+}
+
+.indianred .color-dark {
+  @apply text-custom-indianred/40;
+}
+
+.indianred .bg-dark {
+  @apply bg-custom-indianred/10;
+}
+
+.lightgreen {
+  @apply text-custom-lightgreen;
+}
+
+.lightgreen .color-dark {
+  @apply text-custom-lightgreen/40;
+}
+
+.lightgreen .bg-dark {
+  @apply bg-custom-lightgreen/10;
+}
+
+.lightsalmon {
+  @apply text-custom-lightsalmon;
+}
+
+.lightsalmon .color-dark {
+  @apply text-custom-lightsalmon/40;
+}
+
+.lightsalmon .bg-dark {
+  @apply bg-custom-lightsalmon/10;
+}
+
+.lightseagreen {
+  @apply text-custom-lightseagreen;
+}
+
+.lightseagreen .color-dark {
+  @apply text-custom-lightseagreen/40;
+}
+
+.lightseagreen .bg-dark {
+  @apply bg-custom-lightseagreen/10;
+}
+
+.mediumaquamarine {
+  @apply text-custom-mediumaquamarine;
+}
+
+.mediumaquamarine .color-dark {
+  @apply text-custom-mediumaquamarine/40;
+}
+
+.mediumaquamarine .bg-dark {
+  @apply bg-custom-mediumaquamarine/10;
+}
+
+.mediumpurple {
+  @apply text-custom-mediumpurple;
+}
+
+.mediumpurple .color-dark {
+  @apply text-custom-mediumpurple/40;
+}
+
+.mediumpurple .bg-dark {
+  @apply bg-custom-mediumpurple/10;
+}
+
+.mediumvioletred {
+  @apply text-custom-mediumvioletred;
+}
+
+.mediumvioletred .color-dark {
+  @apply text-custom-mediumvioletred/40;
+}
+
+.mediumvioletred .bg-dark {
+  @apply bg-custom-mediumvioletred/10;
+}
+
+.orchid {
+  @apply text-custom-orchid;
+}
+
+.orchid .color-dark {
+  @apply text-custom-orchid/40;
+}
+
+.orchid .bg-dark {
+  @apply bg-custom-orchid/10;
+}
+
+.plum {
+  @apply text-custom-plum;
+}
+
+.plum .color-dark {
+  @apply text-custom-plum/40;
+}
+
+.plum .bg-dark {
+  @apply bg-custom-plum/10;
+}
+
+.silver {
+  @apply text-custom-silver;
+}
+
+.silver .color-dark {
+  @apply text-custom-silver/40;
+}
+
+.silver .bg-dark {
+  @apply bg-custom-silver/10;
+}
+
+.springgreen {
+  @apply text-custom-springgreen;
+}
+
+.springgreen .color-dark {
+  @apply text-custom-springgreen/40;
+}
+
+.springgreen .bg-dark {
+  @apply bg-custom-springgreen/10;
+}
+
+.tan {
+  @apply text-custom-tan;
+}
+
+.tan .color-dark {
+  @apply text-custom-tan/40;
+}
+
+.tan .bg-dark {
+  @apply bg-custom-tan/10;
+}
+
+.violet {
+  @apply text-custom-violet;
+}
+
+.violet .color-dark {
+  @apply text-custom-violet/40;
+}
+
+.violet .bg-dark {
+  @apply bg-custom-violet/10;
+}

@@ -36,7 +36,7 @@ export const siteConfig = {
     { id: 5, label: 'kilometers' },
   ],
   colors: [
-    { id: 1, label: 'cadetblue' },
+    { id: 1, label: 'fuchsia' },
     { id: 2, label: 'aquamarine' },
     { id: 3, label: 'bisque' },
     { id: 4, label: 'burlywood' },

@@ -3,6 +3,7 @@ import { Header } from '@/components/Header'
 import { Toaster } from '@/components/ui/sonner'
 import { siteConfig } from '@/config/site'
 import '@/styles/globals.css'
+import '@/styles/colors.css'
 
 export const metadata: Metadata = {
   title: {
