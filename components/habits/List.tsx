@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { createClient } from '@/utils/supabase/client'
-import { iconsLibrary } from '@/config/icons'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ListSkeleton } from '@/components/habits/ListSkeleton'
+import { ListItem } from '@/components/habits/ListItem'
 import { HabitProps } from '@/interfaces'
 
 const supabase = createClient()
@@ -39,60 +40,31 @@ export const List = () => {
     fetchHabits()
   }, [fetchHabits])
 
-  const renderedHabits = useMemo(() => {
-    return habits.map((habit: HabitProps) => {
-      const IconComponent =
-        iconsLibrary.habitIcons.find((i) => i.label === habit.icon)?.icon ||
-        iconsLibrary.habitIcons[0].icon
-
-      return (
-        <li key={habit.id} className={habit.color}>
-          <div className="border rounded-md p-6 flex flex-col gap-2">
-            <div className="flex items-center gap-2">
-              <IconComponent size={24} className={`${habit.color}`} />
-              <h3 className="text-lg font-semibold text-white">{habit.name}</h3>
-            </div>
-
-            {habit.description && (
-              <div className="text-sm text-muted-foreground">
-                {habit.description}
-              </div>
-            )}
-
-            {habit.days && (
-              <div className="flex flex-wrap gap-2">
-                <span
-                  className={`text-xs ${habit.color} bg-dark px-2 py-1 rounded-lg capitalize`}
-                >
-                  {habit.days}
-                </span>
-              </div>
-            )}
-
-            <div className="flex gap-2 justify-between">
-              {habit.time_of_day && (
-                <div className="text-xs text-white flex items-center gap-1">
-                  <span>
-                    {habit.time_of_day === 'everytime'
-                      ? `Repeat ${habit.time_of_day}`
-                      : `Repeat every ${habit.time_of_day}`}
-                  </span>
-                </div>
-              )}
-              {habit.daily_goal && (
-                <div className="flex items-center gap-[2px] text-sm text-muted-foreground">
-                  <span className={habit.color}>0</span>
-                  <span className="color-dark">/</span>
-                  <span className="color-dark">{habit.daily_goal}</span>
-                  <span>&nbsp;{habit.goal_units}</span>
-                </div>
-              )}
-            </div>
-          </div>
-        </li>
-      )
-    })
+  const uniqueTimeOfDay = useMemo(() => {
+    return Array.from(new Set(habits.map((habit) => habit.time_of_day)))
   }, [habits])
+
+  const renderedTabs = useMemo(() => {
+    return uniqueTimeOfDay.map((timeOfDay) => (
+      <TabsTrigger key={timeOfDay} value={timeOfDay}>
+        {timeOfDay}
+      </TabsTrigger>
+    ))
+  }, [uniqueTimeOfDay])
+
+  const renderedHabits = useMemo(() => {
+    return uniqueTimeOfDay.map((timeOfDay) => (
+      <TabsContent key={timeOfDay} value={timeOfDay}>
+        <ul className="flex flex-col gap-3">
+          {habits
+            .filter((habit) => habit.time_of_day === timeOfDay)
+            .map((filteredHabit) => (
+              <ListItem key={filteredHabit.id} {...filteredHabit} />
+            ))}
+        </ul>
+      </TabsContent>
+    ))
+  }, [habits, uniqueTimeOfDay])
 
   if (isLoading) return <ListSkeleton />
   if (error) return <p>Error: {error}</p>
@@ -100,7 +72,10 @@ export const List = () => {
 
   return (
     <div className="w-full max-w-[380px] justify-center items-center">
-      <ul className="flex flex-col gap-3">{renderedHabits}</ul>
+      <Tabs defaultValue={uniqueTimeOfDay[0] || 'account'} className="w-full">
+        <TabsList>{renderedTabs}</TabsList>
+        {renderedHabits}
+      </Tabs>
     </div>
   )
 }
