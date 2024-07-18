@@ -71,7 +71,7 @@ export const siteConfig = {
     { id: 'sunday', label: 'Sunday', name: 'S' },
   ],
   dayTime: [
-    { id: 'everytime', label: 'Everytime' },
+    { id: 'anytime', label: 'Anytime' },
     { id: 'morning', label: 'Morning' },
     { id: 'daytime', label: 'Daytime' },
     { id: 'evening', label: 'Evening' },

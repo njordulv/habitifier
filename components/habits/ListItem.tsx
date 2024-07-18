@@ -32,7 +32,7 @@ export const ListItem: React.FC<HabitProps> = (habit) => {
           {habit.time_of_day && (
             <div className="text-xs text-white flex items-center gap-1">
               <span>
-                {habit.time_of_day === 'everytime'
+                {habit.time_of_day === 'anytime'
                   ? `Repeat ${habit.time_of_day}`
                   : `Repeat every ${habit.time_of_day}`}
               </span>

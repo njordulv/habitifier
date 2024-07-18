@@ -41,7 +41,8 @@ export const List = () => {
   }, [fetchHabits])
 
   const uniqueTimeOfDay = useMemo(() => {
-    return Array.from(new Set(habits.map((habit) => habit.time_of_day)))
+    const times = Array.from(new Set(habits.map((habit) => habit.time_of_day)))
+    return ['anytime', ...times.filter((time) => time !== 'anytime')]
   }, [habits])
 
   const renderedTabs = useMemo(() => {
@@ -57,7 +58,10 @@ export const List = () => {
       <TabsContent key={timeOfDay} value={timeOfDay}>
         <ul className="flex flex-col gap-3">
           {habits
-            .filter((habit) => habit.time_of_day === timeOfDay)
+            .filter(
+              (habit) =>
+                timeOfDay === 'anytime' || habit.time_of_day === timeOfDay
+            )
             .map((filteredHabit) => (
               <ListItem key={filteredHabit.id} {...filteredHabit} />
             ))}

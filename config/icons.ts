@@ -30,6 +30,12 @@ import {
   GiMeditation,
   GiOrangeSlice,
   GiForkKnifeSpoon,
+  GiGuitarBassHead,
+  GiOpenFolder,
+  GiNetworkBars,
+  GiTakeMyMoney,
+  GiPaintRoller,
+  GiPalette,
 } from 'react-icons/gi'
 
 export const iconsLibrary = {
@@ -183,6 +189,36 @@ export const iconsLibrary = {
       id: 30,
       label: 'Kitchen',
       icon: GiForkKnifeSpoon,
+    },
+    {
+      id: 31,
+      label: 'Guitar',
+      icon: GiGuitarBassHead,
+    },
+    {
+      id: 32,
+      label: 'Folder',
+      icon: GiOpenFolder,
+    },
+    {
+      id: 33,
+      label: 'Bars',
+      icon: GiNetworkBars,
+    },
+    {
+      id: 34,
+      label: 'Money',
+      icon: GiTakeMyMoney,
+    },
+    {
+      id: 35,
+      label: 'Roller',
+      icon: GiPaintRoller,
+    },
+    {
+      id: 36,
+      label: 'Palette',
+      icon: GiPalette,
     },
   ],
 }

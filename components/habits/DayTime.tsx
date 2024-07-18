@@ -17,7 +17,7 @@ export const DayTime = () => {
   return (
     <Select value={timeOfDay} onValueChange={setTimeOfDay}>
       <SelectTrigger>
-        <SelectValue placeholder="Everytime" />
+        <SelectValue placeholder="Anytime" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
