@@ -9,40 +9,38 @@ export const ListItem: React.FC<HabitProps> = (habit) => {
 
   return (
     <li className={habit.color}>
-      <div className="border rounded-md p-6 flex flex-col gap-2">
-        <div className="flex items-center gap-2">
-          <IconComponent size={24} className={`${habit.color}`} />
-          <h3 className="text-lg font-semibold text-white">{habit.name}</h3>
+      <div className="border rounded-md p-6 flex gap-5 items-center justify-between">
+        <div className="flex items-center gap-5">
+          <IconComponent size={30} className={`${habit.color}`} />
+          <div className="flex flex-col gap-2">
+            <h3 className="text-md font-medium text-white">{habit.name}</h3>
+            {habit.days && (
+              <div className="flex flex-wrap gap-2">
+                <span
+                  className={`text-xs ${habit.color} bg-dark px-2 py-1 rounded-lg capitalize`}
+                >
+                  {habit.days}
+                </span>
+              </div>
+            )}
+            {habit.time_of_day && (
+              <div className="text-xs text-muted-foreground flex items-center gap-1">
+                <span>
+                  {habit.time_of_day === 'anytime'
+                    ? `Repeat ${habit.time_of_day}`
+                    : `Repeat every ${habit.time_of_day}`}
+                </span>
+              </div>
+            )}
+          </div>
         </div>
-        {habit.description && (
-          <div className="text-sm text-muted-foreground">
-            {habit.description}
-          </div>
-        )}
-        {habit.days && (
-          <div className="flex flex-wrap gap-2">
-            <span
-              className={`text-xs ${habit.color} bg-dark px-2 py-1 rounded-lg capitalize`}
-            >
-              {habit.days}
-            </span>
-          </div>
-        )}
-        <div className="flex gap-2 justify-between">
-          {habit.time_of_day && (
-            <div className="text-xs text-white flex items-center gap-1">
-              <span>
-                {habit.time_of_day === 'anytime'
-                  ? `Repeat ${habit.time_of_day}`
-                  : `Repeat every ${habit.time_of_day}`}
-              </span>
-            </div>
-          )}
+        <div>
           {habit.daily_goal && (
-            <div className="flex items-center gap-[2px] text-sm text-muted-foreground">
-              <span className={habit.color}>0</span>
-              <span className="color-dark">/</span>
-              <span className="color-dark">{habit.daily_goal}</span>
+            <div className="flex flex-col items-end justify-end text-sm text-muted-foreground">
+              <div>
+                <span className={habit.color}>0</span>
+                <span className="color-dark">/{habit.daily_goal}</span>
+              </div>
               <span>&nbsp;{habit.goal_units}</span>
             </div>
           )}
