@@ -16,7 +16,15 @@ export const useCreateHabitStore = create<CreateHabitState>((set) => ({
   setIcon: (i) => set({ icon: i }),
   timeOfDay: 'anytime',
   setTimeOfDay: (time) => set({ timeOfDay: time }),
-  weekDays: [],
+  weekDays: [
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday',
+    'sunday',
+  ],
   setWeekDays: (days) => set({ weekDays: days }),
   resetForm: () =>
     set({
@@ -26,6 +34,14 @@ export const useCreateHabitStore = create<CreateHabitState>((set) => ({
       color: 'deepskyblue',
       icon: 'Water',
       timeOfDay: 'anytime',
-      weekDays: [],
+      weekDays: [
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
+      ],
     }),
 }))

@@ -23,10 +23,6 @@ export const siteConfig = {
       label: 'Habits',
       href: '/habits',
     },
-    {
-      label: 'Goals',
-      href: '/goals',
-    },
   ],
   units: [
     { id: 1, label: 'glasses' },

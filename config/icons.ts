@@ -6,7 +6,7 @@ import {
   GiCityCar,
   GiChiliPepper,
   GiCigarette,
-  GiWaterBottle,
+  GiWaterFlask,
   GiWineBottle,
   GiWalk,
   GiPill,
@@ -31,11 +31,17 @@ import {
   GiOrangeSlice,
   GiForkKnifeSpoon,
   GiGuitarBassHead,
-  GiOpenFolder,
+  GiSmartphone,
   GiNetworkBars,
   GiTakeMyMoney,
   GiPaintRoller,
   GiPalette,
+  GiRunningShoe,
+  GiBarbecue,
+  GiParkBench,
+  GiCoffeeCup,
+  GiCoins,
+  GiDonerKebab,
 } from 'react-icons/gi'
 
 export const iconsLibrary = {
@@ -43,7 +49,7 @@ export const iconsLibrary = {
     {
       id: 1,
       label: 'Water',
-      icon: GiWaterBottle,
+      icon: GiWaterFlask,
     },
     {
       id: 2,
@@ -197,8 +203,8 @@ export const iconsLibrary = {
     },
     {
       id: 32,
-      label: 'Folder',
-      icon: GiOpenFolder,
+      label: 'Smartphone',
+      icon: GiSmartphone,
     },
     {
       id: 33,
@@ -219,6 +225,36 @@ export const iconsLibrary = {
       id: 36,
       label: 'Palette',
       icon: GiPalette,
+    },
+    {
+      id: 37,
+      label: 'Run',
+      icon: GiRunningShoe,
+    },
+    {
+      id: 38,
+      label: 'Barbecue',
+      icon: GiBarbecue,
+    },
+    {
+      id: 39,
+      label: 'Park',
+      icon: GiParkBench,
+    },
+    {
+      id: 40,
+      label: 'CoffeeCup',
+      icon: GiCoffeeCup,
+    },
+    {
+      id: 41,
+      label: 'Coins',
+      icon: GiCoins,
+    },
+    {
+      id: 42,
+      label: 'Kebab',
+      icon: GiDonerKebab,
     },
   ],
 }
