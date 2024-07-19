@@ -1,10 +1,11 @@
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
-import { useCreateHabitStore } from '@/store/useCreateHabitStore'
+import { useFormContext } from 'react-hook-form'
 
 export const DaysOfWeek = () => {
   const daysOfWeek = siteConfig.daysOfWeek
-  const { weekDays, setWeekDays } = useCreateHabitStore()
+  const { setValue, watch } = useFormContext()
+  const selectedDays = watch('days_of_week')
 
   const handleButtonClick = (
     id: string,
@@ -12,11 +13,10 @@ export const DaysOfWeek = () => {
   ) => {
     event.stopPropagation()
     event.preventDefault()
-    if (weekDays.includes(id)) {
-      setWeekDays(weekDays.filter((day) => day !== id))
-    } else {
-      setWeekDays([...weekDays, id])
-    }
+    const newSelectedDays = selectedDays.includes(id)
+      ? selectedDays.filter((day: string) => day !== id)
+      : [...selectedDays, id]
+    setValue('days_of_week', newSelectedDays, { shouldValidate: true })
   }
 
   return (
@@ -24,7 +24,7 @@ export const DaysOfWeek = () => {
       {daysOfWeek.map((day) => (
         <Button
           key={day.id}
-          variant={weekDays.includes(day.id) ? 'outline' : 'secondary'}
+          variant={selectedDays.includes(day.id) ? 'outline' : 'secondary'}
           onClick={(event) => handleButtonClick(day.id, event)}
           className="border px-[14px]"
         >

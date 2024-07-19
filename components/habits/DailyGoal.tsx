@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { useCreateHabitStore } from '@/store/useCreateHabitStore'
 
 export const DailyGoal = () => {
-  const { goal, increaseGoal, decreaseGoal } = useCreateHabitStore()
+  const { goal, increaseGoal, decreaseGoal, color } = useCreateHabitStore()
   const plusHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     increaseGoal()
@@ -19,7 +19,9 @@ export const DailyGoal = () => {
       <Button variant="secondary" onClick={minusHandler}>
         <HiOutlineMinus />
       </Button>
-      <span className="flex min-w-8 justify-center">{goal}</span>
+      <span className={`flex min-w-8 justify-center`} style={{ color: color }}>
+        {goal}
+      </span>
       <Button variant="secondary" onClick={plusHandler}>
         <HiOutlinePlus />
       </Button>

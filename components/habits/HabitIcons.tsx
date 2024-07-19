@@ -14,7 +14,7 @@ import { iconsLibrary } from '@/config/icons'
 import { useCreateHabitStore } from '@/store/useCreateHabitStore'
 
 export const HabitIcons = () => {
-  const { icon, setIcon } = useCreateHabitStore()
+  const { icon, setIcon, color } = useCreateHabitStore()
   const selectedIcon =
     iconsLibrary.habitIcons.find((i) => i.label === icon) ||
     iconsLibrary.habitIcons[0]
@@ -23,7 +23,7 @@ export const HabitIcons = () => {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button variant="secondary">
-          {React.createElement(selectedIcon.icon, { size: 24 })}
+          {React.createElement(selectedIcon.icon, { size: 24, color: color })}
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className="max-w-[330px]">
