@@ -9,20 +9,22 @@ export const ListSkeleton = () => {
       {[...Array(count)].map((_, index) => (
         <div
           key={index}
-          className="border rounded-md p-6 flex gap-5 items-center justify-between"
+          className="border rounded-md p-5 flex gap-5 items-center justify-between"
         >
-          <div className="flex items-center gap-5">
-            <Skeleton className="h-8 w-8 rounded-full" />
-            <div className="flex flex-col gap-2">
+          <div className="grid grid-flow-row-dense grid-cols-[1fr_11fr_2fr] items-center gap-4">
+            <Skeleton className="h-[30px] w-[30px] rounded-lg" />
+            <div className="flex flex-col gap-1">
               <Skeleton className="h-6 w-24 rounded-md" />
-              <div className="flex gap-2">
-                <Skeleton className="h-6 w-28 sm:w-44 rounded-lg" />
+              <div className="flex flex-wrap gap-[2px]">
+                <Skeleton className="h-6 w-14 rounded-lg" />
+                <Skeleton className="h-6 w-16 rounded-lg" />
+                <Skeleton className="h-6 w-20 rounded-lg" />
+                <Skeleton className="h-6 w-20 rounded-lg" />
+                <Skeleton className="h-6 w-16 rounded-lg" />
               </div>
-              <Skeleton className="h-4 w-28 sm:w-32 rounded-md" />
+              <Skeleton className="h-4 w-28 rounded-md" />
             </div>
-          </div>
-          <div>
-            <div className="flex flex-col items-end justify-end gap-2">
+            <div className="flex flex-col gap-1 items-end">
               <Skeleton className="h-4 w-8 rounded-md" />
               <Skeleton className="h-4 w-12 rounded-md" />
             </div>

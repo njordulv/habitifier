@@ -9,20 +9,21 @@ export const ListItem: React.FC<HabitProps> = (habit) => {
 
   return (
     <li className={habit.color}>
-      <div className="border rounded-md p-6 flex gap-5 items-center justify-between">
-        <div className="flex items-center gap-5">
+      <div className="border rounded-md p-5 gap-5">
+        <div className="grid grid-flow-row-dense grid-cols-[1fr_11fr_2fr] items-center gap-4">
           <IconComponent size={30} className={`${habit.color}`} />
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1">
             <h3 className="text-md font-medium text-white">{habit.name}</h3>
-            {habit.days && (
-              <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-[2px]">
+              {habit.days.map((day) => (
                 <span
+                  key={day}
                   className={`text-xs ${habit.color} bg-dark px-2 py-1 rounded-lg capitalize`}
                 >
-                  {habit.days}
+                  {day}
                 </span>
-              </div>
-            )}
+              ))}
+            </div>
             {habit.time_of_day && (
               <div className="text-xs text-muted-foreground flex items-center gap-1">
                 <span>
@@ -33,15 +34,13 @@ export const ListItem: React.FC<HabitProps> = (habit) => {
               </div>
             )}
           </div>
-        </div>
-        <div>
           {habit.daily_goal && (
             <div className="flex flex-col items-end justify-end text-sm text-muted-foreground">
               <div>
                 <span className={habit.color}>0</span>
                 <span className="color-dark">/{habit.daily_goal}</span>
               </div>
-              <span>&nbsp;{habit.goal_units}</span>
+              <div>&nbsp;{habit.goal_units}</div>
             </div>
           )}
         </div>

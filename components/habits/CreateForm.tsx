@@ -104,7 +104,7 @@ export const CreateForm = () => {
         color,
         icon,
         time_of_day: timeOfDay,
-        days: values.days_of_week.join(', '),
+        days: values.days_of_week,
       })
       if (error) throw error
       showMessage('Habit successfully saved', 'success', 'default')
