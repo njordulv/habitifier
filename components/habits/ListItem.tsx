@@ -1,6 +1,8 @@
 import React from 'react'
 import { HabitProps } from '@/interfaces'
 import { iconsLibrary } from '@/config/icons'
+import { PiAlarmLight } from 'react-icons/pi'
+import { formatTime } from '../ui/time-picker-utils'
 
 export const ListItem: React.FC<HabitProps> = (habit) => {
   const IconComponent =
@@ -34,15 +36,29 @@ export const ListItem: React.FC<HabitProps> = (habit) => {
               </div>
             )}
           </div>
-          {habit.daily_goal && (
-            <div className="flex flex-col items-end justify-end text-sm text-muted-foreground">
-              <div>
-                <span className={habit.color}>0</span>
-                <span className="color-dark">/{habit.daily_goal}</span>
+          <div className="flex flex-col items-end justify-end text-sm text-muted-foreground">
+            {habit.goal && (
+              <>
+                <div>
+                  <span className={habit.color}>0</span>
+                  <span className="color-dark">/{habit.goal}</span>
+                </div>
+                <div>&nbsp;{habit.units}</div>
+              </>
+            )}
+            {habit.reminder && (
+              <div className="flex flex-col text-sm text-muted-foreground">
+                {habit.reminder.map((time: string, index: number) => (
+                  <span
+                    key={index}
+                    className="flex items-center gap-1 color-dark"
+                  >
+                    <PiAlarmLight color={habit.color} /> {formatTime(time)}
+                  </span>
+                ))}
               </div>
-              <div>&nbsp;{habit.units}</div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </li>

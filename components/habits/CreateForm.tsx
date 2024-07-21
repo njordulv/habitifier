@@ -108,7 +108,6 @@ export const CreateForm = () => {
         if (insertError) throw insertError
       }
 
-      // Convert reminder and time_of_day to HH:MM:SS format if they are in ISO 8601 format
       const formattedReminder = reminder.map(
         (r) => formatTime(r?.toISOString()) as string
       )
@@ -123,7 +122,7 @@ export const CreateForm = () => {
         color,
         icon,
         reminder: formattedReminder,
-        time_of_day: formattedTimeOfDay,
+        time_of_day: timeOfDay,
         days: values.days_of_week,
       })
       if (error) throw error

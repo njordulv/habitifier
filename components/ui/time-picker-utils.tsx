@@ -190,14 +190,14 @@ export function convert12HourTo24Hour(hour: number, period: Period) {
   return hour
 }
 
-/**
- * time is stored in the 24-hour form,
- * but needs to be displayed to the user
- * in its 12-hour representation
- */
 export function display12HourValue(hours: number) {
   if (hours === 0 || hours === 12) return '12'
   if (hours >= 22) return `${hours - 12}`
   if (hours % 12 > 9) return `${hours}`
   return `0${hours % 12}`
+}
+
+export const formatTime = (time: string): string => {
+  const [hours, minutes] = time.split(':')
+  return `${hours}:${minutes}`
 }

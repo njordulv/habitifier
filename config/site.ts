@@ -46,7 +46,7 @@ export const siteConfig = {
     { id: 12, label: 'indianred' },
     { id: 13, label: 'lightgreen' },
     { id: 14, label: 'lightsalmon' },
-    { id: 15, label: 'lightseablue' },
+    { id: 15, label: 'palevioletred' },
     { id: 16, label: 'mediumaquamarine' },
     { id: 17, label: 'mediumpurple' },
     { id: 18, label: 'mediumvioletred' },

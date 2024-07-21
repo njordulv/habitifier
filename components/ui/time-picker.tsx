@@ -4,7 +4,6 @@ import { useRef } from 'react'
 import { RxClock, RxCross1 } from 'react-icons/rx'
 import { Button } from '@/components/ui/button'
 import { TimePickerInput } from '@/components/ui/time-picker-input'
-import { useCreateHabitStore } from '@/store/useCreateHabitStore'
 
 interface TimePickerProps {
   date: Date | undefined
@@ -15,7 +14,11 @@ interface TimePickerProps {
 export function TimePicker({ date, setDate, onRemove }: TimePickerProps) {
   const minuteRef = useRef<HTMLInputElement>(null)
   const hourRef = useRef<HTMLInputElement>(null)
-  const { color } = useCreateHabitStore()
+
+  const handleRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    onRemove()
+  }
 
   return (
     <div className="flex items-center justify-between gap-3">
@@ -35,9 +38,9 @@ export function TimePicker({ date, setDate, onRemove }: TimePickerProps) {
           ref={minuteRef}
           onLeftFocus={() => hourRef.current?.focus()}
         />
-        <RxClock color={color} />
+        <RxClock />
       </div>
-      <Button variant="destructive" onClick={onRemove}>
+      <Button variant="ghost" onClick={handleRemove}>
         <RxCross1 />
       </Button>
     </div>

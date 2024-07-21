@@ -40,10 +40,11 @@ export interface HabitProps {
   user_id: string
   name: string
   description: string | null
-  daily_goal: number
+  goal: number
   units: string
   color: string
   icon: string
+  reminder: string[]
   days: string[]
   time_of_day: string
 }

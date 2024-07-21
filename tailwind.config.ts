@@ -75,6 +75,7 @@ const config = {
           indianred: 'hsl(0, 53.1%, 58.2%)',
           lightgreen: 'hsl(120, 73.4%, 74.9%)',
           lightsalmon: 'hsl(17.1, 100%, 73.9%)',
+          palevioletred: 'hsl(340, 60%, 65%)',
           lightseagreen: 'hsl(176.7, 69.5%, 41.2%)',
           mediumaquamarine: 'hsl(159.6, 50.7%, 60.2%)',
           mediumpurple: 'hsl(259.6, 59.8%, 64.9%)',

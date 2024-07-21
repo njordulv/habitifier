@@ -166,6 +166,18 @@
   @apply bg-custom-lightsalmon/10;
 }
 
+.palevioletred {
+  @apply text-custom-palevioletred;
+}
+
+.palevioletred .color-dark {
+  @apply text-custom-palevioletred/40;
+}
+
+.palevioletred .bg-dark {
+  @apply bg-custom-palevioletred/10;
+}
+
 .lightseagreen {
   @apply text-custom-lightseagreen;
 }
