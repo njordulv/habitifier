@@ -11,17 +11,17 @@ import {
 } from '@/components/ui/select'
 
 export const GoalUnits = () => {
-  const units = siteConfig.units
-  const { goalUnit, setGoalUnit } = useCreateHabitStore()
+  const goalUnits = siteConfig.goalUnits
+  const { units, setUnits } = useCreateHabitStore()
 
   return (
-    <Select value={goalUnit} onValueChange={setGoalUnit}>
+    <Select value={units} onValueChange={setUnits}>
       <SelectTrigger>
         <SelectValue placeholder="glasses" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          {units.map((el) => (
+          {goalUnits.map((el) => (
             <SelectItem key={el.id} value={el.label}>
               {el.label}
             </SelectItem>

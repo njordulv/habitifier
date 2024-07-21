@@ -10,10 +10,12 @@ export const useCreateHabitStore = create<CreateHabitState>((set) => ({
     set((state) => ({ goal: state.goal > 1 ? state.goal - 1 : 1 })),
   color: 'deepskyblue',
   setColor: (el) => set({ color: el }),
-  goalUnit: 'glasses',
-  setGoalUnit: (unit) => set({ goalUnit: unit }),
+  units: 'glasses',
+  setUnits: (unit) => set({ units: unit }),
   icon: 'Water',
   setIcon: (i) => set({ icon: i }),
+  reminder: [],
+  setReminder: (dates: (Date | undefined)[]) => set({ reminder: dates }),
   timeOfDay: 'anytime',
   setTimeOfDay: (time) => set({ timeOfDay: time }),
   weekDays: [
@@ -30,10 +32,11 @@ export const useCreateHabitStore = create<CreateHabitState>((set) => ({
     set({
       description: '',
       goal: 1,
-      goalUnit: 'glasses',
+      units: 'glasses',
       color: 'deepskyblue',
       icon: 'Water',
       timeOfDay: 'anytime',
+      reminder: [],
       weekDays: [
         'monday',
         'tuesday',

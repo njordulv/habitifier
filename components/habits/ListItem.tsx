@@ -40,7 +40,7 @@ export const ListItem: React.FC<HabitProps> = (habit) => {
                 <span className={habit.color}>0</span>
                 <span className="color-dark">/{habit.daily_goal}</span>
               </div>
-              <div>&nbsp;{habit.goal_units}</div>
+              <div>&nbsp;{habit.units}</div>
             </div>
           )}
         </div>

@@ -24,7 +24,7 @@ export const siteConfig = {
       href: '/habits',
     },
   ],
-  units: [
+  goalUnits: [
     { id: 1, label: 'glasses' },
     { id: 2, label: 'times' },
     { id: 3, label: 'pages' },

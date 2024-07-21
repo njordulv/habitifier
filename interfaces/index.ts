@@ -41,7 +41,7 @@ export interface HabitProps {
   name: string
   description: string | null
   daily_goal: number
-  goal_units: string
+  units: string
   color: string
   icon: string
   days: string[]
@@ -57,12 +57,14 @@ export interface CreateHabitState {
   resetForm: () => void
   color: string
   setColor: (color: string) => void
-  goalUnit: string
-  setGoalUnit: (goalUnit: string) => void
+  units: string
+  setUnits: (units: string) => void
   icon: string
   setIcon: (icon: string) => void
   timeOfDay: string
   setTimeOfDay: (time: string) => void
+  reminder: (Date | undefined)[]
+  setReminder: (reminder: (Date | undefined)[]) => void
   weekDays: string[]
   setWeekDays: (weekDays: string[]) => void
 }

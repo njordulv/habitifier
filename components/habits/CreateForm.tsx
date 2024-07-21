@@ -1,14 +1,13 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
 import { useState, useEffect } from 'react'
 import { useMessages } from '@/hooks/useMessage'
 import { createClient } from '@/utils/supabase/client'
 import { useCreateHabitStore } from '@/store/useCreateHabitStore'
 import { NamesOfWeek } from './NamesOfWeek'
-import { FormProvider } from 'react-hook-form'
 import {
   Form,
   FormControl,
@@ -28,6 +27,7 @@ import { GoalUnits } from '@/components/habits/GoalUnits'
 import { DaysOfWeek } from '@/components/habits/DaysOfWeek'
 import { HabitIcons } from '@/components/habits/HabitIcons'
 import { HabitColor } from '@/components/habits/HabitColor'
+import { Reminder } from '@/components/habits/Reminder'
 
 const FormSchema = z.object({
   name: z.string().min(3, 'Name is required').max(60, 'Name is too long'),
@@ -36,16 +36,29 @@ const FormSchema = z.object({
 
 type FormData = z.infer<typeof FormSchema>
 
+const formatTime = (timeString: string | null | undefined): string | null => {
+  if (!timeString) return null
+
+  const date = new Date(timeString)
+  if (isNaN(date.getTime())) {
+    console.error('Invalid time string:', timeString)
+    return null
+  }
+
+  return date.toISOString().substring(11, 19) // Extract HH:MM:SS part
+}
+
 export const CreateForm = () => {
   const supabase = createClient()
   const {
     description,
     setDescription,
     goal,
-    goalUnit,
+    units,
     color,
     icon,
     timeOfDay,
+    reminder,
     weekDays,
     resetForm,
   } = useCreateHabitStore()
@@ -95,15 +108,22 @@ export const CreateForm = () => {
         if (insertError) throw insertError
       }
 
+      // Convert reminder and time_of_day to HH:MM:SS format if they are in ISO 8601 format
+      const formattedReminder = reminder.map(
+        (r) => formatTime(r?.toISOString()) as string
+      )
+      const formattedTimeOfDay = formatTime(timeOfDay)
+
       const { data, error } = await supabase.from('habits').insert({
         user_id: userId,
         name: values.name,
         description,
-        daily_goal: goal,
-        goal_units: goalUnit,
+        goal,
+        units,
         color,
         icon,
-        time_of_day: timeOfDay,
+        reminder: formattedReminder,
+        time_of_day: formattedTimeOfDay,
         days: values.days_of_week,
       })
       if (error) throw error
@@ -214,6 +234,17 @@ export const CreateForm = () => {
                     <FormLabel>Choose preferred time of the day</FormLabel>
                     <FormControl>
                       <DayTime />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name="reminder"
+                render={() => (
+                  <FormItem>
+                    <FormLabel>Reminder</FormLabel>
+                    <FormControl>
+                      <Reminder />
                     </FormControl>
                   </FormItem>
                 )}
