@@ -4,13 +4,13 @@ import { iconsLibrary } from '@/config/icons'
 import { PiAlarmLight } from 'react-icons/pi'
 import { formatTime } from '../ui/time-picker-utils'
 
-export const ListItem: React.FC<HabitProps> = (habit) => {
+export const ListItem: React.FC<{ habit: HabitProps }> = ({ habit }) => {
   const IconComponent =
     iconsLibrary.habitIcons.find((i) => i.label === habit.icon)?.icon ||
     iconsLibrary.habitIcons[0].icon
 
   return (
-    <li className={habit.color}>
+    <div className={habit.color}>
       <div className="border rounded-md p-5 gap-5">
         <div className="grid grid-flow-row-dense grid-cols-[1fr_11fr_2fr] items-center gap-4">
           <IconComponent size={30} className={`${habit.color}`} />
@@ -61,6 +61,6 @@ export const ListItem: React.FC<HabitProps> = (habit) => {
           </div>
         </div>
       </div>
-    </li>
+    </div>
   )
 }
