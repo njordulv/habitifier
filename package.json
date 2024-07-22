@@ -1,6 +1,6 @@
 {
   "name": "habitifier",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -25,6 +25,7 @@
     "@supabase/supabase-js": "^2.44.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "framer-motion": "^11.3.8",
     "next": "14.2.4",
     "next-themes": "^0.3.0",
     "react": "^18",

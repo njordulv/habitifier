@@ -46,6 +46,8 @@ export const List = () => {
     return ['anytime', ...times.filter((time) => time !== 'anytime')]
   }, [habits])
 
+  const [activeTab, setActiveTab] = useState(uniqueTimeOfDay[0] || 'account')
+
   const renderedTabs = useMemo(() => {
     return uniqueTimeOfDay.map((timeOfDay) => (
       <TabsTrigger key={timeOfDay} value={timeOfDay}>
@@ -63,13 +65,18 @@ export const List = () => {
               (habit) =>
                 timeOfDay === 'anytime' || habit.time_of_day === timeOfDay
             )
-            .map((filteredHabit) => (
-              <ListItem key={filteredHabit.id} {...filteredHabit} />
+            .map((filteredHabit, index) => (
+              <ListItem
+                key={filteredHabit.id}
+                {...filteredHabit}
+                animationKey={`${filteredHabit.id}-${activeTab}`}
+                index={index}
+              />
             ))}
         </ul>
       </TabsContent>
     ))
-  }, [habits, uniqueTimeOfDay])
+  }, [habits, uniqueTimeOfDay, activeTab])
 
   if (isLoading) return <ListSkeleton />
   if (error) return <p>Error: {error}</p>
@@ -77,7 +84,11 @@ export const List = () => {
 
   return (
     <div className="w-full max-w-[380px] justify-center items-center">
-      <Tabs defaultValue={uniqueTimeOfDay[0] || 'account'} className="w-full">
+      <Tabs
+        defaultValue={uniqueTimeOfDay[0] || 'account'}
+        className="w-full"
+        onValueChange={setActiveTab}
+      >
         <TabsList>{renderedTabs}</TabsList>
         {renderedHabits}
       </Tabs>
