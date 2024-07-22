@@ -62,6 +62,8 @@ export interface CreateHabitState {
   setUnits: (units: string) => void
   icon: string
   setIcon: (icon: string) => void
+  sound: string
+  setSound: (sound: string) => void
   timeOfDay: string
   setTimeOfDay: (time: string) => void
   reminder: (Date | undefined)[]

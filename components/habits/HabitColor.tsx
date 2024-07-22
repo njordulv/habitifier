@@ -1,4 +1,3 @@
-import React from 'react'
 import { GiPlainCircle } from 'react-icons/gi'
 import {
   AlertDialog,

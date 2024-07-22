@@ -14,6 +14,8 @@ export const useCreateHabitStore = create<CreateHabitState>((set) => ({
   setUnits: (unit) => set({ units: unit }),
   icon: 'Water',
   setIcon: (i) => set({ icon: i }),
+  sound: 'Bell',
+  setSound: (track) => set({ sound: track }),
   reminder: [],
   setReminder: (dates: (Date | undefined)[]) => set({ reminder: dates }),
   timeOfDay: 'anytime',
@@ -35,6 +37,7 @@ export const useCreateHabitStore = create<CreateHabitState>((set) => ({
       units: 'glasses',
       color: 'deepskyblue',
       icon: 'Water',
+      sound: 'Bell',
       timeOfDay: 'anytime',
       reminder: [],
       weekDays: [

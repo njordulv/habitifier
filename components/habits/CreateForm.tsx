@@ -28,6 +28,7 @@ import { DaysOfWeek } from '@/components/habits/DaysOfWeek'
 import { HabitIcons } from '@/components/habits/HabitIcons'
 import { HabitColor } from '@/components/habits/HabitColor'
 import { Reminder } from '@/components/habits/Reminder'
+import { Notification } from './Notification'
 
 const FormSchema = z.object({
   name: z.string().min(3, 'Name is required').max(60, 'Name is too long'),
@@ -57,6 +58,7 @@ export const CreateForm = () => {
     units,
     color,
     icon,
+    sound,
     timeOfDay,
     reminder,
     weekDays,
@@ -111,7 +113,6 @@ export const CreateForm = () => {
       const formattedReminder = reminder.map(
         (r) => formatTime(r?.toISOString()) as string
       )
-      const formattedTimeOfDay = formatTime(timeOfDay)
 
       const { data, error } = await supabase.from('habits').insert({
         user_id: userId,
@@ -121,6 +122,7 @@ export const CreateForm = () => {
         units,
         color,
         icon,
+        sound,
         reminder: formattedReminder,
         time_of_day: timeOfDay,
         days: values.days_of_week,
@@ -215,17 +217,30 @@ export const CreateForm = () => {
                   )}
                 />
               </div>
-              <FormField
-                name="measures"
-                render={() => (
-                  <FormItem>
-                    <FormLabel>Measures</FormLabel>
-                    <FormControl>
-                      <GoalUnits />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
+              <div className="space-y-2 flex gap-3 justify-between">
+                <FormField
+                  name="measures"
+                  render={() => (
+                    <FormItem className="w-full">
+                      <FormLabel>Measures</FormLabel>
+                      <FormControl>
+                        <GoalUnits />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="sound"
+                  render={() => (
+                    <FormItem className="flex flex-col gap-[3px]">
+                      <FormLabel>Notification</FormLabel>
+                      <FormControl>
+                        <Notification />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              </div>
               <FormField
                 name="time of the day"
                 render={() => (

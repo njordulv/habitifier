@@ -72,4 +72,36 @@ export const siteConfig = {
     { id: 'daytime', label: 'Daytime' },
     { id: 'evening', label: 'Evening' },
   ],
+  notificationSounds: [
+    {
+      id: 1,
+      label: 'Bell',
+      url: '/sounds/bell.wav',
+    },
+    {
+      id: 2,
+      label: 'Confirmation Tone',
+      url: '/sounds/confirmation-tone.wav',
+    },
+    {
+      id: 3,
+      label: 'Game Reveal',
+      url: '/sounds/game-reveal.wav',
+    },
+    {
+      id: 4,
+      label: 'Interface 1',
+      url: '/sounds/interface-1.wav',
+    },
+    {
+      id: 5,
+      label: 'Interface 2',
+      url: '/sounds/interface-2.wav',
+    },
+    {
+      id: 6,
+      label: 'Marimba',
+      url: '/sounds/marimba.wav',
+    },
+  ],
 }
