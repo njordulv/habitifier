@@ -1,8 +1,8 @@
 import React from 'react'
 import { HabitProps } from '@/interfaces'
 import { iconsLibrary } from '@/config/icons'
-import { PiAlarmLight } from 'react-icons/pi'
-import { formatTime } from '../ui/time-picker-utils'
+import { RxClock } from 'react-icons/rx'
+import { formatTime } from '@/components/ui/time-picker-utils'
 
 export const ListItem: React.FC<HabitProps> = (habit) => {
   const IconComponent =
@@ -12,27 +12,36 @@ export const ListItem: React.FC<HabitProps> = (habit) => {
   return (
     <li className={habit.color}>
       <div className="border rounded-md p-5 gap-5">
-        <div className="grid grid-flow-row-dense grid-cols-[1fr_11fr_2fr] items-center gap-4">
+        <div className="grid grid-flow-row-dense grid-cols-[1fr_11fr_2fr] items-center gap-4 text-muted-foreground text-xs">
           <IconComponent size={30} className={`${habit.color}`} />
           <div className="flex flex-col gap-1">
-            <h3 className="text-md font-medium text-white">{habit.name}</h3>
+            <h3 className="text-lg font-medium text-white">{habit.name}</h3>
             <div className="flex flex-wrap gap-[2px]">
               {habit.days.map((day) => (
                 <span
                   key={day}
-                  className={`text-xs ${habit.color} bg-dark px-2 py-1 rounded-lg capitalize`}
+                  className={`${habit.color} bg-dark px-2 py-1 rounded-lg capitalize`}
                 >
                   {day}
                 </span>
               ))}
             </div>
             {habit.time_of_day && (
-              <div className="text-xs text-muted-foreground flex items-center gap-1">
+              <div className="flex items-center gap-1">
                 <span>
                   {habit.time_of_day === 'anytime'
                     ? `Repeat ${habit.time_of_day}`
                     : `Repeat every ${habit.time_of_day}`}
                 </span>
+              </div>
+            )}
+            {habit.reminder && (
+              <div className="flex gap-2 text-muted-foreground">
+                {habit.reminder.map((time: string, index: number) => (
+                  <span key={index} className="flex items-center gap-1">
+                    <RxClock color={habit.color} /> {formatTime(time)}
+                  </span>
+                ))}
               </div>
             )}
           </div>
@@ -45,18 +54,6 @@ export const ListItem: React.FC<HabitProps> = (habit) => {
                 </div>
                 <div>&nbsp;{habit.units}</div>
               </>
-            )}
-            {habit.reminder && (
-              <div className="flex flex-col text-sm text-muted-foreground">
-                {habit.reminder.map((time: string, index: number) => (
-                  <span
-                    key={index}
-                    className="flex items-center gap-1 color-dark"
-                  >
-                    <PiAlarmLight color={habit.color} /> {formatTime(time)}
-                  </span>
-                ))}
-              </div>
             )}
           </div>
         </div>
