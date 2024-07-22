@@ -27,6 +27,7 @@ export const List = () => {
         .from('habits')
         .select('*')
         .eq('user_id', user.id)
+        .not('time_of_day', 'is', null)
       if (error) throw error
       setHabits(data || [])
     } catch (error) {
