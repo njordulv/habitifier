@@ -86,6 +86,12 @@ const config = {
           springgreen: 'hsl(149.9, 100%, 50%)',
           tan: 'hsl(34.3, 43.8%, 68.6%)',
           violet: 'hsl(300, 76.1%, 72.2%)',
+          blanchedalmond: 'hsl(36deg 100% 90%)',
+          azure: 'hsl(180deg 100% 97%)',
+          slateblue: 'hsl(248deg 53% 58%)',
+          rosybrown: 'hsl(0deg 25% 65%)',
+          sandybrown: 'hsl(28deg 87% 67%)',
+          gold: 'hsl(51deg 100% 50%)',
         },
       },
       borderRadius: {

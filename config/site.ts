@@ -56,6 +56,12 @@ export const siteConfig = {
     { id: 22, label: 'springgreen' },
     { id: 23, label: 'tan' },
     { id: 24, label: 'violet' },
+    { id: 25, label: 'blanchedalmond' },
+    { id: 26, label: 'gold' },
+    { id: 27, label: 'azure' },
+    { id: 28, label: 'slateblue' },
+    { id: 29, label: 'rosybrown' },
+    { id: 30, label: 'sandybrown' },
   ],
   daysOfWeek: [
     { id: 'monday', label: 'Monday', name: 'M', short: 'Mon' },

@@ -56,8 +56,8 @@ export const Notification = () => {
                   setSound(file.label)
                   playSound(file.url)
                 }}
+                icon={<IoIosPlay size={22} className="text-primary-light" />}
               >
-                <IoIosPlay size={22} color="white" />
                 <span>{file.label}</span>
               </Button>
             </div>

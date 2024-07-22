@@ -53,15 +53,6 @@ export const ListItem: React.FC<
                   </span>
                 ))}
               </div>
-              {habit.time_of_day && (
-                <div className="flex items-center gap-1">
-                  <span>
-                    {habit.time_of_day === 'anytime'
-                      ? `Repeat ${habit.time_of_day}`
-                      : `Repeat every ${habit.time_of_day}`}
-                  </span>
-                </div>
-              )}
               {habit.reminder && (
                 <div className="flex gap-2 text-muted-foreground">
                   {habit.reminder.map((time: string, index: number) => (

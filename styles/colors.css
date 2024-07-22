@@ -297,3 +297,63 @@
 .violet .bg-dark {
   @apply bg-custom-violet/10;
 }
+
+.blanchedalmond {
+  @apply text-custom-blanchedalmond;
+}
+
+.blanchedalmond .color-dark {
+  @apply text-custom-blanchedalmond/40;
+}
+
+.blanchedalmond .bg-dark {
+  @apply bg-custom-blanchedalmond/10;
+}
+
+.azure {
+  @apply text-custom-azure;
+}
+
+.azure .color-dark {
+  @apply text-custom-azure/40;
+}
+
+.azure .bg-dark {
+  @apply bg-custom-azure/10;
+}
+
+.slateblue {
+  @apply text-custom-slateblue;
+}
+
+.slateblue .color-dark {
+  @apply text-custom-slateblue/40;
+}
+
+.slateblue .bg-dark {
+  @apply bg-custom-slateblue/10;
+}
+
+.rosybrown {
+  @apply text-custom-rosybrown;
+}
+
+.rosybrown .color-dark {
+  @apply text-custom-rosybrown/40;
+}
+
+.rosybrown .bg-dark {
+  @apply bg-custom-rosybrown/10;
+}
+
+.sandybrown {
+  @apply text-custom-sandybrown;
+}
+
+.sandybrown .color-dark {
+  @apply text-custom-sandybrown/40;
+}
+
+.sandybrown .bg-dark {
+  @apply bg-custom-sandybrown/10;
+}
