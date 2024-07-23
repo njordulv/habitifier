@@ -186,21 +186,10 @@ export const CreateForm = () => {
               />
               <div className="space-y-2 flex gap-2 justify-between">
                 <FormField
-                  name="Daily Goal"
-                  render={() => (
-                    <FormItem>
-                      <FormLabel>Daily Goal</FormLabel>
-                      <FormControl>
-                        <DailyGoal />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-                <FormField
                   name="color"
                   render={() => (
-                    <FormItem className="flex flex-col gap-[2px]">
-                      <FormLabel>Color</FormLabel>
+                    <FormItem className="flex flex-col gap-[2px] w-[33%]">
+                      <FormLabel className="leading-[17.5px]">Color</FormLabel>
                       <FormControl>
                         <HabitColor />
                       </FormControl>
@@ -210,23 +199,10 @@ export const CreateForm = () => {
                 <FormField
                   name="icon"
                   render={() => (
-                    <FormItem className="flex flex-col gap-[2px]">
-                      <FormLabel>Icon</FormLabel>
+                    <FormItem className="flex flex-col gap-[2px] w-[33%] !mt-0">
+                      <FormLabel className="leading-[17.5px]">Icon</FormLabel>
                       <FormControl>
                         <HabitIcons />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="space-y-2 flex gap-2 justify-between">
-                <FormField
-                  name="measures"
-                  render={() => (
-                    <FormItem className="w-full">
-                      <FormLabel>Measures</FormLabel>
-                      <FormControl>
-                        <GoalUnits />
                       </FormControl>
                     </FormItem>
                   )}
@@ -234,8 +210,8 @@ export const CreateForm = () => {
                 <FormField
                   name="sound"
                   render={() => (
-                    <FormItem className="flex flex-col gap-[2px]">
-                      <FormLabel>Sound</FormLabel>
+                    <FormItem className="flex flex-col gap-[2px] w-[33%] !mt-0">
+                      <FormLabel className="leading-[17.5px]">Sound</FormLabel>
                       <FormControl>
                         <Notification />
                       </FormControl>
@@ -243,6 +219,28 @@ export const CreateForm = () => {
                   )}
                 />
               </div>
+              <FormField
+                name="Daily Goal"
+                render={() => (
+                  <FormItem>
+                    <FormLabel>Daily Goal</FormLabel>
+                    <FormControl>
+                      <DailyGoal />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name="measures"
+                render={() => (
+                  <FormItem className="w-full">
+                    <FormLabel>Measures</FormLabel>
+                    <FormControl>
+                      <GoalUnits />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
               <FormField
                 name="time of the day"
                 render={() => (

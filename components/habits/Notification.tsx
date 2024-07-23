@@ -36,11 +36,11 @@ export function Notification() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="secondary" className="sm:w-20 w-12 px-0">
+        <Button variant="secondary" className="w-full px-0">
           <IoIosNotifications color={color} size={22} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[330px] max-w-[290px]">
+      <DialogContent className="sm:max-w-[330px] max-w-[90%]">
         <DialogHeader>
           <DialogTitle>Task Notification</DialogTitle>
           <DialogDescription>Choose a suitable sound</DialogDescription>

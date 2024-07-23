@@ -4,7 +4,6 @@ import {
   DialogClose,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -22,11 +21,11 @@ export const HabitIcons = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="secondary" className="sm:w-20 w-12 px-0">
+        <Button variant="secondary" className="w-full px-0">
           {React.createElement(selectedIcon.icon, { size: 24, color: color })}
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[330px] max-w-[290px]">
+      <DialogContent className="sm:max-w-[330px] max-w-[90%]">
         <DialogHeader>
           <DialogTitle>Task icon</DialogTitle>
           <DialogDescription>

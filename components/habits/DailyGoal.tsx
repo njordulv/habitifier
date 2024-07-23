@@ -16,16 +16,24 @@ export const DailyGoal = () => {
 
   return (
     <div className="flex gap-2 items-center">
-      <Button variant="secondary" onClick={minusHandler}>
+      <Button
+        variant="secondary"
+        onClick={minusHandler}
+        className="w-full px-0 text-lg"
+      >
         <HiOutlineMinus />
       </Button>
       <span
-        className={`flex sm:min-w-8 min-w-6 justify-center`}
+        className={`flex w-full text-lg bg-secondary/30 h-9 rounded-md items-center justify-center tracking-wider`}
         style={{ color: color }}
       >
         {goal}
       </span>
-      <Button variant="secondary" onClick={plusHandler}>
+      <Button
+        variant="secondary"
+        onClick={plusHandler}
+        className="w-full px-0 text-lg"
+      >
         <HiOutlinePlus />
       </Button>
     </div>
