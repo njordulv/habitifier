@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { IoIosNotifications, IoIosPlay } from 'react-icons/io'
+
 import {
   AlertDialog,
   AlertDialogTitle,
-  AlertDialogAction,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogHeader,
@@ -14,16 +14,21 @@ import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
 import { useCreateHabitStore } from '@/store/useCreateHabitStore'
 
-interface NotificationProps {
-  message: string
-  soundLabel: string
-}
-
 const sounds = siteConfig.notificationSounds
 
 export const Notification = () => {
   const { color, sound, setSound } = useCreateHabitStore()
   const audioRef = useRef<HTMLAudioElement>(null)
+  const [activeSoundId, setActiveSoundId] = useState<number | null>(
+    sounds.length > 0 ? sounds[0].id : null
+  )
+  const initialSoundId = sounds.length > 0 ? sounds[0].id : null
+
+  useEffect(() => {
+    if (sounds.length > 0) {
+      setSound(sounds[0].label)
+    }
+  }, [setSound])
 
   const playSound = (url: string) => {
     if (audioRef.current) {
@@ -32,14 +37,19 @@ export const Notification = () => {
     }
   }
 
+  const saveSound = () => {
+    setSound(sound)
+    setActiveSoundId(initialSoundId)
+  }
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="secondary">
-          <IoIosNotifications color={color} size={20} />
+        <Button variant="secondary" className="sm:w-20 w-12 px-0">
+          <IoIosNotifications color={color} size={22} />
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="max-w-[330px]">
+      <AlertDialogContent className="sm:max-w-[330px] max-w-[290px]">
         <AlertDialogHeader>
           <AlertDialogTitle>Task Notification</AlertDialogTitle>
           <AlertDialogDescription>
@@ -48,24 +58,29 @@ export const Notification = () => {
         </AlertDialogHeader>
         <div className="flex flex-col justify-between gap-2">
           {sounds.map((file) => (
-            <div key={file.id} className="flex items-center gap-2 ">
+            <div key={file.id} className="flex items-center gap-2">
               <Button
                 className="w-full justify-start"
                 variant="ghost"
+                active={activeSoundId === file.id}
                 onClick={() => {
                   setSound(file.label)
-                  playSound(file.url)
+                  setActiveSoundId(file.id)
                 }}
-                icon={<IoIosPlay size={22} className="text-primary-light" />}
               >
+                <IoIosPlay
+                  size={22}
+                  className="text-primary-light"
+                  onClick={() => {
+                    playSound(file.url)
+                  }}
+                />
                 <span>{file.label}</span>
               </Button>
             </div>
           ))}
         </div>
-        <AlertDialogCancel onClick={() => setSound(sound)}>
-          Save
-        </AlertDialogCancel>
+        <AlertDialogCancel onClick={saveSound}>Save</AlertDialogCancel>
       </AlertDialogContent>
       <audio ref={audioRef} />
     </AlertDialog>

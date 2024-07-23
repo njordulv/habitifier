@@ -46,7 +46,7 @@ const formatTime = (timeString: string | null | undefined): string | null => {
     return null
   }
 
-  return date.toISOString().substring(11, 19) // Extract HH:MM:SS part
+  return date.toISOString().substring(11, 19)
 }
 
 export const CreateForm = () => {
@@ -182,7 +182,7 @@ export const CreateForm = () => {
                   </FormItem>
                 )}
               />
-              <div className="space-y-2 flex gap-3 justify-between">
+              <div className="space-y-2 flex gap-2 justify-between">
                 <FormField
                   name="Daily Goal"
                   render={() => (
@@ -197,7 +197,7 @@ export const CreateForm = () => {
                 <FormField
                   name="color"
                   render={() => (
-                    <FormItem className="flex flex-col gap-[3px]">
+                    <FormItem className="flex flex-col gap-[2px]">
                       <FormLabel>Color</FormLabel>
                       <FormControl>
                         <HabitColor />
@@ -208,7 +208,7 @@ export const CreateForm = () => {
                 <FormField
                   name="icon"
                   render={() => (
-                    <FormItem className="flex flex-col gap-[3px]">
+                    <FormItem className="flex flex-col gap-[2px]">
                       <FormLabel>Icon</FormLabel>
                       <FormControl>
                         <HabitIcons />
@@ -217,7 +217,7 @@ export const CreateForm = () => {
                   )}
                 />
               </div>
-              <div className="space-y-2 flex gap-3 justify-between">
+              <div className="space-y-2 flex gap-2 justify-between">
                 <FormField
                   name="measures"
                   render={() => (
@@ -232,8 +232,8 @@ export const CreateForm = () => {
                 <FormField
                   name="sound"
                   render={() => (
-                    <FormItem className="flex flex-col gap-[3px]">
-                      <FormLabel>Notification</FormLabel>
+                    <FormItem className="flex flex-col gap-[2px]">
+                      <FormLabel>Sound</FormLabel>
                       <FormControl>
                         <Notification />
                       </FormControl>

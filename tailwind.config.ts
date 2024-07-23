@@ -87,7 +87,7 @@ const config = {
           tan: 'hsl(34.3, 43.8%, 68.6%)',
           violet: 'hsl(300, 76.1%, 72.2%)',
           blanchedalmond: 'hsl(36deg 100% 90%)',
-          azure: 'hsl(180deg 100% 97%)',
+          azure: 'hsl(180deg 98% 96%)',
           slateblue: 'hsl(248deg 53% 58%)',
           rosybrown: 'hsl(0deg 25% 65%)',
           sandybrown: 'hsl(28deg 87% 67%)',

@@ -20,13 +20,13 @@ export const DaysOfWeek = () => {
   }
 
   return (
-    <div className="flex flex-wrap gap-1 justify-between">
+    <div className="flex flex-wrap gap-[1.5%] justify-between">
       {daysOfWeek.map((day) => (
         <Button
           key={day.id}
           variant={selectedDays.includes(day.id) ? 'outline' : 'secondary'}
           onClick={(event) => handleButtonClick(day.id, event)}
-          className="border px-[14px]"
+          className="border px-0 w-[13%]"
         >
           {day.name}
         </Button>

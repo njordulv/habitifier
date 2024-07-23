@@ -19,7 +19,10 @@ export const DailyGoal = () => {
       <Button variant="secondary" onClick={minusHandler}>
         <HiOutlineMinus />
       </Button>
-      <span className={`flex min-w-8 justify-center`} style={{ color: color }}>
+      <span
+        className={`flex sm:min-w-8 min-w-6 justify-center`}
+        style={{ color: color }}
+      >
         {goal}
       </span>
       <Button variant="secondary" onClick={plusHandler}>

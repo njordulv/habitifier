@@ -22,11 +22,11 @@ export const HabitColor = () => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="secondary">
+        <Button variant="secondary" className="sm:w-20 w-12 px-0">
           <GiPlainCircle color={selectedColor.label} size={20} />
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="max-w-[330px]">
+      <AlertDialogContent className="sm:max-w-[330px] max-w-[290px]">
         <AlertDialogHeader>
           <AlertDialogTitle>Task color</AlertDialogTitle>
           <AlertDialogDescription>
