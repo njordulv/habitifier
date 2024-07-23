@@ -28,7 +28,7 @@ import { DaysOfWeek } from '@/components/habits/DaysOfWeek'
 import { HabitIcons } from '@/components/habits/HabitIcons'
 import { HabitColor } from '@/components/habits/HabitColor'
 import { Reminder } from '@/components/habits/Reminder'
-import { Notification } from './Notification'
+import { Notification } from '@/components/habits/Notification'
 
 const FormSchema = z.object({
   name: z.string().min(3, 'Name is required').max(60, 'Name is too long'),
@@ -63,6 +63,7 @@ export const CreateForm = () => {
     reminder,
     weekDays,
     resetForm,
+    resetSound,
   } = useCreateHabitStore()
   const [isLoading, setIsLoading] = useState(false)
   const [userId, setUserId] = useState<string | null>(null)
@@ -131,6 +132,7 @@ export const CreateForm = () => {
       showMessage('Habit successfully saved', 'success', 'default')
       form.reset()
       resetForm()
+      resetSound()
     } catch (error: any) {
       showMessage(error.message || 'An error occurred', 'error', 'destructive')
     } finally {
@@ -141,7 +143,7 @@ export const CreateForm = () => {
   return (
     <Card className="w-full max-w-[380px]">
       <CardHeader>
-        <CardTitle>Create your habit</CardTitle>
+        <CardTitle>Create new habit</CardTitle>
       </CardHeader>
       <CardContent>
         <FormProvider {...form}>

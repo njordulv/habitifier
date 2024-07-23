@@ -45,6 +45,7 @@ export interface HabitProps {
   color: string
   icon: string
   reminder: string[]
+  sound: string
   days: string[]
   time_of_day: string
 }
@@ -56,6 +57,7 @@ export interface CreateHabitState {
   increaseGoal: () => void
   decreaseGoal: () => void
   resetForm: () => void
+  resetSound: () => void
   color: string
   setColor: (color: string) => void
   units: string

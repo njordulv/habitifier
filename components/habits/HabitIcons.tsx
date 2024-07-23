@@ -1,14 +1,14 @@
 import React from 'react'
 import {
-  AlertDialog,
-  AlertDialogTitle,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogHeader,
-  AlertDialogTrigger,
-  AlertDialogCancel,
-} from '@/components/ui/alert-dialog'
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { iconsLibrary } from '@/config/icons'
 import { useCreateHabitStore } from '@/store/useCreateHabitStore'
@@ -20,32 +20,37 @@ export const HabitIcons = () => {
     iconsLibrary.habitIcons[0]
 
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
+    <Dialog>
+      <DialogTrigger asChild>
         <Button variant="secondary" className="sm:w-20 w-12 px-0">
           {React.createElement(selectedIcon.icon, { size: 24, color: color })}
         </Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent className="sm:max-w-[330px] max-w-[290px]">
-        <AlertDialogHeader>
-          <AlertDialogTitle>Task icon</AlertDialogTitle>
-          <AlertDialogDescription>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[330px] max-w-[290px]">
+        <DialogHeader>
+          <DialogTitle>Task icon</DialogTitle>
+          <DialogDescription>
             Choose a visual identifier for your habit
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <div className="flex flex-wrap justify-between gap-2">
+          </DialogDescription>
+        </DialogHeader>
+        <div className="flex flex-wrap justify-center gap-2">
           {iconsLibrary.habitIcons.map((iconItem) => (
-            <AlertDialogAction
+            <DialogClose
+              asChild
+              className="flex items-center justify-center w-full max-w-[40px] px-0"
               key={iconItem.id}
-              className="bg-secondary px-2"
-              onClick={() => setIcon(iconItem.label)}
             >
-              {React.createElement(iconItem.icon, { size: 24 })}
-            </AlertDialogAction>
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={() => setIcon(iconItem.label)}
+              >
+                {React.createElement(iconItem.icon, { size: 24 })}
+              </Button>
+            </DialogClose>
           ))}
         </div>
-        <AlertDialogCancel>Cancel</AlertDialogCancel>
-      </AlertDialogContent>
-    </AlertDialog>
+      </DialogContent>
+    </Dialog>
   )
 }

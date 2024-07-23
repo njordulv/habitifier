@@ -1,14 +1,14 @@
 import { GiPlainCircle } from 'react-icons/gi'
 import {
-  AlertDialog,
-  AlertDialogTitle,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogHeader,
-  AlertDialogTrigger,
-  AlertDialogCancel,
-} from '@/components/ui/alert-dialog'
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
 import { useCreateHabitStore } from '@/store/useCreateHabitStore'
@@ -20,32 +20,39 @@ export const HabitColor = () => {
   const selectedColor = colors.find((c) => c.label === color) || colors[0]
 
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
+    <Dialog>
+      <DialogTrigger asChild>
         <Button variant="secondary" className="sm:w-20 w-12 px-0">
           <GiPlainCircle color={selectedColor.label} size={20} />
         </Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent className="sm:max-w-[330px] max-w-[290px]">
-        <AlertDialogHeader>
-          <AlertDialogTitle>Task color</AlertDialogTitle>
-          <AlertDialogDescription>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[330px] max-w-[290px]">
+        <DialogHeader>
+          <DialogTitle>Task color</DialogTitle>
+          <DialogDescription>
             Choose a suitable color for your habit
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <div className="flex flex-wrap justify-between gap-2">
-          {colors.map((colorOption) => (
-            <AlertDialogAction
-              key={colorOption.id}
-              className="bg-secondary hover:bg-secondary/50 w-full max-w-[40px] px-0"
-              onClick={() => setColor(colorOption.label)}
-            >
-              <GiPlainCircle color={colorOption.label} size={20} />
-            </AlertDialogAction>
-          ))}
-        </div>
-        <AlertDialogCancel>Cancel</AlertDialogCancel>
-      </AlertDialogContent>
-    </AlertDialog>
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <div className="flex flex-wrap justify-center gap-2">
+            {colors.map((colorOption) => (
+              <DialogClose
+                asChild
+                className="flex items-center justify-center w-full max-w-[40px] px-0"
+                key={colorOption.id}
+              >
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={() => setColor(colorOption.label)}
+                >
+                  <GiPlainCircle color={colorOption.label} size={20} />
+                </Button>
+              </DialogClose>
+            ))}
+          </div>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   )
 }

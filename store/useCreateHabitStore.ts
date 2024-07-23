@@ -50,4 +50,8 @@ export const useCreateHabitStore = create<CreateHabitState>((set) => ({
         'sunday',
       ],
     }),
+  resetSound: () =>
+    set({
+      sound: 'Bell',
+    }),
 }))
