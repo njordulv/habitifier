@@ -3,6 +3,7 @@ import { m, LazyMotion, domAnimation } from 'framer-motion'
 import { iconsLibrary } from '@/config/icons'
 import { HabitProps } from '@/interfaces'
 import { formatTime } from '@/components/ui/time-picker-utils'
+import { Edit } from './Edit'
 
 const itemVariants = {
   inactive: {
@@ -38,7 +39,7 @@ export const ListItem: React.FC<
         animate="active"
         className={habit.color}
       >
-        <div className="border rounded-md p-5 gap-5">
+        <div className="border rounded-md p-5 gap-5 relative">
           <div className="grid grid-flow-row-dense grid-cols-[1fr_11fr_2fr] items-center gap-4 text-muted-foreground text-xs">
             <IconComponent size={30} className={`${habit.color}`} />
             <div className="flex flex-col gap-1">
@@ -63,15 +64,16 @@ export const ListItem: React.FC<
                 </div>
               )}
             </div>
-            <div className="flex flex-col items-end justify-end text-sm text-muted-foreground">
+            <div className="flex flex-col items-end gap-1 text-sm text-muted-foreground">
+              <Edit />
               {habit.goal && (
-                <>
+                <div className="flex flex-col items-end">
                   <div>
                     <span className={habit.color}>0</span>
                     <span className="color-dark">/{habit.goal}</span>
                   </div>
                   <div>&nbsp;{habit.units}</div>
-                </>
+                </div>
               )}
             </div>
           </div>

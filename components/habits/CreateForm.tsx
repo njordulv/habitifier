@@ -243,7 +243,7 @@ export const CreateForm = () => {
                 disabled={isLoading}
                 icon={isLoading && <Spinner size={18} />}
               >
-                Save
+                Create
               </Button>
             </form>
           </Form>
