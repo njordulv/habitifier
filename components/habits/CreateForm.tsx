@@ -157,12 +157,15 @@ export const CreateForm = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel htmlFor="name">Name</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
+                        id="name"
+                        name="name"
                         placeholder="Drink some water"
                         error={!!form.formState.errors.name}
+                        autoComplete="name"
                       />
                     </FormControl>
                     <FormMessage className="absolute !m-0" />
@@ -173,9 +176,11 @@ export const CreateForm = () => {
                 name="description"
                 render={() => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel htmlFor="description">Description</FormLabel>
                     <FormControl>
                       <Input
+                        id="description"
+                        name="description"
                         placeholder="Optional"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
@@ -184,97 +189,50 @@ export const CreateForm = () => {
                   </FormItem>
                 )}
               />
-              <div className="space-y-2 flex gap-2 justify-between">
-                <FormField
-                  name="color"
-                  render={() => (
-                    <FormItem className="flex flex-col gap-[2px] w-[33%]">
-                      <FormLabel className="leading-[17.5px]">Color</FormLabel>
-                      <FormControl>
-                        <HabitColor />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  name="icon"
-                  render={() => (
-                    <FormItem className="flex flex-col gap-[2px] w-[33%] !mt-0">
-                      <FormLabel className="leading-[17.5px]">Icon</FormLabel>
-                      <FormControl>
-                        <HabitIcons />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  name="sound"
-                  render={() => (
-                    <FormItem className="flex flex-col gap-[2px] w-[33%] !mt-0">
-                      <FormLabel className="leading-[17.5px]">Sound</FormLabel>
-                      <FormControl>
-                        <Notification />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
+              <div className="flex gap-2 justify-between">
+                <div className="form-col-33">
+                  <div className="form-label">Color</div>
+                  <HabitColor />
+                </div>
+                <div className="form-col-33">
+                  <div className="form-label">Icon</div>
+                  <HabitIcons />
+                </div>
+                <div className="form-col-33">
+                  <div className="form-label">Sound</div>
+                  <Notification />
+                </div>
               </div>
-              <FormField
-                name="Daily Goal"
-                render={() => (
-                  <FormItem>
-                    <FormLabel>Daily Goal</FormLabel>
-                    <FormControl>
-                      <DailyGoal />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="measures"
-                render={() => (
-                  <FormItem className="w-full">
-                    <FormLabel>Measures</FormLabel>
-                    <FormControl>
-                      <GoalUnits />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="time of the day"
-                render={() => (
-                  <FormItem>
-                    <FormLabel>Choose preferred time of the day</FormLabel>
-                    <FormControl>
-                      <DayTime />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="reminder"
-                render={() => (
-                  <FormItem>
-                    <FormLabel>Reminder</FormLabel>
-                    <FormControl>
-                      <Reminder />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
+              <div>
+                <div className="form-label">Daily Goal</div>
+                <DailyGoal />
+              </div>
+              <div>
+                <div className="form-label">Measures</div>
+                <GoalUnits />
+              </div>
+              <div>
+                <div className="form-label">
+                  Choose preferred time of the day
+                </div>
+                <DayTime />
+              </div>
+              <div>
+                <div className="form-label">Reminder</div>
+                <Reminder />
+              </div>
               <FormField
                 control={form.control}
                 name="days_of_week"
                 render={() => (
                   <FormItem>
-                    <FormLabel>Choose preferred day(s) of the week</FormLabel>
+                    <div className="form-label">
+                      Choose preferred day(s) of the week
+                    </div>
                     <FormDescription>
                       <NamesOfWeek />
                     </FormDescription>
-                    <FormControl>
-                      <DaysOfWeek />
-                    </FormControl>
+                    <DaysOfWeek />
                     <FormMessage className="absolute !m-0" />
                   </FormItem>
                 )}
