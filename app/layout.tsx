@@ -21,7 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Header />
-        {children}
+        <main className="flex flex-col items-center justify-start px-4 sm:px-24 py-6 gap-6">
+          {children}
+        </main>
         <Toaster />
       </body>
     </html>

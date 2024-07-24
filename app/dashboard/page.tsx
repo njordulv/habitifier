@@ -10,9 +10,5 @@ export default async function DashboardPage() {
     redirect('/sign-in')
   }
 
-  return (
-    <main className="flex flex-col items-center text-center">
-      <Hero data={data} />
-    </main>
-  )
+  return <Hero data={data} />
 }
