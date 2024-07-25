@@ -47,14 +47,14 @@ export const EditHabit: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
             <LuClipboardEdit size={20} />
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[380px] max-w-[90%]">
+        <DialogContent className="max-w-[380px] w-full">
           <DialogHeader>
             <DialogTitle>Task Edit</DialogTitle>
             <DialogDescription>
               You can make changes or delete the task
             </DialogDescription>
           </DialogHeader>
-          <DialogFooter className="sm:justify-start">
+          <DialogFooter>
             <DeleteHabit habitId={habitId} onSuccess={handleSuccess} />
             <DialogClose ref={dialogCloseRef} asChild>
               <Button variant="ghost">Cancel</Button>
@@ -75,7 +75,7 @@ export const EditHabit: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
       <DrawerContent>
         <div className="max-w-[380px] w-full mx-auto">
           <DrawerHeader className="text-left">
-            <DrawerTitle>Edit profile</DrawerTitle>
+            <DrawerTitle>Task Edit</DrawerTitle>
             <DrawerDescription>
               You can make changes or delete the task
             </DrawerDescription>

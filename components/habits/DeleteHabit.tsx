@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
 import { Button } from '@/components/ui/button'
+import { Spinner } from '@/components/ui/spinner'
 import { useMessages } from '@/hooks/useMessage'
 
 const supabase = createClient()
@@ -10,9 +12,11 @@ interface Props {
 }
 
 export const DeleteHabit = ({ habitId, onSuccess }: Props) => {
+  const [isLoading, setIsLoading] = useState(false)
   const { showMessage } = useMessages()
 
   const deleteHabit = async () => {
+    setIsLoading(true)
     const { data, error } = await supabase
       .from('habits')
       .delete()
@@ -20,6 +24,7 @@ export const DeleteHabit = ({ habitId, onSuccess }: Props) => {
       .select()
 
     if (error) {
+      setIsLoading(false)
       showMessage(error.message, 'error', 'destructive')
       return
     }
@@ -29,7 +34,12 @@ export const DeleteHabit = ({ habitId, onSuccess }: Props) => {
   }
 
   return (
-    <Button variant="destructive" onClick={deleteHabit}>
+    <Button
+      variant="destructive"
+      onClick={deleteHabit}
+      disabled={isLoading}
+      icon={isLoading && <Spinner size={18} />}
+    >
       Delete
     </Button>
   )
