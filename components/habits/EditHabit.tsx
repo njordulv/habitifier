@@ -84,7 +84,7 @@ export const EditHabit: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
               You can make changes or delete the task
             </DrawerDescription>
           </DrawerHeader>
-          <div className="h-[320px] relative overflow-y-scroll pb-4 px-[2px]">
+          <div className="">
             <UpdateHabit habitId={habitId} />
           </div>
           <DrawerFooter>

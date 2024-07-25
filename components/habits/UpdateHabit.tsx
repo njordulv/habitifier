@@ -14,6 +14,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -21,15 +22,29 @@ import { Spinner } from '@/components/ui/spinner'
 import { DayTime } from '@/components/habits/DayTime'
 import { DailyGoal } from '@/components/habits/DailyGoal'
 import { GoalUnits } from '@/components/habits/GoalUnits'
+import { DaysOfWeek } from '@/components/habits/DaysOfWeek'
+import { NamesOfWeek } from '@/components/habits/NamesOfWeek'
 import { HabitIcons } from '@/components/habits/HabitIcons'
 import { HabitColor } from '@/components/habits/HabitColor'
+import { Reminder } from '@/components/habits/Reminder'
 import { Notification } from '@/components/habits/Notification'
 
 const FormSchema = z.object({
   name: z.string().min(3, 'Name is required').max(60, 'Name is too long'),
+  days_of_week: z.array(z.string()).min(1, 'At least one day is required'),
 })
 
 type FormData = z.infer<typeof FormSchema>
+
+const formatTime = (timeString: string | null | undefined): string | null => {
+  if (!timeString) return null
+  const date = new Date(timeString)
+  if (isNaN(date.getTime())) {
+    console.error('Invalid time string:', timeString)
+    return null
+  }
+  return date.toISOString().substring(11, 19)
+}
 
 interface Props {
   habitId: number
@@ -41,88 +56,116 @@ export const UpdateHabit: React.FC<Props> = ({ habitId }) => {
     description,
     setDescription,
     goal,
-    units,
     setUnits,
-    color,
-    icon,
-    sound,
-    timeOfDay,
+    setColor,
+    setIcon,
+    setSound,
+    setTimeOfDay,
+    setReminder,
+    setWeekDays,
   } = useCreateHabitStore()
-  const { showMessage } = useMessages()
   const [isLoading, setIsLoading] = useState(false)
+  const [isDataLoaded, setIsDataLoaded] = useState(false)
+  const { showMessage } = useMessages()
 
   const form = useForm<FormData>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       name: '',
+      days_of_week: [],
     },
   })
 
-  const { reset, setValue } = form
-
   useEffect(() => {
     const fetchHabit = async () => {
-      const { data, error } = await supabase
-        .from('habits')
-        .select('*')
-        .eq('id', habitId)
-        .single()
-
-      if (error) {
+      if (isDataLoaded) return
+      setIsLoading(true)
+      try {
+        const { data, error } = await supabase
+          .from('habits')
+          .select('*')
+          .eq('id', habitId)
+          .single()
+        if (error) throw error
+        form.reset({
+          name: data.name,
+          days_of_week: data.days,
+        })
+        setDescription(data.description)
+        useCreateHabitStore.setState({ goal: data.goal })
+        setUnits(data.units)
+        setColor(data.color)
+        setIcon(data.icon)
+        setSound(data.sound)
+        setTimeOfDay(data.time_of_day)
+        setReminder(
+          data.reminder.map((time: string) => new Date(`1970-01-01T${time}Z`))
+        )
+        setWeekDays(data.days)
+        setIsDataLoaded(true)
+      } catch (error: any) {
         showMessage(error.message, 'error', 'destructive')
-        return
+      } finally {
+        setIsLoading(false)
       }
-
-      reset(data)
-      setDescription(data.description)
-      setUnits(data.units)
-      setValue('name', data.name)
     }
-
     fetchHabit()
   }, [
     habitId,
-    reset,
     supabase,
+    form,
+    showMessage,
     setDescription,
     setUnits,
-    setValue,
-    showMessage,
+    setColor,
+    setIcon,
+    setSound,
+    setTimeOfDay,
+    setReminder,
+    setWeekDays,
+    isDataLoaded,
   ])
 
-  const updateTask = async (values: FormData) => {
+  const onSubmit = async (values: FormData) => {
     setIsLoading(true)
-
     try {
+      const formattedReminder = useCreateHabitStore
+        .getState()
+        .reminder.map((r) => formatTime(r?.toISOString()) as string)
       const { error } = await supabase
         .from('habits')
         .update({
           name: values.name,
-          description,
-          goal,
-          units,
-          color,
-          icon,
-          sound,
-          time_of_day: timeOfDay,
+          description: useCreateHabitStore.getState().description,
+          goal: useCreateHabitStore.getState().goal,
+          units: useCreateHabitStore.getState().units,
+          color: useCreateHabitStore.getState().color,
+          icon: useCreateHabitStore.getState().icon,
+          sound: useCreateHabitStore.getState().sound,
+          reminder: formattedReminder,
+          time_of_day: useCreateHabitStore.getState().timeOfDay,
+          days: values.days_of_week,
         })
         .eq('id', habitId)
-
       if (error) throw error
       showMessage('Habit successfully updated', 'success', 'default')
     } catch (error: any) {
-      showMessage(error.message, 'error', 'destructive')
+      showMessage(error.message || 'An error occurred', 'error', 'destructive')
     } finally {
       setIsLoading(false)
     }
+  }
+
+  if (!isDataLoaded) {
+    return <Spinner />
   }
 
   return (
     <FormProvider {...form}>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(updateTask)}
-          className="flex flex-col gap-4 px-4"
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex flex-col gap-4 max-h-[340px] h-full relative overflow-y-scroll p-4"
         >
           <FormField
             control={form.control}
@@ -134,23 +177,32 @@ export const UpdateHabit: React.FC<Props> = ({ habitId }) => {
                   <Input
                     {...field}
                     id="name"
-                    type="text"
+                    name="name"
                     placeholder="Drink some water"
-                    autoComplete="name"
                     error={!!form.formState.errors.name}
+                    autoComplete="name"
                   />
                 </FormControl>
-                <FormMessage className="absolute !m-0">
-                  {form.formState.errors.name?.message}
-                </FormMessage>
+                <FormMessage className="absolute !m-0" />
               </FormItem>
             )}
           />
-          <Input
-            type="text"
-            placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+          <FormField
+            name="description"
+            render={() => (
+              <FormItem>
+                <FormLabel htmlFor="description">Description</FormLabel>
+                <FormControl>
+                  <Input
+                    id="description"
+                    name="description"
+                    placeholder="Optional"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
           />
           <div className="flex gap-2 justify-between">
             <div className="form-col-33">
@@ -178,8 +230,28 @@ export const UpdateHabit: React.FC<Props> = ({ habitId }) => {
             <div className="form-label">Choose preferred time of the day</div>
             <DayTime />
           </div>
-          <Button variant="outline" type="submit" disabled={isLoading}>
-            {isLoading ? <Spinner size={18} /> : 'Save'}
+          <div>
+            <div className="form-label">Reminder</div>
+            <Reminder />
+          </div>
+          <FormField
+            control={form.control}
+            name="days_of_week"
+            render={() => (
+              <FormItem>
+                <div className="form-label">
+                  Choose preferred day(s) of the week
+                </div>
+                <FormDescription>
+                  <NamesOfWeek />
+                </FormDescription>
+                <DaysOfWeek />
+                <FormMessage className="absolute !m-0" />
+              </FormItem>
+            )}
+          />
+          <Button type="submit" variant="outline" disabled={isLoading}>
+            {isLoading ? <Spinner size={18} /> : 'Update'}
           </Button>
         </form>
       </Form>
