@@ -27,9 +27,12 @@ export const ListSkeleton = () => {
                 <Skeleton className="h-4 w-10 rounded-lg" />
               </div>
             </div>
-            <div className="flex flex-col gap-1 items-end">
-              <Skeleton className="h-4 w-8 rounded-md" />
-              <Skeleton className="h-4 w-12 rounded-md" />
+            <div className="flex flex-col items-end h-full justify-between gap-1">
+              <Skeleton className="h-5 w-5 rounded-md" />
+              <div className="flex flex-col items-end gap-1">
+                <Skeleton className="h-4 w-8 rounded-md" />
+                <Skeleton className="h-4 w-12 rounded-md" />
+              </div>
             </div>
           </div>
         </div>

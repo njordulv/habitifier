@@ -36,7 +36,7 @@ export interface ListUsersParams {
 }
 
 export interface HabitProps {
-  id: string
+  id: number
   user_id: string
   name: string
   description: string | null

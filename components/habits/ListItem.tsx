@@ -1,9 +1,9 @@
-import { RxClock } from 'react-icons/rx'
 import { m, LazyMotion, domAnimation } from 'framer-motion'
+import { RxClock } from 'react-icons/rx'
 import { iconsLibrary } from '@/config/icons'
-import { HabitProps } from '@/interfaces'
 import { formatTime } from '@/components/ui/time-picker-utils'
-import { Edit } from './Edit'
+import { EditHabit } from '@/components/habits/EditHabit'
+import { HabitProps } from '@/interfaces'
 
 const itemVariants = {
   inactive: {
@@ -22,9 +22,18 @@ const itemVariants = {
   }),
 }
 
-export const ListItem: React.FC<
-  HabitProps & { animationKey: string; index: number }
-> = ({ animationKey, index, ...habit }) => {
+interface Props extends HabitProps {
+  animationKey: string
+  index: number
+  onHabitUpdate: () => void
+}
+
+export const ListItem: React.FC<Props> = ({
+  animationKey,
+  index,
+  onHabitUpdate,
+  ...habit
+}) => {
   const IconComponent =
     iconsLibrary.habitIcons.find((i) => i.label === habit.icon)?.icon ||
     iconsLibrary.habitIcons[0].icon
@@ -64,8 +73,8 @@ export const ListItem: React.FC<
                 </div>
               )}
             </div>
-            <div className="flex flex-col items-end gap-1 text-sm text-muted-foreground">
-              <Edit />
+            <div className="flex flex-col items-end h-full justify-between gap-1 text-sm text-muted-foreground">
+              <EditHabit habitId={habit.id} onHabitUpdate={onHabitUpdate} />
               {habit.goal && (
                 <div className="flex flex-col items-end">
                   <div>

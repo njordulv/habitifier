@@ -1,4 +1,5 @@
-import { GiPencil } from 'react-icons/gi'
+import { useRef } from 'react'
+import { LuClipboardEdit } from 'react-icons/lu'
 import {
   Dialog,
   DialogClose,
@@ -10,13 +11,26 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
+import { DeleteHabit } from '@/components/habits/DeleteHabit'
 
-export const Edit = () => {
+interface Props {
+  habitId: number
+  onHabitUpdate: () => void
+}
+
+export const EditHabit: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
+  const dialogCloseRef = useRef<HTMLButtonElement>(null)
+
+  const handleSuccess = () => {
+    onHabitUpdate()
+    dialogCloseRef.current?.click()
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="link">
-          <GiPencil size={20} />
+          <LuClipboardEdit size={20} />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[380px] max-w-[90%]">
@@ -27,15 +41,9 @@ export const Edit = () => {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="sm:justify-start">
-          <DialogClose asChild>
-            <Button type="button" variant="destructive">
-              Remove
-            </Button>
-          </DialogClose>
-          <DialogClose asChild>
-            <Button type="button" variant="outline">
-              Save
-            </Button>
+          <DeleteHabit habitId={habitId} onSuccess={handleSuccess} />
+          <DialogClose ref={dialogCloseRef} asChild>
+            <Button variant="ghost">Cancel</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

@@ -71,12 +71,13 @@ export const List = () => {
                 {...filteredHabit}
                 animationKey={`${filteredHabit.id}-${activeTab}`}
                 index={index}
+                onHabitUpdate={fetchHabits}
               />
             ))}
         </ul>
       </TabsContent>
     ))
-  }, [habits, uniqueTimeOfDay, activeTab])
+  }, [habits, uniqueTimeOfDay, activeTab, fetchHabits])
 
   if (isLoading) return <ListSkeleton />
   if (error) return <p>Error: {error}</p>

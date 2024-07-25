@@ -197,7 +197,12 @@ export function display12HourValue(hours: number) {
   return `0${hours % 12}`
 }
 
-export const formatTime = (time: string): string => {
-  const [hours, minutes] = time.split(':')
-  return `${hours}:${minutes}`
+export const formatTime = (time: string | null | undefined): string => {
+  if (!time) return '00:00'
+
+  const parts = time.split(':')
+  if (parts.length < 2) return '00:00'
+
+  const [hours, minutes] = parts
+  return `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}`
 }
