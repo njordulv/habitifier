@@ -7,7 +7,6 @@ import { useState, useEffect } from 'react'
 import { useMessages } from '@/hooks/useMessage'
 import { createClient } from '@/utils/supabase/client'
 import { useCreateHabitStore } from '@/store/useCreateHabitStore'
-import { NamesOfWeek } from './NamesOfWeek'
 import {
   Form,
   FormControl,
@@ -25,6 +24,7 @@ import { DayTime } from '@/components/habits/DayTime'
 import { DailyGoal } from '@/components/habits/DailyGoal'
 import { GoalUnits } from '@/components/habits/GoalUnits'
 import { DaysOfWeek } from '@/components/habits/DaysOfWeek'
+import { NamesOfWeek } from '@/components/habits/NamesOfWeek'
 import { HabitIcons } from '@/components/habits/HabitIcons'
 import { HabitColor } from '@/components/habits/HabitColor'
 import { Reminder } from '@/components/habits/Reminder'

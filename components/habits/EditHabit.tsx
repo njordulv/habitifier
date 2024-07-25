@@ -22,6 +22,7 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
+import { UpdateHabit } from '@/components/habits/UpdateHabit'
 import { DeleteHabit } from '@/components/habits/DeleteHabit'
 
 interface Props {
@@ -54,6 +55,9 @@ export const EditHabit: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
               You can make changes or delete the task
             </DialogDescription>
           </DialogHeader>
+          <div className="max-h-screen relative overflow-y-scroll">
+            <UpdateHabit habitId={habitId} />
+          </div>
           <DialogFooter>
             <DeleteHabit habitId={habitId} onSuccess={handleSuccess} />
             <DialogClose ref={dialogCloseRef} asChild>
@@ -80,6 +84,9 @@ export const EditHabit: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
               You can make changes or delete the task
             </DrawerDescription>
           </DrawerHeader>
+          <div className="h-[320px] relative overflow-y-scroll pb-4 px-[2px]">
+            <UpdateHabit habitId={habitId} />
+          </div>
           <DrawerFooter>
             <DeleteHabit habitId={habitId} onSuccess={handleSuccess} />
             <DrawerClose asChild>
