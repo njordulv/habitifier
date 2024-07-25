@@ -29,6 +29,7 @@ import { HabitIcons } from '@/components/habits/HabitIcons'
 import { HabitColor } from '@/components/habits/HabitColor'
 import { Reminder } from '@/components/habits/Reminder'
 import { Notification } from '@/components/habits/Notification'
+import { formatTimeForDB } from '@/components/ui/time-picker-utils'
 
 const FormSchema = z.object({
   name: z.string().min(3, 'Name is required').max(60, 'Name is too long'),
@@ -36,18 +37,6 @@ const FormSchema = z.object({
 })
 
 type FormData = z.infer<typeof FormSchema>
-
-const formatTime = (timeString: string | null | undefined): string | null => {
-  if (!timeString) return null
-
-  const date = new Date(timeString)
-  if (isNaN(date.getTime())) {
-    console.error('Invalid time string:', timeString)
-    return null
-  }
-
-  return date.toISOString().substring(11, 19)
-}
 
 export const CreateForm = () => {
   const supabase = createClient()
@@ -111,9 +100,9 @@ export const CreateForm = () => {
         if (insertError) throw insertError
       }
 
-      const formattedReminder = reminder.map(
-        (r) => formatTime(r?.toISOString()) as string
-      )
+      const formattedReminder = reminder
+        .map((r) => (r ? formatTimeForDB(r) : null))
+        .filter(Boolean) as string[]
 
       const { data, error } = await supabase.from('habits').insert({
         user_id: userId,

@@ -1,7 +1,7 @@
 import { m, LazyMotion, domAnimation } from 'framer-motion'
 import { RxClock } from 'react-icons/rx'
 import { iconsLibrary } from '@/config/icons'
-import { formatTime } from '@/components/ui/time-picker-utils'
+import { formatTimeForDisplay } from '@/components/ui/time-picker-utils'
 import { EditHabit } from '@/components/habits/EditHabit'
 import { HabitProps } from '@/interfaces'
 
@@ -67,7 +67,8 @@ export const ListItem: React.FC<Props> = ({
                 <div className="flex gap-2 text-muted-foreground">
                   {habit.reminder.map((time: string, index: number) => (
                     <span key={index} className="flex items-center gap-1">
-                      <RxClock color={habit.color} /> {formatTime(time)}
+                      <RxClock color={habit.color} />{' '}
+                      {formatTimeForDisplay(time)}
                     </span>
                   ))}
                 </div>
