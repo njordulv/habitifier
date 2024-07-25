@@ -6,7 +6,7 @@ interface Props {
 
 export const Hero = ({ data }: Props) => {
   return (
-    <section className="relative grid min-h-screen place-content-center overflow-hidden bg-background mt-[-52px] py-20">
+    <section className="relative grid place-content-center overflow-hidden bg-background py-20">
       <div className="relative z-10 flex flex-col items-center text-center gap-6">
         <div>
           <h1>Profile</h1>

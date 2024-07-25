@@ -50,7 +50,11 @@ export const List = () => {
 
   const renderedTabs = useMemo(() => {
     return uniqueTimeOfDay.map((timeOfDay) => (
-      <TabsTrigger key={timeOfDay} value={timeOfDay}>
+      <TabsTrigger
+        key={timeOfDay}
+        value={timeOfDay}
+        className={timeOfDay.length > 0 ? 'w-full' : ''}
+      >
         {timeOfDay}
       </TabsTrigger>
     ))

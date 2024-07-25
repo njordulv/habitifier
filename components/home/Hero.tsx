@@ -19,7 +19,7 @@ export const Hero = () => {
   }, [])
 
   return (
-    <section className="relative grid min-h-screen place-content-center overflow-hidden bg-background mt-[-52px] px-4 py-20">
+    <section className="relative grid place-content-center overflow-hidden bg-background px-4 py-20">
       <div className="relative z-10 flex flex-col items-center gap-4">
         <h1>Habitifier</h1>
         <h2>Build Better Habits Effortlessly</h2>
