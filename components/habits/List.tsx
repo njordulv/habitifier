@@ -89,7 +89,7 @@ export const List = () => {
   if (habits.length === 0) return <NoListItems />
 
   return (
-    <div className="w-full max-w-[380px] justify-start min-h-screen gap-6">
+    <div className="flex flex-col w-full max-w-[380px] justify-start text-center min-h-screen gap-6">
       <h2>Your current habits</h2>
       <Tabs
         defaultValue={uniqueTimeOfDay[0] || 'account'}
