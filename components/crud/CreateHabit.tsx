@@ -67,6 +67,10 @@ export const CreateHabit = () => {
   })
 
   useEffect(() => {
+    form.reset()
+    resetForm()
+    resetSound()
+
     const getUserId = async () => {
       const {
         data: { user },
@@ -74,7 +78,7 @@ export const CreateHabit = () => {
       setUserId(user?.id || null)
     }
     getUserId()
-  }, [supabase.auth])
+  }, [supabase.auth, form, resetForm, resetSound])
 
   const onSubmit = async (values: FormData) => {
     setIsLoading(true)
