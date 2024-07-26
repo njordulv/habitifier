@@ -39,14 +39,14 @@ type FormData = z.infer<typeof FormSchema>
 
 interface Props {
   habitId: number
+  onSuccess: () => void
 }
 
-export const UpdateHabit: React.FC<Props> = ({ habitId }) => {
+export const UpdateHabit: React.FC<Props> = ({ habitId, onSuccess }) => {
   const supabase = createClient()
   const {
     description,
     setDescription,
-    goal,
     setUnits,
     setColor,
     setIcon,
@@ -142,6 +142,7 @@ export const UpdateHabit: React.FC<Props> = ({ habitId }) => {
         .eq('id', habitId)
       if (error) throw error
       showMessage('Habit successfully updated', 'success', 'default')
+      onSuccess()
     } catch (error: any) {
       showMessage(error.message || 'An error occurred', 'error', 'destructive')
     } finally {
@@ -150,7 +151,11 @@ export const UpdateHabit: React.FC<Props> = ({ habitId }) => {
   }
 
   if (!isDataLoaded) {
-    return <Spinner />
+    return (
+      <div className="flex place-content-center items-center h-[360px]">
+        <Spinner size={22} />
+      </div>
+    )
   }
 
   return (
@@ -158,7 +163,7 @@ export const UpdateHabit: React.FC<Props> = ({ habitId }) => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-4 max-h-[340px] h-full relative overflow-y-scroll p-4"
+          className="flex flex-col gap-4 max-h-[360px] h-full relative overflow-y-scroll p-4 pt-0"
         >
           <FormField
             control={form.control}

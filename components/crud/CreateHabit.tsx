@@ -38,7 +38,7 @@ const FormSchema = z.object({
 
 type FormData = z.infer<typeof FormSchema>
 
-export const CreateForm = () => {
+export const CreateHabit = () => {
   const supabase = createClient()
   const {
     description,

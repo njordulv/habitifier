@@ -1,39 +1,34 @@
-import { useRef, useState } from 'react'
+import { useState, useRef } from 'react'
 import { useMediaQuery } from '@uidotdev/usehooks'
 import { LuClipboardEdit } from 'react-icons/lu'
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
-import { UpdateHabit } from '@/components/habits/UpdateHabit'
-import { DeleteHabit } from '@/components/habits/DeleteHabit'
+import { UpdateHabit } from '@/components/crud/UpdateHabit'
 
 interface Props {
   habitId: number
   onHabitUpdate: () => void
 }
 
-export const EditHabit: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
+export const UpdateDialog: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
   const [open, setOpen] = useState(false)
-  const dialogCloseRef = useRef<HTMLButtonElement>(null)
   const isDesktop = useMediaQuery('(min-width: 768px)')
+  const dialogCloseRef = useRef<HTMLButtonElement>(null)
 
   const handleSuccess = () => {
     onHabitUpdate()
@@ -50,20 +45,12 @@ export const EditHabit: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
         </DialogTrigger>
         <DialogContent className="max-w-[380px] w-full">
           <DialogHeader>
-            <DialogTitle>Task Edit</DialogTitle>
+            <DialogTitle>Task Editing</DialogTitle>
             <DialogDescription>
-              You can make changes or delete the task
+              You can make changes to this task
             </DialogDescription>
           </DialogHeader>
-          <div className="max-h-screen relative overflow-y-scroll">
-            <UpdateHabit habitId={habitId} />
-          </div>
-          <DialogFooter>
-            <DeleteHabit habitId={habitId} onSuccess={handleSuccess} />
-            <DialogClose ref={dialogCloseRef} asChild>
-              <Button variant="ghost">Cancel</Button>
-            </DialogClose>
-          </DialogFooter>
+          <UpdateHabit habitId={habitId} onSuccess={handleSuccess} />
         </DialogContent>
       </Dialog>
     )
@@ -84,15 +71,7 @@ export const EditHabit: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
               You can make changes or delete the task
             </DrawerDescription>
           </DrawerHeader>
-          <div className="">
-            <UpdateHabit habitId={habitId} />
-          </div>
-          <DrawerFooter>
-            <DeleteHabit habitId={habitId} onSuccess={handleSuccess} />
-            <DrawerClose asChild>
-              <Button variant="ghost">Cancel</Button>
-            </DrawerClose>
-          </DrawerFooter>
+          <UpdateHabit habitId={habitId} onSuccess={handleSuccess} />
         </div>
       </DrawerContent>
     </Drawer>

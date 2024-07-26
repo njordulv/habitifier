@@ -2,7 +2,8 @@ import { m, LazyMotion, domAnimation } from 'framer-motion'
 import { RxClock } from 'react-icons/rx'
 import { iconsLibrary } from '@/config/icons'
 import { formatTimeForDisplay } from '@/components/ui/time-picker-utils'
-import { EditHabit } from '@/components/habits/EditHabit'
+import { UpdateDialog } from '@/components/crud/UpdateDialog'
+import { RemoveDialog } from '@/components/crud/RemoveDialog'
 import { HabitProps } from '@/interfaces'
 
 const itemVariants = {
@@ -48,11 +49,13 @@ export const ListItem: React.FC<Props> = ({
         animate="active"
         className={habit.color}
       >
-        <div className="border rounded-md p-5 gap-5 relative">
-          <div className="grid grid-flow-row-dense grid-cols-[1fr_11fr_2fr] items-center gap-4 text-muted-foreground text-xs">
+        <div className="border rounded-md sm:p-5 sm:gap-5 p-4 gap-4 relative">
+          <div className="grid grid-flow-row-dense grid-cols-[1fr_11fr_2fr] items-center sm:gap-4 gap-3 text-muted-foreground text-xs">
             <IconComponent size={30} className={`${habit.color}`} />
             <div className="flex flex-col gap-1">
-              <h3 className="text-lg font-medium text-white">{habit.name}</h3>
+              <h3 className="sm:text-lg text-base font-medium text-white">
+                {habit.name}
+              </h3>
               <div className="flex flex-wrap gap-[2px]">
                 {habit.days.map((day) => (
                   <span
@@ -74,10 +77,11 @@ export const ListItem: React.FC<Props> = ({
                 </div>
               )}
             </div>
-            <div className="flex flex-col items-end h-full justify-between gap-1 text-sm text-muted-foreground">
-              <EditHabit habitId={habit.id} onHabitUpdate={onHabitUpdate} />
+            <div className="flex flex-col items-end h-full justify-between gap-2 text-sm text-muted-foreground">
+              <UpdateDialog habitId={habit.id} onHabitUpdate={onHabitUpdate} />
+              <RemoveDialog habitId={habit.id} onHabitUpdate={onHabitUpdate} />
               {habit.goal && (
-                <div className="flex flex-col items-end">
+                <div className="flex flex-col items-end leading-4">
                   <div>
                     <span className={habit.color}>0</span>
                     <span className="color-dark">/{habit.goal}</span>

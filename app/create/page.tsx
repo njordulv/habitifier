@@ -1,5 +1,5 @@
-import { CreateForm } from '@/components/habits/CreateForm'
+import { CreateHabit } from '@/components/crud/CreateHabit'
 
 export default async function CreatePage() {
-  return <CreateForm />
+  return <CreateHabit />
 }

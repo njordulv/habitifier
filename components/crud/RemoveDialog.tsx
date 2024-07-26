@@ -1,0 +1,52 @@
+import { useRef } from 'react'
+import { LuTrash2 } from 'react-icons/lu'
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+import { Button } from '@/components/ui/button'
+import { RemoveHabit } from '@/components/crud/RemoveHabit'
+
+interface Props {
+  habitId: number
+  onHabitUpdate: () => void
+}
+
+export const RemoveDialog: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
+  const dialogCloseRef = useRef<HTMLButtonElement>(null)
+
+  const handleSuccess = () => {
+    onHabitUpdate()
+    dialogCloseRef.current?.click()
+  }
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="link">
+          <LuTrash2 size={20} />
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[380px] max-w-72 w-full">
+        <DialogHeader>
+          <DialogTitle>Task Removing</DialogTitle>
+          <DialogDescription>
+            Are you sure want to delete this task?
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <RemoveHabit habitId={habitId} onSuccess={handleSuccess} />
+          <DialogClose ref={dialogCloseRef} asChild>
+            <Button variant="ghost">Cancel</Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  )
+}

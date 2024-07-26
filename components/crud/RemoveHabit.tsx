@@ -11,7 +11,7 @@ interface Props {
   onSuccess: () => void
 }
 
-export const DeleteHabit = ({ habitId, onSuccess }: Props) => {
+export const RemoveHabit = ({ habitId, onSuccess }: Props) => {
   const [isLoading, setIsLoading] = useState(false)
   const { showMessage } = useMessages()
 
