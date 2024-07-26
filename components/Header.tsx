@@ -13,8 +13,10 @@ export const Header = () => {
         <Navbar />
         {session && (
           <ProfilePicture
+            name={session.user?.user_metadata?.name}
+            email={session.user?.user_metadata?.email}
             image={session.user?.user_metadata?.avatar_url}
-            className="absolute right-3 top-2 rounded-full flex border border-solid border-slate-500"
+            className="absolute right-3 top-3 rounded-full flex border border-solid border-slate-500"
           />
         )}
       </div>

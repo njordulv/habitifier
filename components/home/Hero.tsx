@@ -22,7 +22,7 @@ export const Hero = () => {
     <section className="relative grid place-content-center overflow-hidden bg-background px-4 py-20">
       <div className="relative z-10 flex flex-col items-center gap-4">
         <h1>Habitifier</h1>
-        <h2>Build Better Habits Effortlessly</h2>
+        <h2 className="text-center">Build Better Habits Effortlessly</h2>
         <div className="max-w-lg text-center text-base leading-relaxed">
           <div>Transform your goals into daily habits.</div>
           <div>
