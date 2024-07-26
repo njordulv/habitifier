@@ -1,6 +1,6 @@
 'use client'
 
-import { SlPlus } from 'react-icons/sl'
+import { GoPlusCircle } from 'react-icons/go'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 
@@ -15,7 +15,7 @@ export const AddHabit = () => {
         className="rounded-full w-20 h-20 p-0"
         onClick={() => router.push('/create')}
       >
-        <SlPlus size={60} />
+        <GoPlusCircle size={60} />
       </Button>
       <p>Add New Habit</p>
     </>

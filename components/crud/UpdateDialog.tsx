@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import { useMediaQuery } from '@uidotdev/usehooks'
-import { LuClipboardEdit } from 'react-icons/lu'
+import { GoPencil } from 'react-icons/go'
 import {
   Dialog,
   DialogContent,
@@ -40,7 +40,7 @@ export const UpdateDialog: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
       <Dialog>
         <DialogTrigger asChild>
           <Button variant="link">
-            <LuClipboardEdit size={20} />
+            <GoPencil size={20} />
           </Button>
         </DialogTrigger>
         <DialogContent className="max-w-[380px] w-full">
@@ -60,7 +60,7 @@ export const UpdateDialog: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
         <Button variant="link">
-          <LuClipboardEdit size={20} />
+          <GoPencil size={20} />
         </Button>
       </DrawerTrigger>
       <DrawerContent>

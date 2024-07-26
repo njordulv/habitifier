@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { IoIosNotifications, IoIosPlay } from 'react-icons/io'
+import { GoBell, GoPlay } from 'react-icons/go'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -37,7 +37,7 @@ export function Notification() {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="secondary" className="w-full px-0">
-          <IoIosNotifications color={color} size={22} />
+          <GoBell color={color} size={21} />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[330px] max-w-[90%]">
@@ -60,7 +60,7 @@ export function Notification() {
                   setSound(file.label)
                   setActiveSoundId(file.id)
                 }}
-                icon={<IoIosPlay size={22} color="white" />}
+                icon={<GoPlay size={22} color="white" />}
               >
                 <span>{file.label}</span>
               </Button>

@@ -1,5 +1,6 @@
 'use client'
 
+import { GoSignOut } from 'react-icons/go'
 import { createClient } from '@/utils/supabase/client'
 
 export const SignOut = ({ ...props }) => {
@@ -11,7 +12,7 @@ export const SignOut = ({ ...props }) => {
 
   return (
     <button onClick={logOut} {...props}>
-      Sign Out
+      <GoSignOut size="20" title="Sign Out" />
     </button>
   )
 }

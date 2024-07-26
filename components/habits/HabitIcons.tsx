@@ -27,7 +27,7 @@ export const HabitIcons = () => {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="secondary" className="w-full px-0">
-          {React.createElement(selectedIcon.icon, { size: 24, color: color })}
+          {React.createElement(selectedIcon.icon, { size: 22, color: color })}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[330px] max-w-[90%]">

@@ -1,4 +1,4 @@
-import { HiOutlinePlus, HiOutlineMinus } from 'react-icons/hi'
+import { GoDash, GoPlus } from 'react-icons/go'
 import { Button } from '@/components/ui/button'
 import { useCreateHabitStore } from '@/store/useCreateHabitStore'
 
@@ -19,9 +19,9 @@ export const DailyGoal = () => {
       <Button
         variant="secondary"
         onClick={minusHandler}
-        className="w-full px-0 text-lg"
+        className="w-full px-0 text-2xl"
       >
-        <HiOutlineMinus />
+        <GoDash />
       </Button>
       <span
         className={`flex w-full text-lg bg-secondary/30 h-9 rounded-md items-center justify-center tracking-wider`}
@@ -32,9 +32,9 @@ export const DailyGoal = () => {
       <Button
         variant="secondary"
         onClick={plusHandler}
-        className="w-full px-0 text-lg"
+        className="w-full px-0 text-2xl"
       >
-        <HiOutlinePlus />
+        <GoPlus />
       </Button>
     </div>
   )

@@ -1,4 +1,4 @@
-import { GiPlainCircle } from 'react-icons/gi'
+import { GoDotFill } from 'react-icons/go'
 import {
   Dialog,
   DialogClose,
@@ -23,7 +23,7 @@ export const HabitColor = () => {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="secondary" className="w-full px-0">
-          <GiPlainCircle color={selectedColor.label} size={20} />
+          <GoDotFill color={selectedColor.label} size={34} />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[330px] max-w-[90%]">
@@ -46,7 +46,7 @@ export const HabitColor = () => {
                   variant="secondary"
                   onClick={() => setColor(colorOption.label)}
                 >
-                  <GiPlainCircle color={colorOption.label} size={20} />
+                  <GoDotFill color={colorOption.label} size={34} />
                 </Button>
               </DialogClose>
             ))}

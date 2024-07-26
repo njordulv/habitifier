@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { RxClock, RxCross1 } from 'react-icons/rx'
+import { GoClock, GoX } from 'react-icons/go'
 import { Button } from '@/components/ui/button'
 import { TimePickerInput } from '@/components/ui/time-picker-input'
 
@@ -38,10 +38,10 @@ export function TimePicker({ date, setDate, onRemove }: TimePickerProps) {
           ref={minuteRef}
           onLeftFocus={() => hourRef.current?.focus()}
         />
-        <RxClock />
+        <GoClock size={18} />
       </div>
       <Button variant="ghost" onClick={handleRemove}>
-        <RxCross1 />
+        <GoX size={20} />
       </Button>
     </div>
   )

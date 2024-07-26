@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { GoSignIn } from 'react-icons/go'
 import { SignOut } from '@/components/SignOut'
 import { siteConfig } from '@/config/site'
 import { useSession } from '@/hooks/useSession'
@@ -25,7 +26,7 @@ export const Navbar = () => {
           <NavigationMenuItem key={item.label}>
             <Link href={item.href} passHref legacyBehavior>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                {item.label}
+                <item.icon size="20" title={item.label} />
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
@@ -36,7 +37,7 @@ export const Navbar = () => {
             <NavigationMenuItem key={item.label}>
               <Link href={item.href} passHref legacyBehavior>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  {item.label}
+                  <item.icon size="20" title={item.label} />
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
@@ -52,7 +53,7 @@ export const Navbar = () => {
           <NavigationMenuItem>
             <Link href="/sign-in" passHref legacyBehavior>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Sign In
+                <GoSignIn size="20" title="Sign In" />
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>

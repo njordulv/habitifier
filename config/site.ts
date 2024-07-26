@@ -1,3 +1,5 @@
+import { GoHome, GoPaste, GoPlusCircle, GoTasklist } from 'react-icons/go'
+
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
@@ -8,20 +10,24 @@ export const siteConfig = {
     {
       label: 'Home',
       href: '/',
+      icon: GoHome,
     },
   ],
   navAuth: [
     {
       label: 'Dashboard',
       href: '/dashboard',
+      icon: GoPaste,
     },
     {
       label: 'Create',
       href: '/create',
+      icon: GoPlusCircle,
     },
     {
       label: 'Habits',
       href: '/habits',
+      icon: GoTasklist,
     },
   ],
   goalUnits: [

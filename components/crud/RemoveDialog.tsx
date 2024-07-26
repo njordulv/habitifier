@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { LuTrash2 } from 'react-icons/lu'
+import { GoTrash } from 'react-icons/go'
 import {
   Dialog,
   DialogClose,
@@ -30,7 +30,7 @@ export const RemoveDialog: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="link">
-          <LuTrash2 size={20} />
+          <GoTrash size={20} />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[380px] max-w-72 w-full">
