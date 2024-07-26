@@ -67,7 +67,18 @@ export const CreateHabit = () => {
   })
 
   useEffect(() => {
-    form.reset()
+    form.reset({
+      name: '',
+      days_of_week: [
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
+      ],
+    })
     resetForm()
     resetSound()
 
