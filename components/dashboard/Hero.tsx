@@ -14,6 +14,7 @@ export const Hero = ({ data }: Props) => {
         </div>
         <div className="max-w-lg text-center text-base leading-relaxed">
           <AddHabit />
+          <p>Add New Habit</p>
         </div>
       </div>
     </section>

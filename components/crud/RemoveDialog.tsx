@@ -35,15 +35,15 @@ export const RemoveDialog: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[380px] max-w-72 w-full">
         <DialogHeader>
-          <DialogTitle>Task Removing</DialogTitle>
+          <DialogTitle>Delete Habit</DialogTitle>
           <DialogDescription>
-            Are you sure want to delete this task?
+            Are you sure you want to delete this task?
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <RemoveHabit habitId={habitId} onSuccess={handleSuccess} />
           <DialogClose ref={dialogCloseRef} asChild>
-            <Button variant="ghost">Cancel</Button>
+            <Button variant="secondary">Cancel</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

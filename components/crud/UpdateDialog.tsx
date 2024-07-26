@@ -45,7 +45,7 @@ export const UpdateDialog: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
         </DialogTrigger>
         <DialogContent className="max-w-[380px] w-full">
           <DialogHeader>
-            <DialogTitle>Task Editing</DialogTitle>
+            <DialogTitle>Edit your habit</DialogTitle>
             <DialogDescription>
               You can make changes to this task
             </DialogDescription>

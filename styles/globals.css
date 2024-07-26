@@ -141,3 +141,8 @@ textarea {
   gap: 2px;
   width: 33%;
 }
+
+.no-habits-img {
+  filter: drop-shadow(2px 3px 5px black);
+  opacity: 0.9;
+}

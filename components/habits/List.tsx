@@ -5,6 +5,7 @@ import { createClient } from '@/utils/supabase/client'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ListSkeleton } from '@/components/habits/ListSkeleton'
 import { ListItem } from '@/components/habits/ListItem'
+import { NoListItems } from '@/components/habits/NoListItems'
 import { HabitProps } from '@/interfaces'
 
 const supabase = createClient()
@@ -85,10 +86,11 @@ export const List = () => {
 
   if (isLoading) return <ListSkeleton />
   if (error) return <p>Error: {error}</p>
-  if (habits.length === 0) return <div>No habits found.</div>
+  if (habits.length === 0) return <NoListItems />
 
   return (
-    <div className="w-full max-w-[380px] justify-center items-center">
+    <div className="w-full max-w-[380px] justify-start min-h-screen gap-6">
+      <h2>Your current habits</h2>
       <Tabs
         defaultValue={uniqueTimeOfDay[0] || 'account'}
         className="w-full"

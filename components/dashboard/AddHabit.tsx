@@ -17,7 +17,6 @@ export const AddHabit = () => {
       >
         <GoPlusCircle size={60} />
       </Button>
-      <p>Add New Habit</p>
     </>
   )
 }
