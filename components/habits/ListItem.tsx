@@ -1,3 +1,9 @@
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
 import { m, LazyMotion, domAnimation } from 'framer-motion'
 import { GoClock } from 'react-icons/go'
 import { iconsLibrary } from '@/config/icons'
@@ -49,49 +55,85 @@ export const ListItem: React.FC<Props> = ({
         animate="active"
         className={habit.color}
       >
-        <div className="border rounded-md sm:p-5 sm:gap-5 p-4 gap-4 relative">
-          <div className="grid grid-flow-row-dense grid-cols-[1fr_11fr_2fr] items-center sm:gap-4 gap-3 text-muted-foreground text-xs">
-            <IconComponent size={30} className={`${habit.color}`} />
-            <div className="flex flex-col gap-1">
-              <h3 className="sm:text-lg text-base font-medium text-white">
-                {habit.name}
-              </h3>
-              <div className="flex flex-wrap gap-[2px]">
-                {habit.days.map((day) => (
-                  <span
-                    key={day}
-                    className={`${habit.color} bg-dark px-2 py-1 rounded-lg capitalize`}
-                  >
-                    {day}
-                  </span>
-                ))}
-              </div>
-              {habit.reminder && (
-                <div className="flex gap-2 text-muted-foreground">
-                  {habit.reminder.map((time: string, index: number) => (
-                    <span key={index} className="flex items-center gap-1">
-                      <GoClock color={habit.color} />{' '}
-                      {formatTimeForDisplay(time)}
+        <Accordion
+          type="single"
+          collapsible
+          className="border rounded-md sm:p-5 sm:gap-5 p-4 gap-4 relative"
+        >
+          <AccordionItem value="item-1">
+            <div className="grid grid-flow-row-dense grid-cols-[1fr_11fr] pr-7 items-center sm:gap-4 gap-3 text-muted-foreground text-left text-xs">
+              <IconComponent size={30} className={`${habit.color}`} />
+              <div className="flex flex-col gap-2">
+                <h3 className="sm:text-lg text-base font-medium text-white">
+                  {habit.name}
+                </h3>
+                <div className="flex flex-wrap gap-1">
+                  {habit.days.length === 7 ? (
+                    <span
+                      className={`${habit.color} bg-dark px-2 py-1 rounded-lg capitalize`}
+                    >
+                      Everyday
                     </span>
-                  ))}
+                  ) : (
+                    habit.days.map((day) => (
+                      <span
+                        key={day}
+                        className={`${habit.color} bg-dark px-2 py-1 rounded-lg capitalize`}
+                      >
+                        {day}
+                      </span>
+                    ))
+                  )}
                 </div>
-              )}
-            </div>
-            <div className="flex flex-col items-end h-full justify-between gap-2 text-sm text-muted-foreground">
-              <UpdateDialog habitId={habit.id} onHabitUpdate={onHabitUpdate} />
-              <RemoveDialog habitId={habit.id} onHabitUpdate={onHabitUpdate} />
-              {habit.goal && (
-                <div className="flex flex-col items-end leading-4">
-                  <div>
-                    <span className={habit.color}>0</span>
-                    <span className="color-dark">/{habit.goal}</span>
-                  </div>
-                  <div>&nbsp;{habit.units}</div>
+                <div className="flex flex-wrap gap-2">
+                  {habit.reminder && (
+                    <>
+                      {habit.reminder.map((time: string, index: number) => (
+                        <span key={index} className="flex items-center gap-1">
+                          <span
+                            className={`${habit.color} bg-dark flex items-center gap-1 px-1 py-1 rounded-md`}
+                          >
+                            <GoClock color={habit.color} />
+                          </span>
+                          {formatTimeForDisplay(time)}
+                        </span>
+                      ))}
+                    </>
+                  )}
+                  {habit.goal && (
+                    <div className="flex text-sm">
+                      <span className={habit.color}>0</span>
+                      <span className="color-dark">/{habit.goal}</span>
+                      <div>&nbsp;{habit.units}</div>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
+              <div className="absolute right-5 top-5 flex flex-col gap-3">
+                <UpdateDialog
+                  habitId={habit.id}
+                  onHabitUpdate={onHabitUpdate}
+                />
+                <RemoveDialog
+                  habitId={habit.id}
+                  onHabitUpdate={onHabitUpdate}
+                />
+              </div>
             </div>
-          </div>
-        </div>
+            <AccordionTrigger>
+              <div className="pl-12 text-muted-foreground">
+                {habit.time_of_day !== 'anytime' ? `Repeat every ` : `Repeat `}
+                <span className={habit.color}>{habit.time_of_day}</span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className="pl-12 flex text-muted-foreground">
+                Notification sound:&nbsp;
+                <span className={habit.color}>{habit.sound}</span>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </m.li>
     </LazyMotion>
   )

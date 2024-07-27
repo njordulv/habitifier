@@ -60,6 +60,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font);
+    font-weight: 300;
   }
 }
 

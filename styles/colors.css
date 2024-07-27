@@ -357,3 +357,15 @@
 .sandybrown .bg-dark {
   @apply bg-custom-sandybrown/10;
 }
+
+.gold {
+  @apply text-custom-gold;
+}
+
+.gold .color-dark {
+  @apply text-custom-gold/40;
+}
+
+.gold .bg-dark {
+  @apply bg-custom-gold/10;
+}

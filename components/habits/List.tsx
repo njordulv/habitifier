@@ -84,21 +84,21 @@ export const List = () => {
     ))
   }, [habits, uniqueTimeOfDay, activeTab, fetchHabits])
 
-  if (isLoading) return <ListSkeleton />
-  if (error) return <p>Error: {error}</p>
-  if (habits.length === 0) return <NoListItems />
-
   return (
     <div className="flex flex-col w-full max-w-[380px] justify-start text-center min-h-screen gap-6">
       <h2>Your current habits</h2>
-      <Tabs
-        defaultValue={uniqueTimeOfDay[0] || 'account'}
-        className="w-full"
-        onValueChange={setActiveTab}
-      >
-        <TabsList>{renderedTabs}</TabsList>
-        {renderedHabits}
-      </Tabs>
+      {isLoading ? (
+        <ListSkeleton />
+      ) : (
+        <Tabs
+          defaultValue={uniqueTimeOfDay[0] || 'account'}
+          className="w-full"
+          onValueChange={setActiveTab}
+        >
+          <TabsList>{renderedTabs}</TabsList>
+          {renderedHabits}
+        </Tabs>
+      )}
     </div>
   )
 }
