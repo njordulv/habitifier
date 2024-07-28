@@ -5,37 +5,32 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { m, LazyMotion, domAnimation } from 'framer-motion'
-import { GoClock } from 'react-icons/go'
 import { iconsLibrary } from '@/config/icons'
-import { formatTimeForDisplay } from '@/components/ui/time-picker-utils'
-import { UpdateDialog } from '@/components/crud/UpdateDialog'
-import { RemoveDialog } from '@/components/crud/RemoveDialog'
-import { HabitProps } from '@/interfaces'
+import { Days } from '@/components/habits/parts/Days'
+import { Goals } from '@/components/habits/parts/Goals'
+import { Reminders } from '@/components/habits/parts/Reminders'
+import { UpdateDialog } from '@/components/habits/crud/UpdateDialog'
+import { RemoveDialog } from '@/components/habits/crud/RemoveDialog'
+import { HabitItemsProps } from '@/interfaces'
 
 const itemVariants = {
   inactive: {
     opacity: 0,
-    scale: 0.9,
-    y: 10,
+    scale: 0.96,
+    y: 15,
   },
   active: (index: number) => ({
     opacity: 1,
     scale: 1,
     y: 0,
     transition: {
-      duration: 0.4,
+      duration: 0.5,
       delay: index * 0.2,
     },
   }),
 }
 
-interface Props extends HabitProps {
-  animationKey: string
-  index: number
-  onHabitUpdate: () => void
-}
-
-export const ListItem: React.FC<Props> = ({
+export const Item: React.FC<HabitItemsProps> = ({
   animationKey,
   index,
   onHabitUpdate,
@@ -68,44 +63,18 @@ export const ListItem: React.FC<Props> = ({
                   {habit.name}
                 </h3>
                 <div className="flex flex-wrap gap-1">
-                  {habit.days.length === 7 ? (
-                    <span
-                      className={`${habit.color} bg-dark px-2 py-1 rounded-lg capitalize`}
-                    >
-                      Everyday
-                    </span>
-                  ) : (
-                    habit.days.map((day) => (
-                      <span
-                        key={day}
-                        className={`${habit.color} bg-dark px-2 py-1 rounded-lg capitalize`}
-                      >
-                        {day}
-                      </span>
-                    ))
-                  )}
+                  <Days elements={habit.days} color={habit.color} />
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {habit.reminder && (
-                    <>
-                      {habit.reminder.map((time: string, index: number) => (
-                        <span key={index} className="flex items-center gap-1">
-                          <span
-                            className={`${habit.color} bg-dark flex items-center gap-1 px-1 py-1 rounded-md`}
-                          >
-                            <GoClock color={habit.color} />
-                          </span>
-                          {formatTimeForDisplay(time)}
-                        </span>
-                      ))}
-                    </>
+                    <Reminders list={habit.reminder} color={habit.color} />
                   )}
                   {habit.goal && (
-                    <div className="flex text-sm">
-                      <span className={habit.color}>0</span>
-                      <span className="color-dark">/{habit.goal}</span>
-                      <div>&nbsp;{habit.units}</div>
-                    </div>
+                    <Goals
+                      goal={habit.goal}
+                      units={habit.units}
+                      color={habit.color}
+                    />
                   )}
                 </div>
               </div>

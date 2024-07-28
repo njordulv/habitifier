@@ -12,11 +12,6 @@ import { Button } from '@/components/ui/button'
 import { iconsLibrary } from '@/config/icons'
 import { useCreateHabitStore } from '@/store/useCreateHabitStore'
 
-interface HabitColorProps {
-  value?: string
-  onChange?: (color: string) => void
-}
-
 export const HabitIcons = () => {
   const { icon, setIcon, color } = useCreateHabitStore()
   const selectedIcon =

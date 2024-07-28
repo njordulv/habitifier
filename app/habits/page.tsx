@@ -1,9 +1,5 @@
-import { List } from '@/components/habits/List'
+import { List } from '@/components/habits/list'
 
 export default async function HabitsPage() {
-  return (
-    <section className="flex flex-col items-center">
-      <List />
-    </section>
-  )
+  return <List />
 }

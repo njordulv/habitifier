@@ -3,9 +3,9 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { createClient } from '@/utils/supabase/client'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { ListSkeleton } from '@/components/habits/ListSkeleton'
-import { ListItem } from '@/components/habits/ListItem'
-import { NoListItems } from '@/components/habits/NoListItems'
+import { Preloader } from '@/components/habits/list/Preloader'
+import { Item } from '@/components/habits/list/Item'
+import { NoItems } from '@/components/habits/list/NoItems'
 import { HabitProps } from '@/interfaces'
 
 const supabase = createClient()
@@ -71,7 +71,7 @@ export const List = () => {
                 timeOfDay === 'anytime' || habit.time_of_day === timeOfDay
             )
             .map((filteredHabit, index) => (
-              <ListItem
+              <Item
                 key={filteredHabit.id}
                 {...filteredHabit}
                 animationKey={`${filteredHabit.id}-${activeTab}`}
@@ -84,12 +84,14 @@ export const List = () => {
     ))
   }, [habits, uniqueTimeOfDay, activeTab, fetchHabits])
 
+  if (isLoading) return <Preloader />
+  if (error) return <NoItems />
+  if (habits.length === 0) return <NoItems />
+
   return (
-    <div className="flex flex-col w-full max-w-[380px] justify-start text-center min-h-screen gap-6">
-      <h2>Your current habits</h2>
-      {isLoading ? (
-        <ListSkeleton />
-      ) : (
+    <section className="flex flex-col items-start min-h-screen">
+      <div className="flex flex-col w-full max-w-[380px] text-center gap-6">
+        <h2>Your current habits</h2>
         <Tabs
           defaultValue={uniqueTimeOfDay[0] || 'account'}
           className="w-full"
@@ -98,7 +100,7 @@ export const List = () => {
           <TabsList>{renderedTabs}</TabsList>
           {renderedHabits}
         </Tabs>
-      )}
-    </div>
+      </div>
+    </section>
   )
 }

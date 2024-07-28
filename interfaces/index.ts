@@ -50,6 +50,12 @@ export interface HabitProps {
   time_of_day: string
 }
 
+export interface HabitItemsProps extends HabitProps {
+  animationKey: string
+  index: number
+  onHabitUpdate: () => void
+}
+
 export interface CreateHabitState {
   description: string
   setDescription: (description: string) => void

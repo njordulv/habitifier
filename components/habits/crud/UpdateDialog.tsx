@@ -18,7 +18,7 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
-import { UpdateHabit } from '@/components/crud/UpdateHabit'
+import { UpdateHabit } from '@/components/habits/crud/UpdateHabit'
 
 interface Props {
   habitId: number

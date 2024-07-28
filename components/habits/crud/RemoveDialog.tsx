@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
-import { RemoveHabit } from '@/components/crud/RemoveHabit'
+import { RemoveHabit } from '@/components/habits/crud/RemoveHabit'
 
 interface Props {
   habitId: number
