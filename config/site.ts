@@ -6,6 +6,27 @@ export const siteConfig = {
   title: 'Habitifier | Your Personal Habit Tracker',
   description:
     'Habitifier helps you build and maintain good habits, track your progress, and achieve your personal goals with ease. Start your journey to a better you today!',
+  generator: 'Next.js',
+  manifest: '/manifest.json',
+  keywords: ['nextjs', 'next14', 'pwa', 'next-pwa', 'habit-creation'],
+  themeColor: [{ media: '(prefers-color-scheme: dark)', color: '#f1f3f4b3' }],
+  authors: [
+    {
+      name: 'Njordr',
+      url: 'https://njordulv-portfolio.vercel.app/',
+    },
+  ],
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    minimumScale: 1,
+    viewportFit: 'cover' as const,
+    userScalable: false,
+  },
+  icons: [
+    { rel: 'apple-touch-icon', url: 'icons/apple-touch-icon.png' },
+    { rel: 'icon', url: 'icons/icon-192x192.png' },
+  ],
   nav: [
     {
       label: 'Home',

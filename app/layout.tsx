@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Header } from '@/components/Header'
 import { Toaster } from '@/components/ui/sonner'
 import { siteConfig } from '@/config/site'
@@ -10,6 +10,21 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.title}`,
   },
   description: siteConfig.description,
+  // manifest: '/manifest.json',
+  generator: siteConfig.generator,
+  manifest: siteConfig.manifest,
+  keywords: siteConfig.keywords,
+  authors: siteConfig.authors,
+  icons: siteConfig.icons,
+}
+
+export const viewport: Viewport = {
+  themeColor: siteConfig.themeColor,
+  width: siteConfig.viewport.width,
+  initialScale: siteConfig.viewport.initialScale,
+  minimumScale: siteConfig.viewport.minimumScale,
+  viewportFit: siteConfig.viewport.viewportFit,
+  userScalable: siteConfig.viewport.userScalable,
 }
 
 export default function RootLayout({
