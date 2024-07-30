@@ -47,7 +47,7 @@ export const List = () => {
     return ['anytime', ...times.filter((time) => time !== 'anytime')]
   }, [habits])
 
-  const [activeTab, setActiveTab] = useState(uniqueTimeOfDay[0] || 'account')
+  const [activeTab, setActiveTab] = useState(uniqueTimeOfDay[0] || 'anytime')
 
   const renderedTabs = useMemo(() => {
     return uniqueTimeOfDay.map((timeOfDay) => (
@@ -93,7 +93,7 @@ export const List = () => {
       <div className="flex flex-col w-full max-w-[380px] text-center gap-6">
         <h2>Your current habits</h2>
         <Tabs
-          defaultValue={uniqueTimeOfDay[0] || 'account'}
+          defaultValue={uniqueTimeOfDay[0] || 'anytime'}
           className="w-full"
           onValueChange={setActiveTab}
         >
