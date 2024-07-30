@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic'
 import {
   Accordion,
   AccordionContent,
@@ -6,12 +7,31 @@ import {
 } from '@/components/ui/accordion'
 import { m, LazyMotion, domAnimation } from 'framer-motion'
 import { iconsLibrary } from '@/config/icons'
+import { Spinner } from '@/components/ui/spinner'
 import { Days } from '@/components/habits/parts/Days'
 import { Goals } from '@/components/habits/parts/Goals'
 import { Reminders } from '@/components/habits/parts/Reminders'
-import { UpdateDialog } from '@/components/habits/crud/UpdateDialog'
-import { RemoveDialog } from '@/components/habits/crud/RemoveDialog'
 import { HabitItemsProps } from '@/interfaces'
+
+const UpdateDialog = dynamic(
+  () =>
+    import('@/components/habits/crud/UpdateDialog').then(
+      (mod) => mod.UpdateDialog
+    ),
+  {
+    loading: () => <Spinner size={20} />,
+  }
+)
+
+const RemoveDialog = dynamic(
+  () =>
+    import('@/components/habits/crud/RemoveDialog').then(
+      (mod) => mod.RemoveDialog
+    ),
+  {
+    loading: () => <Spinner size={20} />,
+  }
+)
 
 const itemVariants = {
   inactive: {

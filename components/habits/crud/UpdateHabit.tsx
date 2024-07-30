@@ -1,5 +1,6 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
@@ -18,17 +19,46 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Spinner } from '@/components/ui/spinner'
+import { Spinner, SpinnerMin } from '@/components/ui/spinner'
 import { DayTime } from '@/components/habits/form/DayTime'
 import { DailyGoal } from '@/components/habits/form/DailyGoal'
 import { GoalUnits } from '@/components/habits/form/GoalUnits'
 import { DaysOfWeek } from '@/components/habits/form/DaysOfWeek'
 import { NamesOfWeek } from '@/components/habits/form/NamesOfWeek'
-import { HabitIcons } from '@/components/habits/form/HabitIcons'
-import { HabitColor } from '@/components/habits/form/HabitColor'
-import { Reminder } from '@/components/habits/form/Reminder'
-import { Notification } from '@/components/habits/form/Notification'
 import { formatTimeForDB } from '@/components/ui/time-picker-utils'
+
+const HabitColor = dynamic(
+  () =>
+    import('@/components/habits/form/HabitColor').then((mod) => mod.HabitColor),
+  {
+    loading: () => <SpinnerMin size={18} />,
+  }
+)
+
+const HabitIcons = dynamic(
+  () =>
+    import('@/components/habits/form/HabitIcons').then((mod) => mod.HabitIcons),
+  {
+    loading: () => <SpinnerMin size={18} />,
+  }
+)
+
+const Notification = dynamic(
+  () =>
+    import('@/components/habits/form/Notification').then(
+      (mod) => mod.Notification
+    ),
+  {
+    loading: () => <SpinnerMin size={18} />,
+  }
+)
+
+const Reminder = dynamic(
+  () => import('@/components/habits/form/Reminder').then((mod) => mod.Reminder),
+  {
+    loading: () => <SpinnerMin size={18} />,
+  }
+)
 
 const FormSchema = z.object({
   name: z.string().min(3, 'Name is required').max(60, 'Name is too long'),

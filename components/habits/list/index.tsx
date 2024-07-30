@@ -1,12 +1,20 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { createClient } from '@/utils/supabase/client'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Preloader } from '@/components/habits/list/Preloader'
+import { Spinner } from '@/components/ui/spinner'
 import { Item } from '@/components/habits/list/Item'
-import { NoItems } from '@/components/habits/list/NoItems'
 import { HabitProps } from '@/interfaces'
+
+const NoItems = dynamic(
+  () => import('@/components/habits/list/NoItems').then((mod) => mod.NoItems),
+  {
+    loading: () => <Spinner />,
+  }
+)
 
 const supabase = createClient()
 

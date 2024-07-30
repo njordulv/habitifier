@@ -127,7 +127,7 @@ textarea {
 }
 
 .animate-spin {
-  animation: spin 1.5s linear infinite;
+  animation: spin 1.3s linear infinite;
 }
 
 .form-label {
