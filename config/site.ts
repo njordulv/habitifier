@@ -25,7 +25,7 @@ export const siteConfig = {
   },
   icons: [
     { rel: 'apple-touch-icon', url: 'icons/apple-touch-icon.png' },
-    { rel: 'icon', url: 'icons/icon-192x192.png' },
+    { rel: 'icon', url: 'icons/icon-192.png' },
   ],
   nav: [
     {
