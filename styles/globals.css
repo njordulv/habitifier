@@ -51,9 +51,7 @@
 
     --radius: 0.5rem;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -62,24 +60,23 @@
     font-family: var(--font);
     font-weight: 300;
   }
-}
 
-nav {
-  @apply max-w-6xl mx-auto py-2;
-}
-
-main {
-  @apply max-w-6xl mx-auto;
-  min-height: calc(100vh - 52px);
-}
-p {
-  @apply mt-2;
-}
-h1 {
-  @apply scroll-m-20 text-4xl font-medium lg:text-5xl tracking-wide;
-}
-h2 {
-  @apply scroll-m-20 text-3xl font-medium transition-colors first:mt-0 text-primary-foreground/70;
+  main {
+    @apply max-w-6xl mx-auto;
+    min-height: calc(100vh - 52px);
+  }
+  nav {
+    @apply max-w-6xl mx-auto py-2;
+  }
+  p {
+    @apply mt-2;
+  }
+  h1 {
+    @apply scroll-m-20 text-4xl font-medium lg:text-5xl tracking-wide;
+  }
+  h2 {
+    @apply scroll-m-20 text-3xl font-medium transition-colors first:mt-0 text-primary-foreground/70 tracking-wide;
+  }
 }
 
 form {

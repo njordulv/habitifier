@@ -76,7 +76,7 @@ export const Item: React.FC<HabitItemsProps> = ({
           className="border rounded-md sm:p-5 sm:gap-5 p-4 gap-4 relative"
         >
           <AccordionItem value="item-1">
-            <div className="grid grid-flow-row-dense grid-cols-[1fr_11fr] pr-7 items-center sm:gap-4 gap-3 text-muted-foreground text-left text-xs">
+            <div className="grid grid-flow-row-dense grid-cols-[1fr_11fr] pr-7 items-end sm:gap-4 gap-3 text-muted-foreground text-left text-xs">
               <IconComponent size={30} className={`${habit.color}`} />
               <div className="flex flex-col gap-2">
                 <h3 className="sm:text-lg text-base font-medium text-white">
@@ -84,18 +84,6 @@ export const Item: React.FC<HabitItemsProps> = ({
                 </h3>
                 <div className="flex flex-wrap gap-1">
                   <Days elements={habit.days} color={habit.color} />
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {habit.reminder && (
-                    <Reminders list={habit.reminder} color={habit.color} />
-                  )}
-                  {habit.goal && (
-                    <Goals
-                      goal={habit.goal}
-                      units={habit.units}
-                      color={habit.color}
-                    />
-                  )}
                 </div>
               </div>
               <div className="absolute right-5 top-5 flex flex-col gap-3">
@@ -110,12 +98,24 @@ export const Item: React.FC<HabitItemsProps> = ({
               </div>
             </div>
             <AccordionTrigger>
+              <div className="pl-12 pr-3 flex flex-wrap items-center w-full gap-2 text-muted-foreground">
+                {habit.reminder && (
+                  <Reminders list={habit.reminder} color={habit.color} />
+                )}
+                {habit.goal && (
+                  <Goals
+                    goal={habit.goal}
+                    units={habit.units}
+                    color={habit.color}
+                  />
+                )}
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>
               <div className="pl-12 text-muted-foreground">
                 {habit.time_of_day !== 'anytime' ? `Repeat every ` : `Repeat `}
                 <span className={habit.color}>{habit.time_of_day}</span>
               </div>
-            </AccordionTrigger>
-            <AccordionContent>
               <div className="pl-12 flex text-muted-foreground">
                 Notification sound:&nbsp;
                 <span className={habit.color}>{habit.sound}</span>
