@@ -175,7 +175,7 @@ export const CreateHabit = () => {
   }
 
   return (
-    <Card className="w-full max-w-[380px]">
+    <Card className="w-full max-w-96">
       <CardHeader>
         <CardTitle>Create new habit</CardTitle>
       </CardHeader>

@@ -25,7 +25,7 @@ export const HabitIcons = () => {
           {React.createElement(selectedIcon.icon, { size: 22, color: color })}
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[330px] max-w-[90%]">
+      <DialogContent className="sm:max-w-80 max-w-[90%]">
         <DialogHeader>
           <DialogTitle>Task icon</DialogTitle>
           <DialogDescription>
@@ -36,7 +36,7 @@ export const HabitIcons = () => {
           {iconsLibrary.habitIcons.map((iconItem) => (
             <DialogClose
               asChild
-              className="flex items-center justify-center w-full max-w-[40px] px-0"
+              className="flex items-center justify-center w-full max-w-10 px-0"
               key={iconItem.id}
             >
               <Button

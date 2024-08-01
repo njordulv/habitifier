@@ -98,7 +98,7 @@ export const List = () => {
 
   return (
     <section className="flex flex-col items-start min-h-screen">
-      <div className="flex flex-col w-full max-w-[380px] text-center gap-6">
+      <div className="flex flex-col w-full max-w-96 text-center gap-6">
         <h2>Your current habits</h2>
         <Tabs
           defaultValue={uniqueTimeOfDay[0] || 'anytime'}

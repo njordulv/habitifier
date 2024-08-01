@@ -144,3 +144,8 @@ textarea {
   filter: drop-shadow(2px 3px 5px black);
   opacity: 0.9;
 }
+
+.reminders-list {
+  display: flex;
+  gap: 0.25rem;
+}

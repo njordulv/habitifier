@@ -28,7 +28,7 @@ export default function AuthError() {
   }, [error])
 
   return (
-    <Card className="w-full max-w-[380px]">
+    <Card className="w-full max-w-96">
       <CardHeader>
         <CardTitle>Authentication Error</CardTitle>
         <CardDescription>

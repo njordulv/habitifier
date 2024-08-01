@@ -43,7 +43,7 @@ export const UpdateDialog: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
             <GoPencil size={20} />
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-[380px] w-full">
+        <DialogContent className="max-w-96 w-full">
           <DialogHeader>
             <DialogTitle>Edit your habit</DialogTitle>
             <DialogDescription>
@@ -64,7 +64,7 @@ export const UpdateDialog: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
         </Button>
       </DrawerTrigger>
       <DrawerContent>
-        <div className="max-w-[380px] w-full mx-auto">
+        <div className="max-w-96 w-full mx-auto">
           <DrawerHeader className="text-left">
             <DrawerTitle>Task Edit</DrawerTitle>
             <DrawerDescription>

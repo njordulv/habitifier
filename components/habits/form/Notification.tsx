@@ -40,7 +40,7 @@ export function Notification() {
           <GoBell color={color} size={21} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[330px] max-w-[90%]">
+      <DialogContent className="sm:max-w-80 max-w-[90%]">
         <DialogHeader>
           <DialogTitle>Task Notification</DialogTitle>
           <DialogDescription>Choose a suitable sound</DialogDescription>

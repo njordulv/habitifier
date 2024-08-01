@@ -78,7 +78,7 @@ export const SignIn = () => {
   }
 
   return (
-    <Card className="w-full max-w-[380px]">
+    <Card className="w-full max-w-96">
       <CardHeader>
         <CardTitle>Sign in to Habitifier</CardTitle>
         <CardDescription>Welcome back! Sign in to your account</CardDescription>

@@ -19,7 +19,7 @@ export default function Offline() {
 
   useEffect(() => {
     if (navigator.onLine) {
-      router.push('/')
+      router.push('/dashboard')
     }
   }, [router])
 
@@ -29,7 +29,7 @@ export default function Offline() {
 
     const handleOnline = () => {
       setIsOnline(true)
-      router.push('/')
+      router.push('/dashboard')
     }
     const handleOffline = () => setIsOnline(false)
 
@@ -53,7 +53,7 @@ export default function Offline() {
   }
 
   return (
-    <Card className="w-full max-w-[380px]">
+    <Card className="w-full max-w-96">
       <CardHeader>
         <CardTitle>You are offline</CardTitle>
         <CardDescription>

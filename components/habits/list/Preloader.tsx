@@ -5,7 +5,7 @@ export const Preloader = () => {
 
   return (
     <section className="flex flex-col items-start min-h-screen">
-      <div className="flex flex-col w-full max-w-[380px] gap-3">
+      <div className="flex flex-col w-full max-w-96 gap-3">
         <Skeleton className="h-9 w-[70%] m-auto rounded-md mb-3" />
         <Skeleton className="h-9 w-full rounded-md" />
         {[...Array(count)].map((_, index) => (
@@ -14,7 +14,7 @@ export const Preloader = () => {
             className="border rounded-md p-5 flex gap-5 items-center justify-between"
           >
             <div className="grid grid-flow-row-dense grid-cols-[1fr_11fr_2fr] items-center gap-4">
-              <Skeleton className="h-[30px] w-[30px] rounded-lg" />
+              <Skeleton className="h-8 w-8 rounded-lg" />
               <div className="flex flex-col gap-3">
                 <Skeleton className="sm:h-7 h-6 w-24 rounded-md" />
                 <div className="flex flex-wrap">

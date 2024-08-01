@@ -33,7 +33,7 @@ export const RemoveDialog: React.FC<Props> = ({ habitId, onHabitUpdate }) => {
           <GoTrash size={20} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[380px] max-w-72 w-full">
+      <DialogContent className="sm:max-w-96 max-w-72 w-full">
         <DialogHeader>
           <DialogTitle>Delete Habit</DialogTitle>
           <DialogDescription>

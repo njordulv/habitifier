@@ -78,7 +78,7 @@ export const SignUp = () => {
   }
 
   return (
-    <Card className="w-full max-w-[380px]">
+    <Card className="w-full max-w-96">
       <CardHeader>
         <CardTitle>Get started</CardTitle>
         <CardDescription>Create your account</CardDescription>

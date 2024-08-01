@@ -182,7 +182,7 @@ export const UpdateHabit: React.FC<Props> = ({ habitId, onSuccess }) => {
 
   if (!isDataLoaded) {
     return (
-      <div className="flex place-content-center items-center h-[360px]">
+      <div className="flex place-content-center items-center h-80">
         <Spinner size={22} />
       </div>
     )
@@ -193,7 +193,7 @@ export const UpdateHabit: React.FC<Props> = ({ habitId, onSuccess }) => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-4 max-h-[360px] h-full relative overflow-y-scroll p-4 pt-0"
+          className="flex flex-col gap-4 max-h-80 h-full relative overflow-y-scroll p-4 pt-0"
         >
           <FormField
             control={form.control}

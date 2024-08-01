@@ -26,7 +26,7 @@ export const HabitColor = () => {
           <GoDotFill color={selectedColor.label} size={34} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[330px] max-w-[90%]">
+      <DialogContent className="sm:max-w-80 w- max-w-[90%]">
         <DialogHeader>
           <DialogTitle>Task color</DialogTitle>
           <DialogDescription>
@@ -38,7 +38,7 @@ export const HabitColor = () => {
             {colors.map((colorOption) => (
               <DialogClose
                 asChild
-                className="flex items-center justify-center w-full max-w-[40px] px-0"
+                className="flex items-center justify-center w-full max-w-10 w- px-0"
                 key={colorOption.id}
               >
                 <Button
