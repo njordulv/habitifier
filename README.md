@@ -30,6 +30,7 @@ Track your progress, set goals, and achieve a better you with ease.
 - Authentication: Supabase Authentication (OAuth and email credentials)
 - Database: Supabase
 - Form Management: React Hook Form with Zod validation
+- PWA: next-pwa
 
 ## Recent Updates
 
@@ -58,3 +59,8 @@ Track your progress, set goals, and achieve a better you with ease.
 
    - Added new components for better habit tracking and management
    - Improved UI with additional form fields and components for a more comprehensive habit management experience
+
+5. **Progressive Web App (PWA) Integration**
+
+   - Added PWA support using next-pwa
+   - Improved offline capabilities and user experience with service workers and caching
