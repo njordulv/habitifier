@@ -3,36 +3,9 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { m, LazyMotion, domAnimation } from 'framer-motion'
+import { list, items } from '@/components/animations'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
-
-const listVariants = {
-  offscreen: {},
-  onscreen: {
-    transition: {
-      type: 'spring',
-      bounce: 0,
-      duration: 0.7,
-      delayChildren: 0.4,
-      staggerChildren: 0.15,
-    },
-  },
-}
-
-const itemVariants = {
-  offscreen: {
-    opacity: 0,
-    y: 30,
-  },
-  onscreen: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: 'spring',
-      duration: 0.8,
-    },
-  },
-}
 
 export const Hero = () => {
   const router = useRouter()
@@ -51,16 +24,16 @@ export const Hero = () => {
     <section className="relative grid place-content-center overflow-hidden bg-background px-4 py-20">
       <LazyMotion features={domAnimation}>
         <m.div
-          initial="offscreen"
-          whileInView="onscreen"
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          variants={listVariants}
+          variants={list}
           className="relative z-10 flex flex-col items-center gap-4"
         >
-          <m.h1 variants={itemVariants}>Habitifier</m.h1>
-          <m.h2 variants={itemVariants}>Build Better Habits Effortlessly</m.h2>
+          <m.h1 variants={items}>Habitifier</m.h1>
+          <m.h2 variants={items}>Build Better Habits Effortlessly</m.h2>
           <m.div
-            variants={itemVariants}
+            variants={items}
             className="max-w-lg text-center text-base leading-relaxed"
           >
             <div>Transform your goals into daily habits.</div>
@@ -69,7 +42,7 @@ export const Hero = () => {
               the results you desire.
             </div>
           </m.div>
-          <m.div variants={itemVariants}>
+          <m.div variants={items}>
             <Button
               variant="outline"
               size="lg"
