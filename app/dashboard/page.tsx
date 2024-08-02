@@ -10,5 +10,5 @@ export default async function DashboardPage() {
     redirect('/sign-in')
   }
 
-  return <Hero data={data} />
+  return <Hero data={{ user: data.user }} />
 }

@@ -1,5 +1,6 @@
 import { ComponentProps } from 'react'
 import { IconType } from 'react-icons'
+import { User } from '@supabase/supabase-js'
 import { Button } from '@/components/ui/button'
 import { Avatar } from '@/components/ui/avatar'
 
@@ -78,4 +79,20 @@ export interface CreateHabitState {
   setReminder: (reminder: (Date | undefined)[]) => void
   weekDays: string[]
   setWeekDays: (weekDays: string[]) => void
+}
+
+interface UserMetadata {
+  full_name?: string
+}
+
+type CustomUser = User & {
+  user_metadata: UserMetadata
+}
+
+interface Data {
+  user: CustomUser
+}
+
+export interface UserProps {
+  data: Data
 }
