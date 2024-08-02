@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { LoadingScreen } from '@/components/LoadingScreen'
 import { Header } from '@/components/Header'
 import { Toaster } from '@/components/ui/sonner'
 import { siteConfig } from '@/config/site'
@@ -10,7 +11,6 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.title}`,
   },
   description: siteConfig.description,
-  // manifest: '/manifest.json',
   generator: siteConfig.generator,
   manifest: siteConfig.manifest,
   keywords: siteConfig.keywords,
@@ -35,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <LoadingScreen />
         <Header />
         <main className="flex flex-col items-center justify-center px-4 sm:px-24 py-6 gap-6">
           {children}
