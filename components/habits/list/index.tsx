@@ -2,7 +2,6 @@
 
 import dynamic from 'next/dynamic'
 import { useState, useEffect, useCallback, useMemo } from 'react'
-import { createClient } from '@/utils/supabase/client'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Preloader } from '@/components/habits/list/Preloader'
 import { Spinner } from '@/components/ui/spinner'
@@ -16,8 +15,6 @@ const NoItems = dynamic(
   }
 )
 
-const supabase = createClient()
-
 export const List = () => {
   const [habits, setHabits] = useState<HabitProps[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -27,18 +24,12 @@ export const List = () => {
     try {
       setIsLoading(true)
       setError(null)
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
-      if (!user) throw new Error('User not authenticated')
-
-      const { data, error } = await supabase
-        .from('habits')
-        .select('*')
-        .eq('user_id', user.id)
-        .not('time_of_day', 'is', null)
-      if (error) throw error
-      setHabits(data || [])
+      const response = await fetch('/api/habits')
+      if (!response.ok) {
+        throw new Error('Failed to fetch habits')
+      }
+      const data = await response.json()
+      setHabits(data)
     } catch (error) {
       setError('Failed to fetch habits')
     } finally {
