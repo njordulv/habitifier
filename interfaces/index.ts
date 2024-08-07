@@ -47,6 +47,7 @@ export interface HabitProps {
   icon: string
   reminder: string[]
   sound: string
+  url: string
   days: string[]
   time_of_day: string
 }

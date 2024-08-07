@@ -1,9 +1,20 @@
+import dynamic from 'next/dynamic'
 import type { Metadata, Viewport } from 'next'
 import { LoadingScreen } from '@/components/LoadingScreen'
 import { Header } from '@/components/Header'
 import { Toaster } from '@/components/ui/sonner'
+import { Spinner } from '@/components/ui/spinner'
 import { siteConfig } from '@/config/site'
 import '@/styles/globals.css'
+
+const Notifier = dynamic(
+  () =>
+    import('@/components/habits/parts/Notifier').then((mod) => mod.Notifier),
+  {
+    loading: () => <Spinner size={18} />,
+    ssr: false,
+  }
+)
 
 export const metadata: Metadata = {
   title: {
@@ -40,6 +51,7 @@ export default function RootLayout({
         <main className="flex flex-col items-center justify-center px-4 sm:px-24 py-6 gap-6">
           {children}
         </main>
+        <Notifier />
         <Toaster />
       </body>
     </html>
