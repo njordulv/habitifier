@@ -1,7 +1,7 @@
 # Habitifier
 
-Habitifier is an application designed to help you build and maintain good habits.
-Track your progress, set goals, and achieve a better you with ease.
+Habitifier is a habit-tracking app designed to help you build and maintain good habits.
+Set goals, track progress, and achieve your personal best with ease.
 
 ## Features
 
