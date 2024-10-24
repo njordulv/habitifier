@@ -22,10 +22,6 @@ export default function loading() {
           <Skeleton className="h-4 w-[13%]" />
           <Skeleton className="h-9" />
         </div>
-        <div className="space-y-3">
-          <Skeleton className="h-4 w-[19%]" />
-          <Skeleton className="h-9" />
-        </div>
       </div>
       <div className="flex flex-col gap-4">
         <Skeleton className="h-9 rounded-md" />
