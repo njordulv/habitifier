@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic'
 import type { Metadata, Viewport } from 'next'
-import { Analytics } from '@vercel/analytics/react'
 import { LoadingScreen } from '@/components/LoadingScreen'
 import { Header } from '@/components/Header'
 import { Toaster } from '@/components/ui/sonner'
@@ -54,7 +53,6 @@ export default function RootLayout({
         </main>
         <Notifier />
         <Toaster />
-        <Analytics />
       </body>
     </html>
   )
