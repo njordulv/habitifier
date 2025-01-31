@@ -1,41 +1,51 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useReminder } from '@/hooks/useReminder'
 import { iconsLibrary } from '@/config/icons'
 import { HabitProps } from '@/interfaces'
-import { Spinner } from '@/components/ui/spinner'
 import { formatTimeForDisplay } from '@/components/ui/time-picker-utils'
+import { createClient } from '@/utils/supabase/client'
 
 export const Notifier: React.FC = () => {
   const [habits, setHabits] = useState<HabitProps[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean | null>(null)
   const { showReminder } = useReminder()
   const lastShownMessages = useRef<{ [key: string]: number }>({})
-  const refreshHabits = 60000 // refresh data habits every 1 min
-  const checkHabits = 10000 // check habits every 10 sec.
+  const refreshHabits = 60000
+  const checkHabits = 10000
+  const supabase = useMemo(() => createClient(), [])
 
-  const fetchHabits = async () => {
+  const fetchHabits = useCallback(async () => {
     try {
       setIsLoading(true)
-      setError(null)
-      const response = await fetch('/api/habits')
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+      if (!session) throw new Error('No session found')
+
+      const response = await fetch('/api/habits', {
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
+      })
+
       if (!response.ok) throw new Error('Failed to fetch habits')
+
       const data = await response.json()
       setHabits(data)
-    } catch {
-      setError('Failed to fetch habits')
+    } catch (error) {
+      console.error('Failed to fetch habits: ', error)
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [supabase])
 
   useEffect(() => {
     fetchHabits()
     const interval = setInterval(fetchHabits, refreshHabits)
     return () => clearInterval(interval)
-  }, [])
+  }, [fetchHabits])
 
   useEffect(() => {
     const checkCurrentHabits = () => {
@@ -95,8 +105,7 @@ export const Notifier: React.FC = () => {
     return () => clearInterval(interval)
   }, [habits, showReminder])
 
-  if (isLoading) return <Spinner size={18} />
-  if (error) return <div>Error: {error}</div>
+  if (isLoading === null) return null
 
   return null
 }
