@@ -7,7 +7,6 @@ export const siteConfig = {
   description:
     'Habitifier helps you build and maintain good habits, track your progress, and achieve your personal goals with ease. Start your journey to a better you today!',
   generator: 'Next.js',
-  manifest: '/manifest.json',
   keywords: ['nextjs', 'next14', 'supabase', 'habit-creation'],
   themeColor: [{ media: '(prefers-color-scheme: dark)', color: '#f1f3f4b3' }],
   authors: [

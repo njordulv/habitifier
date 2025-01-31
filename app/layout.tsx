@@ -23,7 +23,6 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   generator: siteConfig.generator,
-  manifest: siteConfig.manifest,
   keywords: siteConfig.keywords,
   authors: siteConfig.authors,
   icons: siteConfig.icons,

@@ -5,17 +5,11 @@ import { createClient } from '@/utils/supabase/server'
 
 export async function GET(req: NextRequest) {
   const supabase = createClient()
-  const authHeader = req.headers.get('authorization')
-  const token = authHeader?.split(' ')[1]
-
-  if (!token) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
 
   const {
     data: { user },
     error: userError,
-  } = await supabase.auth.getUser(token)
+  } = await supabase.auth.getUser()
 
   if (userError || !user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
