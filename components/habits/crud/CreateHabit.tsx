@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useId } from 'react'
 import { useMessages } from '@/hooks/useMessage'
 import { createClient } from '@/utils/supabase/client'
 import { useCreateHabitStore } from '@/store/useCreateHabitStore'
@@ -87,6 +87,7 @@ export const CreateHabit = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [userId, setUserId] = useState<string | null>(null)
   const { showMessage } = useMessages()
+  const id = useId()
 
   const form = useForm<FormData>({
     resolver: zodResolver(FormSchema),
@@ -149,7 +150,7 @@ export const CreateHabit = () => {
         .map((r) => (r ? formatTimeForDB(r) : null))
         .filter(Boolean) as string[]
 
-      const { data, error } = await supabase.from('habits').insert({
+      const { error } = await supabase.from('habits').insert({
         user_id: userId,
         name: values.name,
         description,
@@ -167,8 +168,14 @@ export const CreateHabit = () => {
       form.reset()
       resetForm()
       resetSound()
-    } catch (error: any) {
-      showMessage(error.message || 'An error occurred', 'error', 'destructive')
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        showMessage(
+          error.message || 'An error occurred',
+          'error',
+          'destructive'
+        )
+      }
     } finally {
       setIsLoading(false)
     }
@@ -191,11 +198,11 @@ export const CreateHabit = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel htmlFor="name">Name</FormLabel>
+                    <FormLabel htmlFor={id}>Name</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
-                        id="name"
+                        id={id}
                         name="name"
                         placeholder="Drink some water"
                         error={!!form.formState.errors.name}
@@ -210,10 +217,10 @@ export const CreateHabit = () => {
                 name="description"
                 render={() => (
                   <FormItem>
-                    <FormLabel htmlFor="description">Description</FormLabel>
+                    <FormLabel htmlFor={id}>Description</FormLabel>
                     <FormControl>
                       <Input
-                        id="description"
+                        id={id}
                         name="description"
                         placeholder="Optional"
                         value={description}

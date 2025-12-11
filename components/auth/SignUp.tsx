@@ -58,7 +58,7 @@ export const SignUp = () => {
   const onSubmit = async (values: FormData) => {
     setIsLoading(true)
     try {
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email: values.email,
         password: values.password,
       })
@@ -67,13 +67,15 @@ export const SignUp = () => {
 
       showMessage('Signed up successfully!', 'success', 'default')
       router.replace('/dashboard')
-    } catch (error: any) {
-      setIsLoading(false)
-      showMessage(
-        error.message || 'An error occurred during sign up',
-        'error',
-        'destructive'
-      )
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setIsLoading(false)
+        showMessage(
+          error.message || 'An error occurred during sign up',
+          'error',
+          'destructive'
+        )
+      }
     }
   }
 

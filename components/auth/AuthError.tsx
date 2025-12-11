@@ -25,7 +25,7 @@ export default function AuthError() {
 
   useEffect(() => {
     setIsLoading(false)
-  }, [error])
+  }, [])
 
   return (
     <Card className="w-full max-w-96">

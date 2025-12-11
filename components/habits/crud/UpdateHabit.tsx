@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useId } from 'react'
 import { useMessages } from '@/hooks/useMessage'
 import { createClient } from '@/utils/supabase/client'
 import { useCreateHabitStore } from '@/store/useCreateHabitStore'
@@ -89,6 +89,7 @@ export const UpdateHabit: React.FC<Props> = ({ habitId, onSuccess }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [isDataLoaded, setIsDataLoaded] = useState(false)
   const { showMessage } = useMessages()
+  const id = useId()
 
   const form = useForm<FormData>({
     resolver: zodResolver(FormSchema),
@@ -125,8 +126,10 @@ export const UpdateHabit: React.FC<Props> = ({ habitId, onSuccess }) => {
         )
         setWeekDays(data.days)
         setIsDataLoaded(true)
-      } catch (error: any) {
-        showMessage(error.message, 'error', 'destructive')
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          showMessage(error.message, 'error', 'destructive')
+        }
       } finally {
         setIsLoading(false)
       }
@@ -173,8 +176,14 @@ export const UpdateHabit: React.FC<Props> = ({ habitId, onSuccess }) => {
       if (error) throw error
       showMessage('Habit successfully updated', 'success', 'default')
       onSuccess()
-    } catch (error: any) {
-      showMessage(error.message || 'An error occurred', 'error', 'destructive')
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        showMessage(
+          error.message || 'An error occurred',
+          'error',
+          'destructive'
+        )
+      }
     } finally {
       setIsLoading(false)
     }
@@ -200,11 +209,11 @@ export const UpdateHabit: React.FC<Props> = ({ habitId, onSuccess }) => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel htmlFor="name">Name</FormLabel>
+                <FormLabel htmlFor={id}>Name</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
-                    id="name"
+                    id={id}
                     name="name"
                     placeholder="Drink some water"
                     error={!!form.formState.errors.name}
@@ -219,10 +228,10 @@ export const UpdateHabit: React.FC<Props> = ({ habitId, onSuccess }) => {
             name="description"
             render={() => (
               <FormItem>
-                <FormLabel htmlFor="description">Description</FormLabel>
+                <FormLabel htmlFor={id}>Description</FormLabel>
                 <FormControl>
                   <Input
-                    id="description"
+                    id={id}
                     name="description"
                     placeholder="Optional"
                     value={description}

@@ -17,7 +17,7 @@ export const RemoveHabit = ({ habitId, onSuccess }: Props) => {
 
   const deleteHabit = async () => {
     setIsLoading(true)
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('habits')
       .delete()
       .eq('id', habitId)

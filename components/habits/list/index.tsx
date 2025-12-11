@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Preloader } from '@/components/habits/list/Preloader'
 import { Spinner } from '@/components/ui/spinner'
 import { Item } from '@/components/habits/list/Item'
-import { HabitProps } from '@/interfaces'
+import type { HabitProps } from '@/interfaces'
 
 const NoItems = dynamic(
   () => import('@/components/habits/list/NoItems').then((mod) => mod.NoItems),

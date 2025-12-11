@@ -3,7 +3,7 @@
 import { m, LazyMotion, domAnimation } from 'framer-motion'
 import { list, items } from '@/components/animations'
 import { AddHabit } from '@/components/dashboard/AddHabit'
-import { UserProps } from '@/interfaces'
+import type { UserProps } from '@/interfaces'
 
 export const Hero = ({ data }: UserProps) => {
   return (

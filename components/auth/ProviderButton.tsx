@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ProviderProps } from '@/interfaces'
+import type { ProviderProps } from '@/interfaces'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { useMessages } from '@/hooks/useMessage'

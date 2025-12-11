@@ -11,7 +11,7 @@ import { Spinner } from '@/components/ui/spinner'
 import { Days } from '@/components/habits/parts/Days'
 import { Goals } from '@/components/habits/parts/Goals'
 import { Reminders } from '@/components/habits/parts/Reminders'
-import { HabitItemsProps } from '@/interfaces'
+import type { HabitItemsProps } from '@/interfaces'
 
 const UpdateDialog = dynamic(
   () =>
