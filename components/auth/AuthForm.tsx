@@ -29,15 +29,9 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
-import { createBrowserClient } from '@supabase/ssr'
+import { createBrowserSupabaseClient } from '@/utils/supabase/client-browser'
 
-function getBrowserClient() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  if (!supabaseUrl || !supabaseKey) throw new Error('Missing env')
-  return createBrowserClient(supabaseUrl, supabaseKey)
-}
-
+// ---------- Schema ----------
 const FormSchema = z.object({
   email: z.string().min(1, 'Email is required').email('Invalid email'),
   password: z.string().min(7, 'Password must be at least 7 characters'),
@@ -51,8 +45,7 @@ interface AuthFormProps {
 
 export const AuthForm = ({ mode }: AuthFormProps) => {
   const router = useRouter()
-
-  const supabase = getBrowserClient()
+  const supabase = createBrowserSupabaseClient()
   const [isLoading, setIsLoading] = useState(false)
   const { showMessage } = useMessages()
 
@@ -64,44 +57,56 @@ export const AuthForm = ({ mode }: AuthFormProps) => {
     },
   })
 
-  type SignInFn = typeof supabase.auth.signInWithPassword
-  type SignUpFn = typeof supabase.auth.signUp
-  type AuthResult = Awaited<ReturnType<SignInFn | SignUpFn>>
-
   const onSubmit = async (values: FormData) => {
     setIsLoading(true)
 
     try {
-      let result: AuthResult
-
       if (mode === 'sign-in') {
-        result = await supabase.auth.signInWithPassword({
+        // ---------- SIGN IN ----------
+        const { data, error } = await supabase.auth.signInWithPassword({
           email: values.email,
           password: values.password,
         })
+
+        if (error) throw error
+
+        if (!data.session) {
+          // email confirmation required
+          showMessage('Please confirm your email before signing in.', 'info')
+          setIsLoading(false)
+          return
+        }
       } else {
-        result = await supabase.auth.signUp({
+        // ---------- SIGN UP ----------
+        const { error: signUpError } = await supabase.auth.signUp({
           email: values.email,
           password: values.password,
         })
+
+        if (signUpError) throw signUpError
+
+        showMessage('Signed up successfully!', 'success', 'default')
+
+        // try login user after sign up
+        const { data: loginData, error: loginError } =
+          await supabase.auth.signInWithPassword({
+            email: values.email,
+            password: values.password,
+          })
+
+        if (loginError || !loginData.session) {
+          showMessage('Please confirm your email before logging in.', 'info')
+          setIsLoading(false)
+          return
+        }
       }
 
-      const { error } = result
-      if (error) throw error
-
-      showMessage(
-        mode === 'sign-in'
-          ? 'Signed in successfully!'
-          : 'Signed up successfully!',
-        'success',
-        'default'
-      )
-
+      // ---------- REDIRECT ----------
       router.replace('/dashboard')
     } catch (error: unknown) {
       if (error instanceof Error) {
-        setIsLoading(false)
         showMessage(error.message, 'error', 'destructive')
+        setIsLoading(false)
       }
     }
   }
