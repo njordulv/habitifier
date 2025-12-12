@@ -16,8 +16,8 @@ export const useSession = () => {
           data: { session },
         } = await supabase.auth.getSession()
         if (mounted) setSession(session)
-      } catch (err) {
-        console.error('Error get session:', err)
+      } catch (error) {
+        console.error('Error get session:', error)
       }
     }
 

@@ -1,8 +1,8 @@
-import { ComponentProps } from 'react'
-import { IconType } from 'react-icons'
-import { User } from '@supabase/supabase-js'
-import { Button } from '@/components/ui/button'
-import { Avatar } from '@/components/ui/avatar'
+import type { ComponentProps } from 'react'
+import type { IconType } from 'react-icons'
+import type { User } from '@supabase/supabase-js'
+import type { Button } from '@/components/ui/button'
+import type { Avatar } from '@/components/ui/avatar'
 
 type ButtonProps = ComponentProps<typeof Button>
 type ProfileProps = ComponentProps<typeof Avatar>

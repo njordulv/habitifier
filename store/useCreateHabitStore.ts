@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { CreateHabitState } from '@/interfaces'
+import type { CreateHabitState } from '@/interfaces'
 
 export const useCreateHabitStore = create<CreateHabitState>((set) => ({
   description: '',
