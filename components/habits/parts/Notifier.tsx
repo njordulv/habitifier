@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useReminder } from '@/hooks/useReminder'
 import { iconsLibrary } from '@/config/icons'
-import { HabitProps } from '@/interfaces'
+import type { HabitProps } from '@/interfaces'
 import { Spinner } from '@/components/ui/spinner'
 import { useSession } from '@/hooks/useSession'
 import { formatTimeForDisplay } from '@/components/ui/time-picker-utils'
@@ -80,7 +80,7 @@ export const Notifier: React.FC = () => {
                 iconsLibrary.habitIcons.find((i) => i.label === habit.icon)
                   ?.icon || iconsLibrary.habitIcons[0].icon
               const messageContent = (
-                <div className="flex items-center gap-3">
+                <div key={messageKey} className="flex items-center gap-3">
                   <IconComponent size={24} className={`${habit.color}`} />
                   <div className="flex flex-col gap-1">
                     <span>{`It's time to ${habit.name}`}</span>
