@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Session } from '@supabase/auth-helpers-nextjs'
-import { createClient } from '@/utils/supabase/client'
+import type { Session } from '@supabase/auth-helpers-nextjs'
+import { createBrowserSupabaseClient } from '@/utils/supabase/client-browser'
 
-const supabase = createClient()
+const supabase = createBrowserSupabaseClient()
 
 export const useSession = () => {
   const [session, setSession] = useState<Session | null>(null)

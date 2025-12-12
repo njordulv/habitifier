@@ -1,10 +1,10 @@
 'use server'
 
 import { NextResponse } from 'next/server'
-import { createClient } from '@/utils/supabase/server'
+import { createServerSupabaseClient } from '@/utils/supabase/client-server'
 
-export async function GET() {
-  const supabase = createClient()
+export async function GET(req: Request) {
+  const supabase = createServerSupabaseClient()
 
   const {
     data: { user },

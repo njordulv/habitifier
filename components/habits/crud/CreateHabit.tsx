@@ -6,7 +6,7 @@ import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
 import { useState, useEffect, useId } from 'react'
 import { useMessages } from '@/hooks/useMessage'
-import { createClient } from '@/utils/supabase/client'
+import { createBrowserSupabaseClient } from '@/utils/supabase/client-browser'
 import { useCreateHabitStore } from '@/store/useCreateHabitStore'
 import {
   Form,
@@ -69,7 +69,7 @@ const FormSchema = z.object({
 type FormData = z.infer<typeof FormSchema>
 
 export const CreateHabit = () => {
-  const supabase = createClient()
+  const supabase = createBrowserSupabaseClient()
   const {
     description,
     setDescription,

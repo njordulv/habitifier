@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { createClient } from '@/utils/supabase/client'
+import { createBrowserSupabaseClient } from '@/utils/supabase/client-browser'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { useMessages } from '@/hooks/useMessage'
 
-const supabase = createClient()
+const supabase = createBrowserSupabaseClient()
 
 interface Props {
   habitId: number

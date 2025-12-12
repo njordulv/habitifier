@@ -1,10 +1,10 @@
 'use client'
 
 import { GoSignOut } from 'react-icons/go'
-import { createClient } from '@/utils/supabase/client'
+import { createBrowserSupabaseClient } from '@/utils/supabase/client-browser'
 
 export const SignOut = ({ ...props }) => {
-  const supabase = createClient()
+  const supabase = createBrowserSupabaseClient()
 
   const logOut = async () => {
     await supabase.auth.signOut()

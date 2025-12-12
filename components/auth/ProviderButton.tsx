@@ -3,7 +3,7 @@ import type { ProviderProps } from '@/interfaces'
 import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/spinner'
 import { useMessages } from '@/hooks/useMessage'
-import { createClient } from '@/utils/supabase/client'
+import { createBrowserSupabaseClient } from '@/utils/supabase/client-browser'
 
 export const ProviderButton: React.FC<ProviderProps> = ({
   provider,
@@ -11,7 +11,7 @@ export const ProviderButton: React.FC<ProviderProps> = ({
   Icon,
   ...props
 }) => {
-  const supabase = createClient()
+  const supabase = createBrowserSupabaseClient()
   const [isLoading, setIsLoading] = useState(false)
   const { showMessage } = useMessages()
 
