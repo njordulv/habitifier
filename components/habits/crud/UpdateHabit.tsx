@@ -89,7 +89,8 @@ export const UpdateHabit: React.FC<Props> = ({ habitId, onSuccess }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [isDataLoaded, setIsDataLoaded] = useState(false)
   const { showMessage } = useMessages()
-  const id = useId()
+  const nameId = useId()
+  const descId = useId()
 
   const form = useForm<FormData>({
     resolver: zodResolver(FormSchema),
@@ -209,11 +210,11 @@ export const UpdateHabit: React.FC<Props> = ({ habitId, onSuccess }) => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel htmlFor={id}>Name</FormLabel>
+                <FormLabel htmlFor={nameId}>Name</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
-                    id={id}
+                    id={nameId}
                     name="name"
                     placeholder="Drink some water"
                     error={!!form.formState.errors.name}
@@ -228,10 +229,10 @@ export const UpdateHabit: React.FC<Props> = ({ habitId, onSuccess }) => {
             name="description"
             render={() => (
               <FormItem>
-                <FormLabel htmlFor={id}>Description</FormLabel>
+                <FormLabel htmlFor={descId}>Description</FormLabel>
                 <FormControl>
                   <Input
-                    id={id}
+                    id={descId}
                     name="description"
                     placeholder="Optional"
                     value={description}

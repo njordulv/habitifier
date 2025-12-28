@@ -87,7 +87,8 @@ export const CreateHabit = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [userId, setUserId] = useState<string | null>(null)
   const { showMessage } = useMessages()
-  const id = useId()
+  const nameId = useId()
+  const descId = useId()
 
   const form = useForm<FormData>({
     resolver: zodResolver(FormSchema),
@@ -198,11 +199,11 @@ export const CreateHabit = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel htmlFor={id}>Name</FormLabel>
+                    <FormLabel htmlFor={nameId}>Name</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
-                        id={id}
+                        id={nameId}
                         name="name"
                         placeholder="Drink some water"
                         error={!!form.formState.errors.name}
@@ -217,10 +218,10 @@ export const CreateHabit = () => {
                 name="description"
                 render={() => (
                   <FormItem>
-                    <FormLabel htmlFor={id}>Description</FormLabel>
+                    <FormLabel htmlFor={descId}>Description</FormLabel>
                     <FormControl>
                       <Input
-                        id={id}
+                        id={descId}
                         name="description"
                         placeholder="Optional"
                         value={description}
