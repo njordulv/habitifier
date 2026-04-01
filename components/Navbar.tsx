@@ -26,8 +26,11 @@ export const Navbar = () => {
       <NavigationMenuList>
         {navItems.map((item) => (
           <NavigationMenuItem key={item.label}>
-            <Link href={item.href} passHref legacyBehavior>
+            <Link href={item.href}>
+              {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
+              }
               <NavigationMenuLink
+               asChild
                 className={`${navigationMenuTriggerStyle()} ${
                   pathname === item.href ? 'text-primary' : ''
                 }`}
@@ -41,8 +44,11 @@ export const Navbar = () => {
         {session &&
           navAuthItems.map((item) => (
             <NavigationMenuItem key={item.label}>
-              <Link href={item.href} passHref legacyBehavior>
+              <Link href={item.href}>
+                {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
+                }
                 <NavigationMenuLink
+                 asChild
                   className={`${navigationMenuTriggerStyle()} ${
                     pathname === item.href ? 'text-primary' : ''
                   }`}
@@ -61,8 +67,11 @@ export const Navbar = () => {
           </NavigationMenuItem>
         ) : (
           <NavigationMenuItem>
-            <Link href="/sign-in" passHref legacyBehavior>
+            <Link href="/sign-in">
+              {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
+              }
               <NavigationMenuLink
+              asChild
                 className={`${navigationMenuTriggerStyle()} ${
                   pathname === '/sign-in' ? 'text-primary' : ''
                 }`}
@@ -74,5 +83,5 @@ export const Navbar = () => {
         )}
       </NavigationMenuList>
     </NavigationMenu>
-  )
+  );
 }
