@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/utils/supabase/client-server'
 
 export async function GET() {
-  const supabase = createServerSupabaseClient()
+  const supabase = await createServerSupabaseClient()
   
   // This endpoint is just to keep the server alive
   // It doesn't need to do anything
